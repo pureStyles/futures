@@ -1,28 +1,62 @@
 <template>
   <div id="app">
-    <PositionDashboard />
+    <div class="title">期货数据跟踪</div>
+    <div class="body">
+      <div class="side-bar">
+        <Sidebar />
+      </div>
+      <div class="main">
+        <router-view />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 
 import PositionDashboard from './components/PositionDashboard.vue';
+import Sidebar from './components/Sidebar';
 
 export default {
   name: 'App',
   components: {
-    PositionDashboard
+    PositionDashboard,
+    Sidebar
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+
+.title {
+  margin: 0 40px;
+  background-color: #eae7e7;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: #000000;
+  font-size: 14px;
+  font-weight: 400;
+}
+.body {
+  margin-top: 40px;
+  padding: 0 40px;
+  display: flex;
+  height: 100vh;
+  background-color: #fdfdfd;
+
+  gap: 30px;
+
+  .main {
+    flex: 1;
+  }
 }
 </style>

@@ -2,11 +2,11 @@ const moment = require("moment");
 const { queryVarietyPostion } = require("../api/broker.js");
 const { getNearestWeekday } = require("../utils/date.js");
 
-async function fetchVarietyPositionData(varietyCode) {
+async function fetchVarietyPositionData(varietyCode, date) {
     try {
         const data = await queryVarietyPostion({
             code: varietyCode,
-            date: getNearestWeekday(),
+            date,
         });
         return {
             longPosition: data.buy || [],
