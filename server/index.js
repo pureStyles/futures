@@ -3,13 +3,15 @@ const path = require('path');
 const fs = require('fs').promises;
 const moment = require("moment");
 const { fetchVarietyPositionData } = require("./variety/position.js");
-const { MAIN_VARIERY } = require("./config/index");
+const { fetchVarietyProfitData } = require("./variety/profit.js");
+
+const { MAIN_VARIERY, ALL_VARIETIES } = require("./config/index");
 
 const { getNearestWeekday } = require("./utils/date.js");
 
 const DATA_OUTPUT_PATH = path.join(__dirname, `../app/public/data/variety.json`);
 
-class Task {
+class PositionTask {
     positonsData = {};
 
     async collectData() {
@@ -67,4 +69,53 @@ class Task {
     }
 }
 
-new Task().run();
+// new PositionTask().run();
+
+/** 盈亏数据收集
+ * 收集后的数据结构：[{ broker: '国泰君安', value: -55643980'}]
+*/
+class ProfitTask {
+    profits = {};
+    outpath = path.join(__dirname, `../app/public/data/profit.json`);
+
+    async collectOneDayData(dates, type) {
+        for(const variety of ALL_VARIETIES) {
+            const data = await fetchVarietyProfitData(variety.name, dates);
+            const { brokers, value } = data || {};
+            const profits = (brokers || []).map((name, index) => {
+                return {
+                    broker: name,
+                    value: value[index] || 0,
+                }
+            });
+            if (!this.profits[variety.symbol]) {
+                this.profits[variety.symbol] = {};
+            }
+            this.profits[variety.symbol][type] = profits;
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+    }
+
+    async saveData() {
+        await fs.writeFile(
+            this.outpath,
+            JSON.stringify(this.profits),
+            'utf-8'
+        )
+        console.log("盈亏数据更新成功✅！");
+    }
+
+    async run() {
+        const today = moment();
+        const oneYearAgo = today.clone().subtract(1, 'year').format('YYYY-MM-DD');
+        const halfYearAgo = today.clone().subtract(6, 'months').format('YYYY-MM-DD');
+        const todayStr = today.format('YYYY-MM-DD');
+
+        await this.collectOneDayData([oneYearAgo, todayStr], 'year');
+        await this.collectOneDayData([halfYearAgo, todayStr], 'half_year');
+        await this.saveData();
+    }
+
+}
+
+new ProfitTask().run();

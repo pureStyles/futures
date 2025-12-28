@@ -14,13 +14,11 @@
 
 <script>
 
-import PositionDashboard from './components/PositionDashboard.vue';
 import Sidebar from './components/Sidebar';
 
 export default {
   name: 'App',
   components: {
-    PositionDashboard,
     Sidebar
   }
 }

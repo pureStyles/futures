@@ -12,6 +12,10 @@
             broker="国泰君安"
         />
     </div>
+    <brokerProfitsBar
+        :pnlData="varietyProfits"
+        :variety="variety.name"
+    />
  </div>
 </template>
 
@@ -19,12 +23,17 @@
 import { computed, ref, watch  } from 'vue';
 import { useRoute } from 'vue-router/composables'; // 注意：Vue 2.7 需从这里导入
 import brokersPositionSeries from './components/brokersPositionSeries.vue';
+import brokerProfitsBar from './components/brokerProfitsBar.vue';
 import { VARIETIES_LIST } from '@/config/varieties';
 
 
 const route = useRoute();
 const varietyCode = ref('');
 const varieryPositions = ref([]);
+
+/** 商品盈亏数据 */
+const varietiesProfits = ref({});
+
 
 watch(
   () => route.params.variety,
@@ -40,6 +49,10 @@ const variety = computed(() => {
     return VARIETIES_LIST.find(v => v.code === varietyCode.value);
 });
 
+const varietyProfits = computed(() => {
+    return varietiesProfits.value[varietyCode.value] || {};
+});
+
 const fetchVarietyPosition = async () => {
     try {
         const response = await fetch(process.env.BASE_URL + 'data/variety.json');
@@ -50,7 +63,19 @@ const fetchVarietyPosition = async () => {
     }
 }
 
+/** 盈亏数据 */
+const fetchVarietyProfit = async () => {
+    try {
+        const response = await fetch(process.env.BASE_URL + 'data/profit.json');
+        const data = await response.json();
+        varietiesProfits.value = data || {};
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 fetchVarietyPosition();
+fetchVarietyProfit();
 </script>
 
 <style scoped>

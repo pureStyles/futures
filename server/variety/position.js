@@ -1,5 +1,5 @@
 const moment = require("moment");
-const { queryVarietyPostion } = require("../api/broker.js");
+const { queryVarietyPostion } = require("../api/variety.js");
 const { getNearestWeekday } = require("../utils/date.js");
 
 async function fetchVarietyPositionData(varietyCode, date) {
