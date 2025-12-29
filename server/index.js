@@ -80,6 +80,7 @@ class ProfitTask {
 
     async collectOneDayData(dates, type) {
         for(const variety of ALL_VARIETIES) {
+            console.log(`🟡正在获取${variety.name}盈亏数据...`);
             const data = await fetchVarietyProfitData(variety.name, dates);
             const { brokers, value } = data || {};
             const profits = (brokers || []).map((name, index) => {
@@ -88,10 +89,16 @@ class ProfitTask {
                     value: value[index] || 0,
                 }
             });
+            /** 盈亏数据从大到小排序 */
+            const sortedProfits = [... profits].sort((a, b) => b.value - a.value);
+            const winers = sortedProfits.slice(0, 6).filter(item => item.value > 0);
+            const losers = sortedProfits.slice(-6).filter(item => item.value < 0);
+            const _profits = [...winers, ...losers];
+
             if (!this.profits[variety.symbol]) {
                 this.profits[variety.symbol] = {};
             }
-            this.profits[variety.symbol][type] = profits;
+            this.profits[variety.symbol][type] = _profits;
             await new Promise(resolve => setTimeout(resolve, 1000));
         }
     }

@@ -256,11 +256,6 @@ const ALL_VARIETIES = [
     },
     {
       "market": "大商所",
-      "name": "粳米",
-      "symbol": "RR"
-    },
-    {
-      "market": "大商所",
       "name": "苯乙烯",
       "symbol": "EB"
     },
@@ -371,38 +366,8 @@ const ALL_VARIETIES = [
     },
     {
       "market": "郑商所",
-      "name": "动力煤",
-      "symbol": "ZC"
-    },
-    {
-      "market": "郑商所",
-      "name": "强麦",
-      "symbol": "WH"
-    },
-    {
-      "market": "郑商所",
-      "name": "早籼稻",
-      "symbol": "RI"
-    },
-    {
-      "market": "郑商所",
       "name": "油菜籽",
       "symbol": "RS"
-    },
-    {
-      "market": "郑商所",
-      "name": "粳稻",
-      "symbol": "JR"
-    },
-    {
-      "market": "郑商所",
-      "name": "晚籼稻",
-      "symbol": "LR"
-    },
-    {
-      "market": "郑商所",
-      "name": "普麦",
-      "symbol": "PM"
     },
     {
       "market": "郑商所",
