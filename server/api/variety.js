@@ -15,8 +15,14 @@ async function queryVarietyProfit(params) {
     return request.post('/ajax/variety_profit_loss.php', params);
 }
 
+/** 查询主力合约 */
+async function queryMainVarieies(params) {
+    return request.post('/ajax/recent_contracts.php', params);
+}
+
 module.exports = {
     queryNetPositon,
     queryVarietyPostion,
-    queryVarietyProfit
+    queryVarietyProfit,
+    queryMainVarieies,
 }

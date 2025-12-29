@@ -56,11 +56,6 @@ const ALL_VARIETIES = [
     },
     {
       "market": "上期所",
-      "name": "燃料油",
-      "symbol": "FU"
-    },
-    {
-      "market": "上期所",
       "name": "沥青",
       "symbol": "BU"
     },
@@ -76,11 +71,6 @@ const ALL_VARIETIES = [
     },
     {
       "market": "上期所",
-      "name": "原油",
-      "symbol": "SC"
-    },
-    {
-      "market": "上期所",
       "name": "纸浆",
       "symbol": "SP"
     },
@@ -93,16 +83,6 @@ const ALL_VARIETIES = [
       "market": "上期所",
       "name": "不锈钢",
       "symbol": "SS"
-    },
-    {
-      "market": "上期所",
-      "name": "低硫油",
-      "symbol": "LU"
-    },
-    {
-      "market": "上期所",
-      "name": "国际铜",
-      "symbol": "BC"
     },
     {
       "market": "上期所",
@@ -298,16 +278,6 @@ const ALL_VARIETIES = [
       "market": "广期所",
       "name": "多晶硅",
       "symbol": "PS"
-    },
-    {
-      "market": "广期所",
-      "name": "钯",
-      "symbol": "PD"
-    },
-    {
-      "market": "广期所",
-      "name": "铂",
-      "symbol": "PT"
     },
     {
       "market": "郑商所",

@@ -21,3 +21,6 @@ pnpm-debug.log*
 *.njsproj
 *.sln
 *.sw?
+
+# 爬取的本地数据，为了体积考虑不提交
+/src/config/_*.json

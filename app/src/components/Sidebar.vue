@@ -11,7 +11,7 @@
       <div class="collapsible-wrapper" :class="{ 'expanded': isExpanded }">
         <ul class="menu-list">
           <li v-for="(item, index) in VARIETIES_LIST" :key="index">
-            <router-link :to="{ name: 'varietyDetail', params: { variety: item.code } }">
+            <router-link :to="{ name: 'varietyDetail', params: { variety: item.symbol } }">
               {{ item.name }}
             </router-link>
           </li>

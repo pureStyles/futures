@@ -3,21 +3,26 @@
     <div class="title">代表性席位盈亏情况</div>
     <brokerProfitsBar
         :pnlData="varietyProfits"
-        :variety="variety.name"
+        :variety="variety.symbol"
     />
     <div class="title">席位头寸数据（包括多头、空头与净持仓）</div>
-    <div
-        v-for="(item, index) in variety.mainVariety"
-        :key="index"
-        class="variety-list"
-    >
-        <div v-for="(broker, index) in alwaysWinningBrokers" :key="index" style="margin-bottom: 20px;">
-            <div>{{ broker.broker }}（稳居盈利榜单 {{ broker.count }} 次）</div>
-            <brokersPositionSeries
-                :rawData="varieryPositions"
-                :variety="item"
-                :broker="broker.broker"
-            />
+
+    <div v-for="(broker, index) in alwaysWinningBrokers" :key="index" style="margin-bottom: 20px;">
+        <div>{{ broker.broker }}（稳居盈利榜单 {{ broker.count }} 次）</div>
+
+        <div class="brokers-list">
+            <div
+                v-for="(item, index) in variety.mainVariety"
+                :key="index"
+                class="variety-list"
+            >
+                <div class="variety-name">{{ item }}</div>
+                <brokersPositionSeries
+                    :rawData="varieryPositions"
+                    :variety="item"
+                    :broker="broker.broker"
+                />
+            </div>
         </div>
     </div>
  </div>
@@ -52,7 +57,7 @@ watch(
 );
 
 const variety = computed(() => {
-    return VARIETIES_LIST.find(v => v.code === varietyCode.value);
+    return VARIETIES_LIST.find(v => v.symbol === varietyCode.value);
 });
 
 const varietyProfits = computed(() => {
@@ -114,9 +119,18 @@ fetchVarietyProfit();
 <style scoped>
 .container {
     width: 100%;
-    .variety-list {
+
+    .brokers-list {
         width: 100%;
+        display: flex;
+    }
+    .variety-list {
+        flex: 1;
     }
 
+    .title {
+        font-weight: 500;
+        margin: 16px 0;
+    }
 }
 </style>
