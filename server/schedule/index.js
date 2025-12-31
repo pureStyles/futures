@@ -23,7 +23,7 @@ async function main() {
     }
     /** 需要等到收盘后才会有数据，定在本地17:30 */
     const now = moment();
-    const readyTime = now.clone().hour(17).minute(30).second(0).millisecond(0);
+    const readyTime = now.clone().hour(9).minute(30).second(0).millisecond(0);
     if (now < readyTime.valueOf()) {
         /** 数据还没准备好 */
         process.stdout.write(`\r🔄 还没到更新时间`);
