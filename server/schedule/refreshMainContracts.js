@@ -11,8 +11,8 @@ const { ALL_VARIETIES } = require("../config/index.js");
 
 module.exports = class  {
     mainContracts = [];
-    outpath1 = path.join(__dirname, "../../app/src/config/varieties.js");
-    outpath2 = path.jpin(process.cwd(), "server", "config/variety.js");
+    outpath1 = path.join(process.cwd(), "app", "src/config/varieties.js");
+    outpath2 = path.join(process.cwd(), "server", "config/variety.js");
 
     async fetchRecentContracts(name) {
         try {
