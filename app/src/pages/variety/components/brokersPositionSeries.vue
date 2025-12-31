@@ -89,19 +89,37 @@
                 name: '多头',
                 type: 'line',
                 smooth: true,
-                data: series.map(i => i.long)
+                data: series.map(i => i.long),
+                itemStyle: {
+                    color: '#f85149'
+                },
+                lineStyle: {
+                    color: '#f85149'
+                }
             },
             {
                 name: '空头',
                 type: 'line',
                 smooth: true,
-                data: series.map(i => i.short)
+                data: series.map(i => i.short),
+                itemStyle: {
+                    color: '#23d18b'
+                },
+                lineStyle: {
+                    color: '#23d18b'
+                }
             },
             {
                 name: '净持仓',
                 type: 'line',
                 smooth: true,
-                data: series.map(i => i.net)
+                data: series.map(i => i.net),
+                itemStyle: {
+                    color: '#ccc'
+                },
+                lineStyle: {
+                    color: '#ccc'
+                }
             }
             ]
         }
