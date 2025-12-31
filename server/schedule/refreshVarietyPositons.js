@@ -38,7 +38,7 @@ class PositionTask {
                 shortPosition: (data.ss || []).filter(e => positiveBroker[symbol].includes(e.broker)),
             }
         } catch (error) {
-            this.errorInfo['requrest'].push({
+            this.errorInfo['request'].push({
                 date: params.date,
                 variety: variety.name,
                 code: variety.code
@@ -122,7 +122,7 @@ class PositionTask {
      * 适用于在有历史数据的基础上新增数据
      */
     async updateNearPosition(date) {
-        const currentData = await this.loadData();
+        const currentData = await this.loadData(this.outPath);
         const positions = await this.collectData(date);
         /** 删除一个交易日的数据后再添加一个交易日数据 */
         currentData.shift();
@@ -139,6 +139,6 @@ class PositionTask {
     }
 }
 
-// new PositionTask().updateLast30DaysPosition();
+new PositionTask().updateLast30DaysPosition();
 
 module.exports = PositionTask;

@@ -11,6 +11,8 @@ permissions:
 jobs:
   update-data:
     runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai  # 👈 这样设置后，该 Job 下的所有步骤都会生效
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

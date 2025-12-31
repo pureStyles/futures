@@ -15,6 +15,8 @@ const exchangeDays = require("../config/exChangeDay.js");
 
 /** 任务执行入口 */
 async function main() {
+    console.log('now', moment().format("YYYY-MM-DD HH:mm:ss"))
+    process.exit(1);
     const today = moment().format("YYYY-MM-DD");
     if(!exchangeDays.includes(today)) {
         /** 如果不是交易日就不用更新 */
