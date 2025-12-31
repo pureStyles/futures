@@ -19,8 +19,8 @@ const VARIETIES_LIST = [
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2602",
-            "bu2603"
+            "bu2603",
+            "bu2602"
         ]
     },
     {
@@ -196,7 +196,7 @@ const VARIETIES_LIST = [
         "symbol": "EG",
         "mainVariety": [
             "eg2605",
-            "eg2601"
+            "eg2602"
         ]
     },
     {
@@ -268,7 +268,7 @@ const VARIETIES_LIST = [
         "symbol": "AP",
         "mainVariety": [
             "ap2605",
-            "ap2601"
+            "ap2603"
         ]
     },
     {
@@ -284,7 +284,7 @@ const VARIETIES_LIST = [
         "symbol": "FG",
         "mainVariety": [
             "fg2605",
-            "fg2601"
+            "fg2603"
         ]
     },
     {
@@ -412,7 +412,7 @@ const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2603",
-            "pl2604"
+            "pl2602"
         ]
     },
     {
@@ -510,9 +510,9 @@ const VARIETIES_LIST = [
             "im2603",
             "im2601"
         ]
-    },
+    }
 ];
-
-module.exports = {
-    VARIETIES_LIST,
-}
+            module.exports = {
+                VARIETIES_LIST
+            }
+        

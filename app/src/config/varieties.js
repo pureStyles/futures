@@ -19,8 +19,8 @@ export const VARIETIES_LIST = [
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2602",
-            "bu2603"
+            "bu2603",
+            "bu2602"
         ]
     },
     {
@@ -30,11 +30,6 @@ export const VARIETIES_LIST = [
             "ru2605",
             "ru2609"
         ]
-    },
-    {
-        "name": "线材",
-        "symbol": "WR",
-        "mainVariety": []
     },
     {
         "name": "纸浆",
@@ -82,22 +77,6 @@ export const VARIETIES_LIST = [
         "mainVariety": [
             "ec2602",
             "ec2604"
-        ]
-    },
-    {
-        "name": "铝合金",
-        "symbol": "AD",
-        "mainVariety": [
-            "ad2603",
-            "ad2602"
-        ]
-    },
-    {
-        "name": "双胶纸",
-        "symbol": "OP",
-        "mainVariety": [
-            "op2603",
-            "op2602"
         ]
     },
     {
@@ -213,27 +192,11 @@ export const VARIETIES_LIST = [
         ]
     },
     {
-        "name": "胶合板",
-        "symbol": "BB",
-        "mainVariety": [
-            "bb2301",
-            "bb2309"
-        ]
-    },
-    {
-        "name": "纤维板",
-        "symbol": "FB",
-        "mainVariety": [
-            "fb2603",
-            "fb2602"
-        ]
-    },
-    {
         "name": "乙二醇",
         "symbol": "EG",
         "mainVariety": [
             "eg2605",
-            "eg2601"
+            "eg2602"
         ]
     },
     {
@@ -261,14 +224,6 @@ export const VARIETIES_LIST = [
         ]
     },
     {
-        "name": "原木",
-        "symbol": "LG",
-        "mainVariety": [
-            "lg2603",
-            "lg2605"
-        ]
-    },
-    {
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
@@ -293,11 +248,6 @@ export const VARIETIES_LIST = [
         ]
     },
     {
-        "name": "商品指数",
-        "symbol": "CI",
-        "mainVariety": []
-    },
-    {
         "name": "多晶硅",
         "symbol": "PS",
         "mainVariety": [
@@ -318,7 +268,7 @@ export const VARIETIES_LIST = [
         "symbol": "AP",
         "mainVariety": [
             "ap2605",
-            "ap2601"
+            "ap2603"
         ]
     },
     {
@@ -334,7 +284,7 @@ export const VARIETIES_LIST = [
         "symbol": "FG",
         "mainVariety": [
             "fg2605",
-            "fg2601"
+            "fg2603"
         ]
     },
     {
@@ -391,14 +341,6 @@ export const VARIETIES_LIST = [
         "mainVariety": [
             "ta2605",
             "ta2603"
-        ]
-    },
-    {
-        "name": "油菜籽",
-        "symbol": "RS",
-        "mainVariety": [
-            "rs2607",
-            "rs2609"
         ]
     },
     {
@@ -470,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2603",
-            "pl2604"
+            "pl2602"
         ]
     },
     {
@@ -562,43 +504,11 @@ export const VARIETIES_LIST = [
         ]
     },
     {
-        "name": "二债",
-        "symbol": "TS",
-        "mainVariety": [
-            "ts2603",
-            "ts2606"
-        ]
-    },
-    {
-        "name": "五债",
-        "symbol": "TF",
-        "mainVariety": [
-            "tf2603",
-            "tf2606"
-        ]
-    },
-    {
-        "name": "十债",
-        "symbol": "T",
-        "mainVariety": [
-            "t2603",
-            "t2606"
-        ]
-    },
-    {
         "name": "1000中证",
         "symbol": "IM",
         "mainVariety": [
             "im2603",
             "im2601"
-        ]
-    },
-    {
-        "name": "三十债",
-        "symbol": "TL",
-        "mainVariety": [
-            "tl2603",
-            "tl2606"
         ]
     }
 ];
