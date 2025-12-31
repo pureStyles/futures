@@ -5,7 +5,7 @@
 const fs = require("fs").promises;
 const path = require('path');
 
-const outPath = path.join(process.cwd(), 'app', 'public/data/position.json');
+const outPath = path.join(process.cwd(), 'app', 'public/data/position2.json');
 
 async function coancatJSONFile(file1, file2) {
 
@@ -25,4 +25,8 @@ async function coancatJSONFile(file1, file2) {
 
 }
 
-coancatJSONFile();
+const file1 = path.join(process.cwd(), 'app', 'public/data/position1.json')
+
+const file2 = path.join(process.cwd(), 'app', 'public/data/position.json')
+
+coancatJSONFile(file1, file2);
