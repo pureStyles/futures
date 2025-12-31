@@ -139,6 +139,4 @@ class PositionTask {
     }
 }
 
-new PositionTask().updateLast30DaysPosition();
-
 module.exports = PositionTask;

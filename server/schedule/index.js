@@ -16,21 +16,20 @@ const exchangeDays = require("../config/exChangeDay.js");
 /** 任务执行入口 */
 async function main() {
     console.log('now', moment().format("YYYY-MM-DD HH:mm:ss"))
-    process.exit(1);
     const today = moment().format("YYYY-MM-DD");
-    if(!exchangeDays.includes(today)) {
-        /** 如果不是交易日就不用更新 */
-        process.stdout.write(`\r🔄 今日不是交易日，无需更新数据`);
-        process.exit(1);
-    }
+    // if(!exchangeDays.includes(today)) {
+    //     /** 如果不是交易日就不用更新 */
+    //     process.stdout.write(`\r🔄 今日不是交易日，无需更新数据`);
+    //     process.exit(1);
+    // }
     /** 需要等到收盘后才会有数据，定在本地17:30 */
     const now = moment();
     const readyTime = now.clone().hour(9).minute(30).second(0).millisecond(0);
-    if (now < readyTime.valueOf()) {
-        /** 数据还没准备好 */
-        process.stdout.write(`\r🔄 还没到更新时间`);
-        process.exit(1);
-    }
+    // if (now < readyTime.valueOf()) {
+    //     /** 数据还没准备好 */
+    //     process.stdout.write(`\r🔄 还没到更新时间`);
+    //     process.exit(1);
+    // }
 
     /** 交易日需要更新数据
      * 1. 需要刷新合约主力数据
@@ -38,13 +37,13 @@ async function main() {
      */
 
     /** 1. 刷新合约主力数据 */
-    await new MainContracts().run();
+    // await new MainContracts().run();
 
     /** 2. 获取感兴趣商品持仓详情
      * 中包括主力合约、次主力合约、合约汇总数据的持仓详情（只写入盈亏靠前的席位持仓） 
     */
    const varietyPositions = new VarietyPositions();
-   await varietyPositions.updateNearPosition(today);
+   await varietyPositions.updateNearPosition('2025-12-31');
    const { request } = varietyPositions.errorInfo;
    if (request && request.length) {
     console.warn(`⚠️有接口请求失败了，需要补充数据完整性`, JSON.stringify(request));
