@@ -11,7 +11,8 @@ const { ALL_VARIETIES } = require("../config/index.js");
 
 module.exports = class  {
     mainContracts = [];
-    outpath = path.join(__dirname, "../../app/src/config/_variety.json");
+    outpath1 = path.join(__dirname, "../../app/src/config/varieties.js");
+    outpath2 = path.jpin(process.cwd(), "server", "config/variety.js");
 
     async fetchRecentContracts(name) {
         try {
@@ -27,11 +28,32 @@ module.exports = class  {
     }
 
     async saveData() {
+        // 1. 先将数据对象转换为标准的 JSON 字符串格式
+        const listString = JSON.stringify(this.mainContracts, null, 4);
+    
+        // 2. 构造代码字符串，注意这里不需要对整个 fileContent 使用 JSON.stringify
+        const fileContent = `export const VARIETIES_LIST = ${listString};`;
+        const nodeContent = `const VARIETIES_LIST = ${listString};
+            module.exports = {
+                VARIETIES_LIST
+            }
+        `
+    
+        // 3. 直接写入字符串内容
         await fs.writeFile(
-            this.outpath,
-            JSON.stringify(this.mainContracts, null, 2),
+            this.outpath1,
+            fileContent,
             'utf-8'
-        )
+        );
+
+        await fs.writeFile(
+            this.outpath2,
+            nodeContent,
+            'utf-8'
+        );
+
+
+        
         console.log("合约主力刷新成功✅！");
     }
 

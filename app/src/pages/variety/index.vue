@@ -12,14 +12,17 @@
 
         <div class="brokers-list">
             <div
-                v-for="(item, index) in variety.mainVariety"
+                v-for="(item, index) in mainVariety"
                 :key="index"
                 class="variety-list"
             >
-                <div class="variety-name">{{ item }}</div>
+                <div class="variety-name">
+                    {{ item === 'all' ? '汇总' : item }}
+                </div>
                 <brokersPositionSeries
                     :rawData="varieryPositions"
                     :variety="item"
+                    :symbol="varietyCode"
                     :broker="broker.broker"
                 />
             </div>
@@ -60,13 +63,20 @@ const variety = computed(() => {
     return VARIETIES_LIST.find(v => v.symbol === varietyCode.value);
 });
 
+const mainVariety = computed(() => {
+    if (variety.value) {
+        return ['all', ...variety.value.mainVariety];
+    }
+    return [];
+});
+
 const varietyProfits = computed(() => {
     return varietiesProfits.value[varietyCode.value] || {};
 });
 
 const fetchVarietyPosition = async () => {
     try {
-        const response = await fetch(process.env.BASE_URL + 'data/variety.json');
+        const response = await fetch(process.env.BASE_URL + 'data/position.json');
         const list = await response.json();
         varieryPositions.value = list || [];
     } catch (error) {

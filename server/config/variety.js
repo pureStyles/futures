@@ -1,392 +1,518 @@
-const MAIN_VARIERY = {
-    CF: ['cf2605'],
-    SR: ['sr2605'],
-}
-
-const ALL_VARIETIES = [
-    {
-      "market": "上期所",
-      "name": "螺纹钢",
-      "symbol": "RB"
-    },
-    {
-      "market": "上期所",
-      "name": "热卷",
-      "symbol": "HC"
-    },
-    {
-      "market": "上期所",
-      "name": "沪铜",
-      "symbol": "CU"
-    },
-    {
-      "market": "上期所",
-      "name": "沪铝",
-      "symbol": "AL"
-    },
-    {
-      "market": "上期所",
-      "name": "沪锌",
-      "symbol": "ZN"
-    },
-    {
-      "market": "上期所",
-      "name": "沪铅",
-      "symbol": "PB"
-    },
-    {
-      "market": "上期所",
-      "name": "沪镍",
-      "symbol": "NI"
-    },
-    {
-      "market": "上期所",
-      "name": "沪锡",
-      "symbol": "SN"
-    },
-    {
-      "market": "上期所",
-      "name": "沪金",
-      "symbol": "AU"
-    },
-    {
-      "market": "上期所",
-      "name": "沪银",
-      "symbol": "AG"
-    },
-    {
-      "market": "上期所",
-      "name": "沥青",
-      "symbol": "BU"
-    },
-    {
-      "market": "上期所",
-      "name": "天然橡胶",
-      "symbol": "RU"
-    },
-    {
-      "market": "上期所",
-      "name": "线材",
-      "symbol": "WR"
-    },
-    {
-      "market": "上期所",
-      "name": "纸浆",
-      "symbol": "SP"
-    },
-    {
-      "market": "上期所",
-      "name": "20号胶",
-      "symbol": "NR"
-    },
-    {
-      "market": "上期所",
-      "name": "不锈钢",
-      "symbol": "SS"
-    },
-    {
-      "market": "上期所",
-      "name": "氧化铝",
-      "symbol": "AO"
-    },
-    {
-      "market": "上期所",
-      "name": "合成橡胶",
-      "symbol": "BR"
-    },
-    {
-      "market": "上期所",
-      "name": "集运欧线",
-      "symbol": "EC"
-    },
-    {
-      "market": "上期所",
-      "name": "铝合金",
-      "symbol": "AD"
-    },
-    {
-      "market": "上期所",
-      "name": "双胶纸",
-      "symbol": "OP"
-    },
-    {
-      "market": "中金所",
-      "name": "300沪深",
-      "symbol": "IF"
-    },
-    {
-      "market": "中金所",
-      "name": "500中证",
-      "symbol": "IC"
+const VARIETIES_LIST = [
+    {
+        "name": "螺纹钢",
+        "symbol": "RB",
+        "mainVariety": [
+            "rb2605",
+            "rb2603"
+        ]
     },
-    {
-      "market": "中金所",
-      "name": "50上证",
-      "symbol": "IH"
-    },
-    {
-      "market": "中金所",
-      "name": "二债",
-      "symbol": "TS"
+    {
+        "name": "热卷",
+        "symbol": "HC",
+        "mainVariety": [
+            "hc2605",
+            "hc2603"
+        ]
     },
-    {
-      "market": "中金所",
-      "name": "五债",
-      "symbol": "TF"
+    {
+        "name": "沥青",
+        "symbol": "BU",
+        "mainVariety": [
+            "bu2602",
+            "bu2603"
+        ]
     },
-    {
-      "market": "中金所",
-      "name": "十债",
-      "symbol": "T"
+    {
+        "name": "天然橡胶",
+        "symbol": "RU",
+        "mainVariety": [
+            "ru2605",
+            "ru2609"
+        ]
     },
-    {
-      "market": "中金所",
-      "name": "1000中证",
-      "symbol": "IM"
+    {
+        "name": "纸浆",
+        "symbol": "SP",
+        "mainVariety": [
+            "sp2605",
+            "sp2603"
+        ]
     },
-    {
-      "market": "中金所",
-      "name": "三十债",
-      "symbol": "TL"
+    {
+        "name": "20号胶",
+        "symbol": "NR",
+        "mainVariety": [
+            "nr2603",
+            "nr2602"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "铁矿石",
-      "symbol": "I"
+    {
+        "name": "不锈钢",
+        "symbol": "SS",
+        "mainVariety": [
+            "ss2602",
+            "ss2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "焦煤",
-      "symbol": "JM"
+    {
+        "name": "氧化铝",
+        "symbol": "AO",
+        "mainVariety": [
+            "ao2605",
+            "ao2602"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "焦炭",
-      "symbol": "J"
+    {
+        "name": "合成橡胶",
+        "symbol": "BR",
+        "mainVariety": [
+            "br2602",
+            "br2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "豆一",
-      "symbol": "A"
+    {
+        "name": "集运欧线",
+        "symbol": "EC",
+        "mainVariety": [
+            "ec2602",
+            "ec2604"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "豆二",
-      "symbol": "B"
+    {
+        "name": "铁矿石",
+        "symbol": "I",
+        "mainVariety": [
+            "i2605",
+            "i2609"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "玉米",
-      "symbol": "C"
+    {
+        "name": "焦煤",
+        "symbol": "JM",
+        "mainVariety": [
+            "jm2605",
+            "jm2609"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "淀粉",
-      "symbol": "CS"
+    {
+        "name": "焦炭",
+        "symbol": "J",
+        "mainVariety": [
+            "j2605",
+            "j2601"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "鸡蛋",
-      "symbol": "JD"
+    {
+        "name": "豆一",
+        "symbol": "A",
+        "mainVariety": [
+            "a2605",
+            "a2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "塑料",
-      "symbol": "L"
+    {
+        "name": "豆二",
+        "symbol": "B",
+        "mainVariety": [
+            "b2605",
+            "b2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "豆粕",
-      "symbol": "M"
+    {
+        "name": "玉米",
+        "symbol": "C",
+        "mainVariety": [
+            "c2603",
+            "c2605"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "棕榈油",
-      "symbol": "P"
+    {
+        "name": "淀粉",
+        "symbol": "CS",
+        "mainVariety": [
+            "cs2603",
+            "cs2605"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "PP",
-      "symbol": "PP"
+    {
+        "name": "鸡蛋",
+        "symbol": "JD",
+        "mainVariety": [
+            "jd2603",
+            "jd2602"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "PVC",
-      "symbol": "V"
+    {
+        "name": "塑料",
+        "symbol": "L",
+        "mainVariety": [
+            "l2605",
+            "l2602"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "豆油",
-      "symbol": "Y"
+    {
+        "name": "豆粕",
+        "symbol": "M",
+        "mainVariety": [
+            "m2605",
+            "m2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "胶合板",
-      "symbol": "BB"
+    {
+        "name": "棕榈油",
+        "symbol": "P",
+        "mainVariety": [
+            "p2605",
+            "p2609"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "纤维板",
-      "symbol": "FB"
+    {
+        "name": "PP",
+        "symbol": "PP",
+        "mainVariety": [
+            "pp2605",
+            "pp2609"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "乙二醇",
-      "symbol": "EG"
+    {
+        "name": "PVC",
+        "symbol": "V",
+        "mainVariety": [
+            "v2605",
+            "v2609"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "苯乙烯",
-      "symbol": "EB"
+    {
+        "name": "豆油",
+        "symbol": "Y",
+        "mainVariety": [
+            "y2605",
+            "y2609"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "液化气",
-      "symbol": "PG"
+    {
+        "name": "乙二醇",
+        "symbol": "EG",
+        "mainVariety": [
+            "eg2605",
+            "eg2601"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "生猪",
-      "symbol": "LH"
+    {
+        "name": "苯乙烯",
+        "symbol": "EB",
+        "mainVariety": [
+            "eb2602",
+            "eb2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "原木",
-      "symbol": "LG"
+    {
+        "name": "液化气",
+        "symbol": "PG",
+        "mainVariety": [
+            "pg2602",
+            "pg2603"
+        ]
     },
-    {
-      "market": "大商所",
-      "name": "纯苯",
-      "symbol": "BZ"
+    {
+        "name": "生猪",
+        "symbol": "LH",
+        "mainVariety": [
+            "lh2603",
+            "lh2605"
+        ]
     },
-    {
-      "market": "广期所",
-      "name": "工业硅",
-      "symbol": "SI"
+    {
+        "name": "纯苯",
+        "symbol": "BZ",
+        "mainVariety": [
+            "bz2603",
+            "bz2604"
+        ]
     },
-    {
-      "market": "广期所",
-      "name": "碳酸锂",
-      "symbol": "LC"
+    {
+        "name": "工业硅",
+        "symbol": "SI",
+        "mainVariety": [
+            "si2605",
+            "si2602"
+        ]
     },
-    {
-      "market": "广期所",
-      "name": "商品指数",
-      "symbol": "CI"
+    {
+        "name": "碳酸锂",
+        "symbol": "LC",
+        "mainVariety": [
+            "lc2605",
+            "lc2607"
+        ]
     },
-    {
-      "market": "广期所",
-      "name": "多晶硅",
-      "symbol": "PS"
+    {
+        "name": "多晶硅",
+        "symbol": "PS",
+        "mainVariety": [
+            "ps2605",
+            "ps2602"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "棉纱",
-      "symbol": "CY"
+    {
+        "name": "棉纱",
+        "symbol": "CY",
+        "mainVariety": [
+            "cy2603",
+            "cy2601"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "苹果",
-      "symbol": "AP"
+    {
+        "name": "苹果",
+        "symbol": "AP",
+        "mainVariety": [
+            "ap2605",
+            "ap2601"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "棉花",
-      "symbol": "CF"
+    {
+        "name": "棉花",
+        "symbol": "CF",
+        "mainVariety": [
+            "cf2605",
+            "cf2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "玻璃",
-      "symbol": "FG"
+    {
+        "name": "玻璃",
+        "symbol": "FG",
+        "mainVariety": [
+            "fg2605",
+            "fg2601"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "甲醇",
-      "symbol": "MA"
+    {
+        "name": "甲醇",
+        "symbol": "MA",
+        "mainVariety": [
+            "ma2605",
+            "ma2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "菜油",
-      "symbol": "OI"
+    {
+        "name": "菜油",
+        "symbol": "OI",
+        "mainVariety": [
+            "oi2605",
+            "oi2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "菜粕",
-      "symbol": "RM"
+    {
+        "name": "菜粕",
+        "symbol": "RM",
+        "mainVariety": [
+            "rm2605",
+            "rm2609"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "硅铁",
-      "symbol": "SF"
+    {
+        "name": "硅铁",
+        "symbol": "SF",
+        "mainVariety": [
+            "sf2603",
+            "sf2604"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "锰硅",
-      "symbol": "SM"
+    {
+        "name": "锰硅",
+        "symbol": "SM",
+        "mainVariety": [
+            "sm2603",
+            "sm2605"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "白糖",
-      "symbol": "SR"
+    {
+        "name": "白糖",
+        "symbol": "SR",
+        "mainVariety": [
+            "sr2605",
+            "sr2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "PTA",
-      "symbol": "TA"
+    {
+        "name": "PTA",
+        "symbol": "TA",
+        "mainVariety": [
+            "ta2605",
+            "ta2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "油菜籽",
-      "symbol": "RS"
+    {
+        "name": "红枣",
+        "symbol": "CJ",
+        "mainVariety": [
+            "cj2605",
+            "cj2609"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "红枣",
-      "symbol": "CJ"
+    {
+        "name": "尿素",
+        "symbol": "UR",
+        "mainVariety": [
+            "ur2605",
+            "ur2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "尿素",
-      "symbol": "UR"
+    {
+        "name": "纯碱",
+        "symbol": "SA",
+        "mainVariety": [
+            "sa2605",
+            "sa2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "纯碱",
-      "symbol": "SA"
+    {
+        "name": "短纤",
+        "symbol": "PF",
+        "mainVariety": [
+            "pf2602",
+            "pf2603"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "短纤",
-      "symbol": "PF"
+    {
+        "name": "花生",
+        "symbol": "PK",
+        "mainVariety": [
+            "pk2603",
+            "pk2604"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "花生",
-      "symbol": "PK"
+    {
+        "name": "对二甲苯",
+        "symbol": "PX",
+        "mainVariety": [
+            "px2603",
+            "px2605"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "对二甲苯",
-      "symbol": "PX"
+    {
+        "name": "烧碱",
+        "symbol": "SH",
+        "mainVariety": [
+            "sh2603",
+            "sh2602"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "烧碱",
-      "symbol": "SH"
+    {
+        "name": "瓶片",
+        "symbol": "PR",
+        "mainVariety": [
+            "pr2603",
+            "pr2604"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "瓶片",
-      "symbol": "PR"
+    {
+        "name": "丙烯",
+        "symbol": "PL",
+        "mainVariety": [
+            "pl2603",
+            "pl2604"
+        ]
+    },
+    {
+        "name": "沪铜",
+        "symbol": "CU",
+        "mainVariety": [
+            "cu2602",
+            "cu2603"
+        ]
+    },
+    {
+        "name": "沪铝",
+        "symbol": "AL",
+        "mainVariety": [
+            "al2602",
+            "al2603"
+        ]
+    },
+    {
+        "name": "沪锌",
+        "symbol": "ZN",
+        "mainVariety": [
+            "zn2602",
+            "zn2603"
+        ]
+    },
+    {
+        "name": "沪铅",
+        "symbol": "PB",
+        "mainVariety": [
+            "pb2602",
+            "pb2603"
+        ]
+    },
+    {
+        "name": "沪镍",
+        "symbol": "NI",
+        "mainVariety": [
+            "ni2602",
+            "ni2603"
+        ]
+    },
+    {
+        "name": "沪锡",
+        "symbol": "SN",
+        "mainVariety": [
+            "sn2602",
+            "sn2603"
+        ]
+    },
+    {
+        "name": "沪金",
+        "symbol": "AU",
+        "mainVariety": [
+            "au2602",
+            "au2604"
+        ]
+    },
+    {
+        "name": "沪银",
+        "symbol": "AG",
+        "mainVariety": [
+            "ag2604",
+            "ag2602"
+        ]
+    },
+    {
+        "name": "300沪深",
+        "symbol": "IF",
+        "mainVariety": [
+            "if2603",
+            "if2601"
+        ]
+    },
+    {
+        "name": "500中证",
+        "symbol": "IC",
+        "mainVariety": [
+            "ic2603",
+            "ic2601"
+        ]
+    },
+    {
+        "name": "50上证",
+        "symbol": "IH",
+        "mainVariety": [
+            "ih2603",
+            "ih2601"
+        ]
+    },
+    {
+        "name": "1000中证",
+        "symbol": "IM",
+        "mainVariety": [
+            "im2603",
+            "im2601"
+        ]
     },
-    {
-      "market": "郑商所",
-      "name": "丙烯",
-      "symbol": "PL"
-    }
 ];
 
 module.exports = {
-    MAIN_VARIERY,
-    ALL_VARIETIES,
+    VARIETIES_LIST,
 }

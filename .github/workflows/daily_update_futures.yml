@@ -28,11 +28,11 @@ jobs:
           npm install
 
       - name: Run Script
-        run: node server/index.js
+        run: node server/schedule/index.js
 
       - name: Commit and Push Data
         run: |
-          git config --global user.name "GitHub Action"
-          git config --global user.email "action@github.com"
-          git add app/data.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update data.json" && git push)
+          git config --global user.name "pureStyles"
+          git config --global user.email "siyuan.wen@outlook.com"
+          git add .
+          git diff --quiet && git diff --staged --quiet || (git commit -m "Update dayily data" && git push)

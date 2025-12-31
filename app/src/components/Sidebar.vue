@@ -86,9 +86,12 @@
   
   /* 菜单列表样式 */
   .menu-list {
+    max-height: 400px;
     list-style: none;
     padding: 20px 0 0 0;
     margin: 0;
+
+    overflow-y: auto;
   }
   
   .menu-list li {
@@ -114,4 +117,27 @@
     color: #e55e4d !important;
     margin-top: 15px;
   }
+
+  /* 1. 设置整个滚动条的宽度 */
+::-webkit-scrollbar {
+  width: 6px;  /* 纵向滚动条宽度 */
+  height: 6px; /* 横向滚动条高度 */
+}
+
+/* 2. 滚动条轨道 (背景) */
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+  border-radius: 10px;
+}
+
+/* 3. 滚动条滑块 (移动部分) */
+::-webkit-scrollbar-thumb {
+  background: #888; 
+  border-radius: 10px; /* 圆角让它看起来更精致 */
+}
+
+/* 4. 滑块悬停时的颜色 */
+::-webkit-scrollbar-thumb:hover {
+  background: #555; 
+}
   </style>

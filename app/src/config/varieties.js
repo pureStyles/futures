@@ -16,70 +16,6 @@ export const VARIETIES_LIST = [
         ]
     },
     {
-        "name": "沪铜",
-        "symbol": "CU",
-        "mainVariety": [
-            "cu2602",
-            "cu2603"
-        ]
-    },
-    {
-        "name": "沪铝",
-        "symbol": "AL",
-        "mainVariety": [
-            "al2602",
-            "al2603"
-        ]
-    },
-    {
-        "name": "沪锌",
-        "symbol": "ZN",
-        "mainVariety": [
-            "zn2602",
-            "zn2603"
-        ]
-    },
-    {
-        "name": "沪铅",
-        "symbol": "PB",
-        "mainVariety": [
-            "pb2602",
-            "pb2603"
-        ]
-    },
-    {
-        "name": "沪镍",
-        "symbol": "NI",
-        "mainVariety": [
-            "ni2602",
-            "ni2603"
-        ]
-    },
-    {
-        "name": "沪锡",
-        "symbol": "SN",
-        "mainVariety": [
-            "sn2602",
-            "sn2603"
-        ]
-    },
-    {
-        "name": "沪金",
-        "symbol": "AU",
-        "mainVariety": [
-            "au2602",
-            "au2604"
-        ]
-    },
-    {
-        "name": "沪银",
-        "symbol": "AG",
-        "mainVariety": [
-            "ag2604",
-            "ag2602"
-        ]
-    },
-    {
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
@@ -162,70 +98,6 @@ export const VARIETIES_LIST = [
         "mainVariety": [
             "op2603",
             "op2602"
-        ]
-    },
-    {
-        "name": "300沪深",
-        "symbol": "IF",
-        "mainVariety": [
-            "if2603",
-            "if2601"
-        ]
-    },
-    {
-        "name": "500中证",
-        "symbol": "IC",
-        "mainVariety": [
-            "ic2603",
-            "ic2601"
-        ]
-    },
-    {
-        "name": "50上证",
-        "symbol": "IH",
-        "mainVariety": [
-            "ih2603",
-            "ih2601"
-        ]
-    },
-    {
-        "name": "二债",
-        "symbol": "TS",
-        "mainVariety": [
-            "ts2603",
-            "ts2606"
-        ]
-    },
-    {
-        "name": "五债",
-        "symbol": "TF",
-        "mainVariety": [
-            "tf2603",
-            "tf2606"
-        ]
-    },
-    {
-        "name": "十债",
-        "symbol": "T",
-        "mainVariety": [
-            "t2603",
-            "t2606"
-        ]
-    },
-    {
-        "name": "1000中证",
-        "symbol": "IM",
-        "mainVariety": [
-            "im2603",
-            "im2601"
-        ]
-    },
-    {
-        "name": "三十债",
-        "symbol": "TL",
-        "mainVariety": [
-            "tl2603",
-            "tl2606"
         ]
     },
     {
@@ -344,8 +216,8 @@ export const VARIETIES_LIST = [
         "name": "胶合板",
         "symbol": "BB",
         "mainVariety": [
-            "bb2003",
-            "bb2011"
+            "bb2301",
+            "bb2309"
         ]
     },
     {
@@ -599,6 +471,134 @@ export const VARIETIES_LIST = [
         "mainVariety": [
             "pl2603",
             "pl2604"
+        ]
+    },
+    {
+        "name": "沪铜",
+        "symbol": "CU",
+        "mainVariety": [
+            "cu2602",
+            "cu2603"
+        ]
+    },
+    {
+        "name": "沪铝",
+        "symbol": "AL",
+        "mainVariety": [
+            "al2602",
+            "al2603"
+        ]
+    },
+    {
+        "name": "沪锌",
+        "symbol": "ZN",
+        "mainVariety": [
+            "zn2602",
+            "zn2603"
+        ]
+    },
+    {
+        "name": "沪铅",
+        "symbol": "PB",
+        "mainVariety": [
+            "pb2602",
+            "pb2603"
+        ]
+    },
+    {
+        "name": "沪镍",
+        "symbol": "NI",
+        "mainVariety": [
+            "ni2602",
+            "ni2603"
+        ]
+    },
+    {
+        "name": "沪锡",
+        "symbol": "SN",
+        "mainVariety": [
+            "sn2602",
+            "sn2603"
+        ]
+    },
+    {
+        "name": "沪金",
+        "symbol": "AU",
+        "mainVariety": [
+            "au2602",
+            "au2604"
+        ]
+    },
+    {
+        "name": "沪银",
+        "symbol": "AG",
+        "mainVariety": [
+            "ag2604",
+            "ag2602"
+        ]
+    },
+    {
+        "name": "300沪深",
+        "symbol": "IF",
+        "mainVariety": [
+            "if2603",
+            "if2601"
+        ]
+    },
+    {
+        "name": "500中证",
+        "symbol": "IC",
+        "mainVariety": [
+            "ic2603",
+            "ic2601"
+        ]
+    },
+    {
+        "name": "50上证",
+        "symbol": "IH",
+        "mainVariety": [
+            "ih2603",
+            "ih2601"
+        ]
+    },
+    {
+        "name": "二债",
+        "symbol": "TS",
+        "mainVariety": [
+            "ts2603",
+            "ts2606"
+        ]
+    },
+    {
+        "name": "五债",
+        "symbol": "TF",
+        "mainVariety": [
+            "tf2603",
+            "tf2606"
+        ]
+    },
+    {
+        "name": "十债",
+        "symbol": "T",
+        "mainVariety": [
+            "t2603",
+            "t2606"
+        ]
+    },
+    {
+        "name": "1000中证",
+        "symbol": "IM",
+        "mainVariety": [
+            "im2603",
+            "im2601"
+        ]
+    },
+    {
+        "name": "三十债",
+        "symbol": "TL",
+        "mainVariety": [
+            "tl2603",
+            "tl2606"
         ]
     }
 ];

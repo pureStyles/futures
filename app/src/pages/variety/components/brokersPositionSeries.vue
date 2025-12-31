@@ -9,11 +9,12 @@
   const props = defineProps({
     rawData: Array,
     variety: String,
-    broker: String
+    broker: String,
+    symbol: String
   })
   
-  const chart = ref(null)
-  let instance = null
+  const chart = ref(null);
+  let instance = null;
   
   onMounted(() => {
     instance = echarts.init(chart.value)
@@ -26,7 +27,9 @@
 
   const buildBrokerSeries = (data, variety, brokerName) => {
   return data.map(day => {
-    const pos = day.positions?.[variety];
+    console.log('day',day.positions)
+    const pos = day.positions?.[props.symbol][variety];
+    console.log('pos', pos);
     if (!pos) return null
 
     const longItem = pos.longPosition.find(i => i.broker === brokerName)
