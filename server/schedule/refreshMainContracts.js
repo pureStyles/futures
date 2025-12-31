@@ -6,7 +6,7 @@ const path = require('path');
 const fs = require('fs').promises;
 
 const { queryMainVarieies } = require("../api/variety.js");
-const { ALL_VARIETIES } = require("../config/index.js");
+const { VARIETIES_LIST } = require("../config/index.js");
 
 
 module.exports = class  {
@@ -58,7 +58,7 @@ module.exports = class  {
     }
 
     async run() {
-        for(const variety of ALL_VARIETIES) {
+        for(const variety of VARIETIES_LIST) {
             console.log(`🟦正在查询${variety.name}的主里合约数据...`)
             const contracts = await this.fetchRecentContracts(variety.name);
             /** 选择前两个作为主力合约 */
