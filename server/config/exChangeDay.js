@@ -5,6 +5,7 @@ const exchangeDays = [
   "2025-12-17",
   "2025-12-18",
   "2025-12-19",
+  "2025-12-31",
   
 ];
                 module.exports = exchangeDays;
