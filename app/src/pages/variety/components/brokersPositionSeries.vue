@@ -89,11 +89,13 @@
                 name: '多头',
                 type: 'line',
                 smooth: true,
+                symbolSize:3,
                 data: series.map(i => i.long),
                 itemStyle: {
                     color: '#f85149'
                 },
                 lineStyle: {
+                    width: 2,
                     color: '#f85149'
                 }
             },
@@ -101,11 +103,13 @@
                 name: '空头',
                 type: 'line',
                 smooth: true,
+                symbolSize:3,
                 data: series.map(i => i.short),
                 itemStyle: {
                     color: '#23d18b'
                 },
                 lineStyle: {
+                    width: 2,
                     color: '#23d18b'
                 }
             },
@@ -113,12 +117,14 @@
                 name: '净持仓',
                 type: 'line',
                 smooth: true,
+                symbolSize:3,
                 data: series.map(i => i.net),
                 itemStyle: {
-                    color: '#ccc'
+                    color: '#000'
                 },
                 lineStyle: {
-                    color: '#ccc'
+                    width: 2,
+                    color: '#000'
                 }
             }
             ]
