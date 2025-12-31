@@ -39,7 +39,6 @@ module.exports = class  {
             }
         `
     
-        // 3. 直接写入字符串内容
         await fs.writeFile(
             this.outpath1,
             fileContent,
