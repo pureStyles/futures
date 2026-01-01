@@ -2,7 +2,8 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 // 导入你的页面组件
-import Variety from '../pages/variety/index.vue' // 原有的品种详情
+import position from '../pages/variety/position' // 原有的品种详情
+import netPosition from '../pages/variety/netPosition'
 import Broker from '../pages/broker/index.vue'   // 假设这是席位详情
 
 Vue.use(Router)
@@ -21,8 +22,13 @@ export default new Router({
       children: [
         {
           path: 'position/:variety?', // 对应持仓详情，接收品种参数
-          name: 'positionDetail',
-          component: Variety
+          name: 'position',
+          component: position
+        },
+        {
+            path: 'netPosition/:variety?',
+            name: 'netPosition',
+            component: netPosition,
         }
       ]
     },

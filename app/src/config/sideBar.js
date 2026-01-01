@@ -6,11 +6,17 @@ export const MENU_LIST = [
         {
           key: 'position',
           name: '持仓详情',
-          // 关键：由于路由定义了 :variety 参数，这里可以默认传一个品种
           route: {
-            name: 'positionDetail',
+            name: 'position',
           }
-        }
+        },
+        {
+            key: 'netPosition',
+            name: '净持仓',
+            route: {
+              name: 'netPosition',
+            }
+          }
       ]
     },
     {
