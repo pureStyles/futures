@@ -82,14 +82,14 @@
       xAxis: {
         type: 'value',
         splitLine: { lineStyle: { type: 'dashed', color: '#30363d' } },
-        axisLabel: { color: '#8b949e' }
+        axisLabel: { }
       },
       yAxis: {
         type: 'category',
         data: brokers,
         axisLine: { show: false },
         axisTick: { show: false },
-        axisLabel: { color: '#e6edf3', fontSize: 12 }
+        axisLabel: { fontSize: 12 }
       },
       series: [
         {
@@ -100,7 +100,6 @@
             show: true,
             position: 'right',
             formatter: (params) => (params.value / 10000).toFixed(2) + '万',
-            color: '#8b949e'
           },
           data: values.map(val => ({
             value: val,
@@ -135,7 +134,6 @@
   
   <style scoped>
   .pnl-container {
-    background: #161b22;
     border-radius: 12px;
     padding: 20px;
     border: 1px solid #30363d;
@@ -149,13 +147,12 @@
   }
   
   .chart-title {
-    color: #f0f6fc;
     font-size: 16px;
     font-weight: bold;
   }
   
   .time-tabs {
-    background: #0d1117;
+    background-color: #8892b0;
     padding: 4px;
     border-radius: 6px;
     display: flex;
@@ -165,15 +162,13 @@
   .time-tabs span {
     padding: 4px 12px;
     font-size: 12px;
-    color: #8b949e;
     cursor: pointer;
     border-radius: 4px;
     transition: all 0.3s;
   }
   
   .time-tabs span.active {
-    background: #30363d;
-    color: #f0f6fc;
+    background: #fff;
   }
   
   .echarts-dom {

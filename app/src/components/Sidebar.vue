@@ -1,37 +1,57 @@
 <template>
     <div class="sidebar">
-      <div 
-        class="menu-header" 
-        :class="{ 'open': isExpanded }" 
-        @click="toggleMenu"
+      <div
+        v-for="menu in MENU_LIST"
+        :key="menu.key"
+        class="menu-block"
       >
-        商品 <span class="arrow"></span>
-      </div>
+        <!-- 一级标题 -->
+        <div
+          class="menu-header"
+          :class="{ open: openMap[menu.key] }"
+          @click="toggle(menu.key)"
+        >
+          {{ menu.name }}
+          <span class="arrow"></span>
+        </div>
   
-      <div class="collapsible-wrapper" :class="{ 'expanded': isExpanded }">
-        <ul class="menu-list">
-          <li v-for="(item, index) in VARIETIES_LIST" :key="index">
-            <router-link :to="{ name: 'varietyDetail', params: { variety: item.symbol } }">
-              {{ item.name }}
-            </router-link>
-          </li>
-        </ul>
+        <!-- 二级菜单 -->
+        <div
+          class="collapsible-wrapper"
+          :class="{ expanded: openMap[menu.key] }"
+        >
+          <ul class="menu-list">
+            <li
+              v-for="child in menu.children"
+              :key="child.key"
+            >
+              <router-link :to="child.route">
+                {{ child.name }}
+              </router-link>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </template>
   
+  
   <script setup>
-  import { VARIETIES_LIST } from '@/config/varieties';
-  import { ref } from 'vue';
-  
-  // 定义展开状态
-  const isExpanded = ref(true); 
-  
-  // 切换逻辑
-  const toggleMenu = () => {
-    isExpanded.value = !isExpanded.value;
-  };
-  </script>
+    import { ref } from 'vue';
+    import { MENU_LIST } from '@/config/sideBar';
+    
+    const openMap = ref({});
+    
+    // 默认全部展开（也可以只展开第一个）
+    MENU_LIST.forEach(menu => {
+      openMap.value[menu.key] = true;
+    });
+    
+    const toggle = (key) => {
+      openMap.value[key] = !openMap.value[key];
+    };
+    </script>
+    
   
   <style scoped>
   .sidebar {
@@ -109,7 +129,6 @@
   
   .menu-list a:hover {
     opacity: 0.5;
-    padding-left: 5px; /* 轻微位移增加灵动感 */
   }
   
   /* 红色特殊标记项 */
