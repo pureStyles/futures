@@ -1,69 +1,97 @@
 import { ref, computed } from 'vue';
 
-// 全局单例数据源
+// --- 全局单例状态 ---
 const positionData = ref([]);
 const profitData = ref({});
 const isLoading = ref(false);
-const hasFetched = ref(false); // 标记是否已经请求过
+const hasFetched = ref(false);
 
 export function useData() {
-    
-    // 基础请求函数
-    const fetchData = async (force = false) => {
-        if (!force && hasFetched.value) return;
-        if (isLoading.value) return;
+  
+  // 1. 全局数据请求 (自动去重)
+  const fetchData = async (force = false) => {
+    if (!force && hasFetched.value) return;
+    if (isLoading.value) return;
 
-        isLoading.value = true;
-        try {
-            console.log('📡 正在请求全局持仓与盈亏数据...');
-            const [posRes, profitRes] = await Promise.all([
-                fetch(process.env.BASE_URL + 'data/position.json'),
-                fetch(process.env.BASE_URL + 'data/profit.json')
-            ]);
-            
-            positionData.value = await posRes.json();
-            profitData.value = await profitRes.json();
-            hasFetched.value = true;
-        } catch (error) {
-            console.error('❌ 全局请求失败:', error);
-        } finally {
-            isLoading.value = false;
-        }
-    };
+    isLoading.value = true;
+    try {
+      // 这里的路径建议根据你的实际部署环境调整
+      const [posRes, profitRes] = await Promise.all([
+        fetch('./data/position.json'),
+        fetch('./data/profit.json')
+      ]);
+      
+      positionData.value = await posRes.json();
+      profitData.value = await profitRes.json();
+      hasFetched.value = true;
+    } catch (error) {
+      console.error('Fetch Error:', error);
+    } finally {
+      isLoading.value = false;
+    }
+  };
 
-    /**
-     * 核心逻辑：根据品种代码计算常胜/盈利席位
-     * @param {Ref<string>} varietyCode - 品种代码（如 'RB'）
-     */
-    const getTopBrokers = (varietyCode) => {
-        return computed(() => {
-            const data = profitData.value[varietyCode.value] || {};
-            const frequencyMap = {};
+  /**
+   * 2. 绿灯区核心逻辑：名次加权筛选法
+   * @param {Ref} varietyCode 品种代码，如 'RB'
+   */
 
-            // 统计各时段稳居盈利前三的席位
-            for (const [timeRange, brokers] of Object.entries(data)) {
-                const top3 = brokers.slice(0, 3).filter(item => item.value > 0);
-                top3.forEach((item) => {
-                    if (!frequencyMap[item.broker]) {
-                        frequencyMap[item.broker] = { total: 0, count: 0 };
-                    }
-                    frequencyMap[item.broker].total += item.value;
-                    frequencyMap[item.broker].count += 1;
-                });
-            }
+  // src/composables/useData.js
 
-            return Object.entries(frequencyMap)
-                .map(([broker, info]) => ({ broker, ...info }))
-                .sort((a, b) => b.count - a.count || b.total - a.total)
-                .slice(0, 3); // 只取前三
+const getAnalyzedBrokers = (varietyCode) => {
+    return computed(() => {
+      const vCode = varietyCode.value;
+      console.log('当前计算品种:', varietyCode.value);
+      const data = profitData.value[vCode] || {};
+      const stats = {};
+  
+      Object.entries(data).forEach(([range, brokers]) => {
+        // 盈利榜 (前6)
+        const winners = brokers.slice(0, 6);
+        winners.forEach((item, index) => {
+          if (!stats[item.broker]) stats[item.broker] = { score: 0, winCount: 0, loseCount: 0, totalVal: 0 };
+          stats[item.broker].score += (6 - index);
+          stats[item.broker].winCount += 1;
+          stats[item.broker].totalVal += item.value;
         });
-    };
+  
+        // 亏损榜 (后6)
+        const losers = brokers.slice(-6);
+        losers.forEach((item, index) => {
+          if (!stats[item.broker]) stats[item.broker] = { score: 0, winCount: 0, loseCount: 0, totalVal: 0 };
+          // 亏损评分：名次越靠前(亏得越多)，负分越高
+          stats[item.broker].score -= (index + 1); 
+          stats[item.broker].loseCount += 1;
+          stats[item.broker].totalVal -= Math.abs(item.value);
+        });
+      });
+  
+      const allBrokers = Object.entries(stats).map(([name, s]) => ({ name, ...s }));
+  
+      return {
+        // 1. 绿灯区：高权重分，且几乎不进亏损榜
+        positive: allBrokers
+          .filter(b => b.score > 5 && b.loseCount === 0)
+          .sort((a, b) => b.score - a.score).slice(0, 3),
+  
+        // 2. 黄灯区：两边榜单都进过，或者总分在0附近波动，说明多空分歧巨大
+        gray: allBrokers
+          .filter(b => b.winCount > 0 && b.loseCount > 0)
+          .sort((a, b) => (b.winCount + b.loseCount) - (a.winCount + a.loseCount)).slice(0, 3),
+  
+        // 3. 红灯区：负分极高，长期稳居亏损榜
+        negative: allBrokers
+          .filter(b => b.loseCount > b.winCount)
+          .sort((a, b) => a.score - b.score).slice(0, 3)
+      };
+    });
+  };
 
-    return {
-        positionData,
-        profitData,
-        isLoading,
-        fetchData,
-        getTopBrokers
-    };
+  return {
+    positionData,
+    profitData,
+    isLoading,
+    fetchData,
+    getAnalyzedBrokers
+  };
 }
