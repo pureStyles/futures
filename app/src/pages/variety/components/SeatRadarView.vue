@@ -11,16 +11,6 @@
           </div>
         </div>
   
-        <div class="radar-column yellow-zone">
-          <div class="column-header">
-            <span class="dot"></span> 多空博弈 (观察变向)
-          </div>
-          <div v-for="b in analyzedData.gray" :key="b.name" class="mini-card">
-            <div class="card-title">{{ b.name }} <small>活跃度:{{b.winCount + b.loseCount}}</small></div>
-            <brokerNetPosition :rawData="positionData" :variety="'all'" :symbol="currentVariety" :broker="b.name" />
-          </div>
-        </div>
-  
         <div class="radar-column red-zone">
           <div class="column-header">
             <span class="dot"></span> 逆市席位 (反向指标)
