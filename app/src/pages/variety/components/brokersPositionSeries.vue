@@ -7,11 +7,16 @@
   import { onMounted, ref, watch } from 'vue'
   
   const props = defineProps({
-    rawData: Array,
-    variety: String,
-    broker: String,
-    symbol: String
-  })
+  rawData: Array,
+  variety: String,
+  broker: String,
+  symbol: String,
+  // 新增：默认展示全部三条线
+  show: {
+    type: Array,
+    default: () => ['long', 'short', 'net']
+  }
+})
   
   const chart = ref(null);
   let instance = null;
@@ -43,95 +48,83 @@
     }
   }).filter(Boolean);
 }
-  
-  function render() {
-    if (!instance || !props.rawData) return
-  
-    const series = buildBrokerSeries(
-      props.rawData,
-      props.variety,
-      props.broker
-    )
+function render() {
+  if (!instance || !props.rawData) return
 
-    const buildOption = (series) => {
-        return {
-            tooltip: {
-            trigger: 'axis',
-            axisPointer: { type: 'line' }
-            },
-            legend: {
-            data: ['多头', '空头', '净持仓'],
-            top: 10
-            },
-            grid: {
-            left: 50,
-            right: 30,
-            top: 50,
-            bottom: 40
-            },
-            xAxis: {
-            type: 'category',
-            data: series.map(i => i.date),
-            axisLine: { lineStyle: { color: '#ccc' } },
-            axisTick: { show: false }
-            },
-            yAxis: {
-            type: 'value',
-            axisLine: { show: false },
-            splitLine: {
-                lineStyle: {
-                color: '#eee'
-                }
-            }
-            },
-            series: [
-            {
-                name: '多头',
-                type: 'line',
-                smooth: true,
-                symbolSize:3,
-                data: series.map(i => i.long),
-                itemStyle: {
-                    color: '#f85149'
-                },
-                lineStyle: {
-                    width: 2,
-                    color: '#f85149'
-                }
-            },
-            {
-                name: '空头',
-                type: 'line',
-                smooth: true,
-                symbolSize:3,
-                data: series.map(i => i.short),
-                itemStyle: {
-                    color: '#23d18b'
-                },
-                lineStyle: {
-                    width: 2,
-                    color: '#23d18b'
-                }
-            },
-            {
-                name: '净持仓',
-                type: 'line',
-                smooth: true,
-                symbolSize:3,
-                data: series.map(i => i.net),
-                itemStyle: {
-                    color: '#000'
-                },
-                lineStyle: {
-                    width: 2,
-                    color: '#000'
-                }
-            }
-            ]
-        }
+  const seriesData = buildBrokerSeries(
+    props.rawData,
+    props.variety,
+    props.broker
+  )
+
+  // 1. 先定义好三条线的所有配置
+  const allSeries = [
+    {
+      id: 'long',
+      name: '多头',
+      data: seriesData.map(i => i.long),
+      color: '#f85149'
+    },
+    {
+      id: 'short',
+      name: '空头',
+      data: seriesData.map(i => i.short),
+      color: '#23d18b'
+    },
+    {
+      id: 'net',
+      name: '净持仓',
+      data: seriesData.map(i => i.net),
+      color: '#000'
     }
-  
-    instance.setOption(buildOption(series), true)
+  ]
+
+  // 2. 根据 props.show 过滤出需要显示的线
+  const visibleSeries = allSeries
+    .filter(item => props.show.includes(item.id))
+    .map(item => ({
+      name: item.name,
+      type: 'line',
+      smooth: true,
+      symbolSize: 3,
+      data: item.data,
+      itemStyle: { color: item.color },
+      lineStyle: { width: 2, color: item.color }
+    }))
+
+  const buildOption = (finalSeries) => {
+    return {
+      tooltip: {
+        trigger: 'axis',
+        axisPointer: { type: 'line' }
+      },
+      legend: {
+        // 这里的 data 也要同步过滤，否则图例会显示多余项
+        data: finalSeries.map(s => s.name),
+        top: 10
+      },
+      grid: {
+        left: 50,
+        right: 30,
+        top: 50,
+        bottom: 40
+      },
+      xAxis: {
+        type: 'category',
+        data: seriesData.map(i => i.date),
+        axisLine: { lineStyle: { color: '#ccc' } },
+        axisTick: { show: false }
+      },
+      yAxis: {
+        type: 'value',
+        axisLine: { show: false },
+        splitLine: { lineStyle: { color: '#eee' } }
+      },
+      series: finalSeries
+    }
   }
+
+  instance.setOption(buildOption(visibleSeries), true)
+}
   </script>
   
