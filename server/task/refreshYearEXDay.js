@@ -51,7 +51,7 @@ class writeExchangeDay {
     generateDateRange() {
         const dates = [];
         const startDate = moment();
-        const endDate = moment(startDate).add(1, 'year');
+        const endDate = moment([2026, 11, 31]);
         
         let currentDate = moment(startDate);
         
@@ -143,8 +143,8 @@ class writeExchangeDay {
         const startTime = Date.now();
         try {
             // 1. 生成日期范围
-            // const dates = this.generateDateRange();
-            const dates = this.generateLast30Days();
+            const dates = this.generateDateRange();
+            // const dates = this.generateLast30Days();
             // 2. 查询工作日
             const workdays = await this.batchQueryWorkdays(dates);
             // 3. 写入文件
