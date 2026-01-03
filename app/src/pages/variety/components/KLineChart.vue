@@ -20,11 +20,6 @@
   // 初始化配置
   const getOption = (dates, values) => {
     return {
-      title: {
-        text: props.title,
-        left: 0,
-        textStyle: { fontSize: 14, fontWeight: 'bold' }
-      },
       tooltip: {
         trigger: 'axis',
         axisPointer: { type: 'cross' },
@@ -35,10 +30,10 @@
         textStyle: { color: '#000' }
       },
       grid: {
-        left: '10%',
+        left: '0',
         right: '10%',
         bottom: '15%',
-        top: '10%'
+        top: '0'
       },
       xAxis: {
         type: 'category',

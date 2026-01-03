@@ -22,11 +22,11 @@
       </div>
   
       <div 
-        v-for="(broker, index) in alwaysWinningBrokers" 
-        :key="selectedSymbol + broker.broker" 
+        v-for="(broker, index) in alwaysWinningBrokers.positive" 
+        :key="selectedSymbol + index" 
       >
         <div class="broker-sidebar">
-            {{ broker.broker }}
+            {{ broker.name }}/{{ broker.score }}
         </div>
   
         <div class="contracts-scroll-area">
@@ -40,10 +40,10 @@
               {{ item === 'all' ? '全合约汇总' : item }}
             </div>
             <brokersPositionSeries
-              :rawData="varieryPositions"
+              :rawData="positionData"
               :variety="item"
               :symbol="selectedSymbol"
-              :broker="broker.broker"
+              :broker="broker.name"
             />
           </div>
         </div>
@@ -52,18 +52,19 @@
   </template>
 
 <script setup>
-import { computed, onBeforeMount, ref, watch  } from 'vue';
+import { computed, ref } from 'vue';
 import { useRoute } from 'vue-router/composables'; // 注意：Vue 2.7 需从这里导入
 import brokersPositionSeries from '../components/brokersPositionSeries.vue';
 import brokerProfitsBar from '../components/brokerProfitsBar.vue';
 import { VARIETIES_LIST } from '@/config/varieties';
 
+import { useData } from '@/composables/useData';
 
-const varieryPositions = ref([]);
 
 /** 商品盈亏数据 */
-const varietiesProfits = ref({});
 const selectedSymbol = ref('RB');
+
+const { positionData, profitData, fetchData, getAnalyzedBrokers } = useData();
 
 const variety = computed(() => {
     return VARIETIES_LIST.find(v => v.symbol === selectedSymbol.value);
@@ -77,70 +78,12 @@ const mainVariety = computed(() => {
 });
 
 const varietyProfits = computed(() => {
-    return varietiesProfits.value[selectedSymbol.value] || {};
+    return profitData.value[selectedSymbol.value] || {};
 });
 
-const alwaysWinningBrokers = computed(() => {
-    // 获取当前品种的盈亏数据
-    const currentVarietyData = varietiesProfits.value[selectedSymbol.value] || {};
-    
-    // 执行统计逻辑
-    const sortedBrokers = classifyProfits(currentVarietyData);
-    
-    // 返回前三名
-    return sortedBrokers.slice(0, 3);
-});
+const alwaysWinningBrokers = getAnalyzedBrokers(selectedSymbol);
 
-const fetchVarietyPosition = async () => {
-    try {
-        const response = await fetch(process.env.BASE_URL + 'data/position.json');
-        const list = await response.json();
-        varieryPositions.value = list || [];
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-/** 盈亏数据 */
-const fetchVarietyProfit = async () => {
-    try {
-        const response = await fetch(process.env.BASE_URL + 'data/profit.json');
-        const data = await response.json();
-        varietiesProfits.value = data || {};
-        const sortedBrokers = classifyProfits(varietiesProfits.value[selectedSymbol.value] || {});
-        alwaysWinningBrokers.value = sortedBrokers.slice(0, 3);
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-/** 统计各时段稳居盈利前三的“常胜”席位 */
-const classifyProfits = (data) => {
-    const frequencyMap = {};
-
-    for (const [timeRange, brokers] of Object.entries(data)) {
-        // 数据已有序，直接取前3。
-        const top3 = brokers
-            .slice(0, 3)
-            .filter(item => item.value > 0);
-
-        top3.forEach((item) => {
-            if (!frequencyMap[item.broker]) {
-                frequencyMap[item.broker] = { total: 0, count: 0 };
-            }
-            frequencyMap[item.broker].total += item.value;
-            frequencyMap[item.broker].count += 1;
-        });
-    }
-
-    // 最终排序逻辑不变：出现频次（count）优先，总额（total）次之
-    return Object.entries(frequencyMap)
-        .map(([broker, info]) => ({ broker, ...info }))
-        .sort((a, b) => b.count - a.count || b.total - a.total);
-}
-
-fetchVarietyPosition();
-fetchVarietyProfit();
+fetchData();
 </script>
 
 <style scoped>

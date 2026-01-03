@@ -34,7 +34,7 @@ export default new Router({
     },
     // --- 席位相关路由 ---
     {
-      path: '/seat',
+      path: '/broker',
       component: { render: (e) => e('router-view') },
       children: [
         {
