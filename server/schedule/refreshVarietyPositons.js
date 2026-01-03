@@ -9,7 +9,7 @@ const fs = require('fs').promises;
 
 const exchangeDays = require("../config/exChangeDay.js");
 const { queryVarietyPostion } = require("../api/variety.js");
-const positiveBroker = require("../config/positveBroker.js");
+const typicalBroker = require("../config/typicalBroker.js");
 const { VARIETIES_LIST } = require("../config/index.js");
 
 
@@ -34,8 +34,8 @@ class PositionTask {
         try {
             const data = await queryVarietyPostion(params);
             return {
-                longPosition: (data.buy || []).filter(e => positiveBroker[symbol].includes(e.broker)),
-                shortPosition: (data.ss || []).filter(e => positiveBroker[symbol].includes(e.broker)),
+                longPosition: (data.buy || []).filter(e => typicalBroker[symbol].includes(e.broker)),
+                shortPosition: (data.ss || []).filter(e => typicalBroker[symbol].includes(e.broker)),
             }
         } catch (error) {
             this.errorInfo['request'].push({
