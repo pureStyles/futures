@@ -29,9 +29,9 @@ export const MENU_LIST = [
           route: { name: 'coreSeatPosition' }
         },
         {
-          key: 'seat-fund',
+          key: 'broker-fund',
           name: '席位资金动向',
-          route: { name: 'seatFundFlow' }
+          route: { name: 'brokerFundFlow' }
         },
         {
           key: 'position-structure',

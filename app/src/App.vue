@@ -58,3 +58,14 @@ html, body {
   }
 }
 </style>
+
+<style>
+  a {
+    text-decoration: none;
+    font-size: 16px;
+
+    &:hover {
+      text-decoration: underline dotted;
+    }
+  }
+</style>

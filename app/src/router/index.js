@@ -44,8 +44,8 @@ export default new Router({
         },
         {
           path: 'fund',
-          name: 'seatFundFlow',
-        //   component: () => import('../pages/seat/FundFlow.vue') // 示例：按需加载
+          name: 'brokerFundFlow',
+          component: () => import('../pages/broker/fundFlow/index') // 示例：按需加载
         },
         {
           path: 'structure',

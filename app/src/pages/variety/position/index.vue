@@ -25,8 +25,10 @@
         v-for="(broker, index) in alwaysWinningBrokers.positive" 
         :key="selectedSymbol + index" 
       >
-        <div class="broker-sidebar">
+        <div class="broker-name">
+          <router-link :to="{ name: 'brokerFundFlow'}">
             {{ broker.name }}/{{ broker.score }}
+          </router-link>
         </div>
   
         <div class="contracts-scroll-area">
@@ -44,6 +46,7 @@
               :variety="item"
               :symbol="selectedSymbol"
               :broker="broker.name"
+              :show="['net']"
             />
           </div>
         </div>
@@ -180,5 +183,12 @@ fetchData();
       height: 6px;
       background: #4e75ff;
       border-radius: 50%;
+    }
+
+    .broker-name {
+      &:hover {
+        cursor: pointer;
+        color: #4e75ff;
+      }
     }
     </style>

@@ -41,7 +41,6 @@ export function useData() {
 const getAnalyzedBrokers = (varietyCode) => {
     return computed(() => {
       const vCode = varietyCode.value;
-      console.log('当前计算品种:', varietyCode.value);
       const data = profitData.value[vCode] || {};
       const stats = {};
   
