@@ -62,7 +62,7 @@
     );
 
     const varietyName = computed(() => {
-        const _variety = VARIETIES_LIST.find(e => e.symbol === selectedSymbol);
+        const _variety = VARIETIES_LIST.find(e => e.symbol === selectedSymbol.value);
         if (_variety) {
             return _variety.name;
         }
