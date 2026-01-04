@@ -6,7 +6,18 @@
             <span class="dot"></span> 核心盈利 (跟随趋势)
           </div>
           <div v-for="b in analyzedData.positive" :key="b.name" class="mini-card">
-            <div class="card-title">{{ b.name }} <small>分值:{{b.score}}</small></div>
+            <div class="card-title">
+                <router-link
+                    :to="{
+                        name: 'brokerFundFlow',
+                        query: { broker: b.name, variety: currentVariety }
+                    }"
+                    target="_blank"
+                >
+                    {{ b.name }}
+                </router-link>
+                    <small>分值:{{b.score}}</small>
+                </div>
             <brokerNetPosition :rawData="positionData" :variety="'all'" :symbol="currentVariety" :broker="b.name" />
           </div>
         </div>
