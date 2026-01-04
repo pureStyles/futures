@@ -80,7 +80,6 @@
           name: '变动率 (%)',
           position: 'right',
           splitLine: { show: false }, // 隐藏右侧网格线避免混乱
-          axisLabel: { formatter: '{value}%' },
           axisLine: { show: true, lineStyle: { color: '#666' } }
         }
       ],
@@ -97,7 +96,7 @@
           label: {
               show: true,
               position: 'top',
-              formatter: '{c}%',
+              formatter: '{c}',
               fontSize: 10,
               color: '#666'
           }
@@ -110,7 +109,7 @@
           symbolSize: 8,
           data: seriesData.map(i => i.net),
           itemStyle: { color: '#000' },
-          lineStyle: { width: 3 }
+          lineStyle: { width: 2 }
         }
       ]
     }

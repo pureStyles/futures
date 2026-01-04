@@ -1,7 +1,16 @@
 <template>
     <div class="custom-select" :class="{ 'is-open': isOpen }" ref="selectRef">
       <div class="select-trigger" @click.stop="toggleSelect">
-        <span :class="{ 'placeholder': !value }" style="color: #000;">
+        <input
+          v-if="isOpen"
+          ref="inputRef"
+          type="text"
+          class="search-input"
+          v-model="searchQuery"
+          :placeholder="selectedLabel || placeholder"
+          @click.stop
+        />
+        <span v-else :class="{ 'placeholder': !value }" class="trigger-label">
           {{ selectedLabel || placeholder }}
         </span>
         <div class="arrow-icon"></div>
@@ -10,7 +19,7 @@
       <transition name="fade-slide">
         <div v-if="isOpen" class="select-options">
           <div
-            v-for="option in options"
+            v-for="option in filteredOptions"
             :key="option[valueKey]"
             class="option-item"
             :class="{ 'is-selected': value === option[valueKey] }"
@@ -18,76 +27,80 @@
           >
             {{ option[labelKey] }}
           </div>
+          <div v-if="filteredOptions.length === 0" class="no-data">
+            无匹配结果
+          </div>
         </div>
       </transition>
     </div>
   </template>
   
   <script setup>
-  import { ref, computed, onMounted, onUnmounted } from 'vue';
+  import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue';
   
-  // Vue 2.7 直接支持 defineProps 宏
   const props = defineProps({
-    value: {
-      type: [String, Number],
-      default: ''
-    },
-    options: {
-      type: Array,
-      default: () => []
-    },
-    placeholder: {
-      type: String,
-      default: '请选择'
-    },
-    labelKey: String,
-    valueKey: String
+    value: [String, Number],
+    options: { type: Array, default: () => [] },
+    placeholder: { type: String, default: '请选择' },
+    labelKey: { type: String, default: 'label' },
+    valueKey: { type: String, default: 'value' }
   });
   
-  // Vue 2.7 中 defineEmits 也是可用的
-  const emit = defineEmits(['input', 'change']); // Vue 2 默认 v-model 绑定的是 input 事件
+  const emit = defineEmits(['input', 'change']);
   
   const isOpen = ref(false);
   const selectRef = ref(null);
+  const inputRef = ref(null);
+  const searchQuery = ref(''); // 搜索关键词
   
+  // 1. 获取选中的 Label (用于回显)
   const selectedLabel = computed(() => {
     const selected = props.options.find(opt => opt[props.valueKey] === props.value);
     return selected ? selected[props.labelKey] : '';
   });
   
+  // 2. 本地搜索过滤逻辑
+  const filteredOptions = computed(() => {
+    if (!searchQuery.value) return props.options;
+    const query = searchQuery.value.toLowerCase();
+    return props.options.filter(opt => 
+      opt[props.labelKey].toString().toLowerCase().includes(query)
+    );
+  });
+  
   const toggleSelect = () => {
     isOpen.value = !isOpen.value;
+    if (isOpen.value) {
+      searchQuery.value = ''; // 每次打开重置搜索词，确保看到全部
+      nextTick(() => {
+        inputRef.value?.focus(); // 自动聚焦搜索框
+      });
+    }
   };
   
   const handleSelect = (option) => {
-    // 注意：Vue 2 的 v-model 默认监听 'input' 事件
     emit('input', option[props.valueKey]);
     emit('change', option[props.valueKey]);
     isOpen.value = false;
+    searchQuery.value = ''; // 选择后清空搜索
   };
   
   const handleClickOutside = (event) => {
     if (selectRef.value && !selectRef.value.contains(event.target)) {
       isOpen.value = false;
+      searchQuery.value = '';
     }
   };
   
-  onMounted(() => {
-    document.addEventListener('click', handleClickOutside);
-  });
-  
-  onUnmounted(() => {
-    document.removeEventListener('click', handleClickOutside);
-  });
+  onMounted(() => document.addEventListener('click', handleClickOutside));
+  onUnmounted(() => document.removeEventListener('click', handleClickOutside));
   </script>
   
   <style scoped>
-  /* 保持简洁的外国 UI 风格 */
   .custom-select {
     width: 180px;
     position: relative;
     font-size: 14px;
-    color: #ccd6f6;
   }
   
   .select-trigger {
@@ -98,62 +111,92 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    transition: all 0.2s ease;
+    background: #fff; /* 修正：确保背景色可见 */
+    height: 36px;
+    box-sizing: border-box;
   }
   
-  
-  .arrow-icon {
-    width: 8px;
-    height: 8px;
-    border-right: 2px solid #626a7e;
-    border-bottom: 2px solid #626a7e;
-    transform: rotate(45deg);
-    transition: transform 0.3s ease;
-    margin-bottom: 2px;
+  .trigger-label {
+    color: #1a1a1a;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   
-  .is-open .arrow-icon {
-    transform: rotate(-135deg);
-    margin-bottom: -2px;
-    border-color: #4e75ff;
+  .search-input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    padding: 0;
+    font-size: 14px;
+    color: #1a1a1a;
+  }
+  
+  .search-input::placeholder {
+    color: #8892b0;
   }
   
   .select-options {
-    max-height: 300px;
-    overflow: auto;
+    max-height: 250px;
+    overflow-y: auto;
     position: absolute;
     top: calc(100% + 6px);
     left: 0;
     right: 0;
-    background: #1b1f29;
-    border: 1px solid #2d3343;
+    background: #fff; /* 统一白底风格 */
+    border: 1px solid #eee;
     border-radius: 8px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     z-index: 1000;
     padding: 4px;
   }
   
   .option-item {
-    padding: 10px 12px;
+    padding: 8px 12px;
     border-radius: 6px;
     cursor: pointer;
-    transition: background 0.2s;
+    color: #333;
+    transition: all 0.2s;
   }
   
   .option-item:hover {
-    background: #242936;
+    background: #f5f7fa;
   }
   
   .option-item.is-selected {
-    background: rgba(78, 117, 255, 0.15);
+    background: rgba(78, 117, 255, 0.1);
+    color: #4e75ff;
+    font-weight: 500;
   }
   
-  /* 简单的动画 */
+  .no-data {
+    padding: 12px;
+    color: #999;
+    text-align: center;
+    font-size: 12px;
+  }
+  
+  .arrow-icon {
+    width: 6px;
+    height: 6px;
+    border-right: 2px solid #999;
+    border-bottom: 2px solid #999;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+    margin-left: 8px;
+  }
+  
+  .is-open .arrow-icon {
+    transform: rotate(-135deg);
+  }
+  
   .fade-slide-enter-active, .fade-slide-leave-active {
     transition: all 0.2s ease;
   }
   .fade-slide-enter, .fade-slide-leave-to {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-5px);
   }
   </style>

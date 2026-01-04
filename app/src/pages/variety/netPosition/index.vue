@@ -39,7 +39,7 @@ const varietyName = computed(() => {
     return '';
 })
 
-const varietyKData = computed(() => kData.value[selectedSymbol.value]);
+const varietyKData = computed(() => kData.value[selectedSymbol.value] || {});
 
 const fetchKData = async () => {
     try {
