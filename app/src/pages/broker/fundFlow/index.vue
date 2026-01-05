@@ -19,6 +19,11 @@
     </div>
     <h3>席位资金结构</h3>
 
+    <BrokerDistributionPie 
+        :rawData="brokerStructure" 
+        :broker="selectedBroker" 
+    />
+
     <div class="title">
         商品净市值变化
     </div>
@@ -34,6 +39,7 @@
     import { useRoute } from 'vue-router/composables';
     import { ref, watch, computed  } from 'vue';
     import MarketValueChart from '../components/MarketValueChart.vue';
+    import BrokerDistributionPie from '../components/BrokerDistributionPie.vue';
     import { VARIETIES_LIST  } from '@/config/varieties';
     import { BROKERS  } from '@/config/broker';
 

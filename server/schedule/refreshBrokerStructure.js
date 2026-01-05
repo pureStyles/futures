@@ -63,6 +63,6 @@ class Structure {
     }
 }
 
-new Structure().execute();
+// new Structure().execute();
 
 module.exports = Structure;

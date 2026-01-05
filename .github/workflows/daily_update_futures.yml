@@ -2,7 +2,7 @@ name: Daily Update Futures Data
 
 on:
   schedule:
-    - cron: '30 9 * * 1-5'
+    - cron: '50 9 * * 1-5'
   workflow_dispatch:
 
 permissions:

@@ -4,6 +4,7 @@ const fs = require('fs').promises;
 
 const MainContracts = require("./refreshMainContracts.js");
 const VarietyPositions = require("./refreshVarietyPositons.js");
+const BrokerStructure  = require('./refreshBrokerStructure.js');
 const exchangeDays = require("../config/exChangeDay.js");
 
 
@@ -63,6 +64,8 @@ async function main() {
    if (request && request.length) {
     console.warn(`⚠️有接口请求失败了，需要补充数据完整性`, JSON.stringify(request));
    }
+
+   new BrokerStructure().execute();
 }
 
 main();
