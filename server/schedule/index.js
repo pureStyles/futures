@@ -26,7 +26,7 @@ async function main() {
     /** 在现有数据的基础上，需要连续 */
 
     const positionPath = path.join(process.cwd(), 'app', 'public/data/position.json');
-    const positionRaw = fs.readFile(positionPath);
+    const positionRaw = await fs.readFile(positionPath);
     const positionData = JSON.parse(positionRaw);
     const curIndex = exchangeDays.findIndex(date => date === positionData[positionData.length - 1].date);
     if (curIndex < 0) {
