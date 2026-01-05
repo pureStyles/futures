@@ -100,7 +100,7 @@ export const VARIETIES_LIST = [
         "symbol": "J",
         "mainVariety": [
             "j2605",
-            "j2601"
+            "j2609"
         ]
     },
     {
@@ -148,7 +148,7 @@ export const VARIETIES_LIST = [
         "symbol": "L",
         "mainVariety": [
             "l2605",
-            "l2602"
+            "l2603"
         ]
     },
     {
@@ -260,7 +260,7 @@ export const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2603",
-            "cy2601"
+            "cy2605"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2603",
-            "sf2604"
+            "sf2605"
         ]
     },
     {
@@ -396,7 +396,7 @@ export const VARIETIES_LIST = [
         "symbol": "SH",
         "mainVariety": [
             "sh2603",
-            "sh2602"
+            "sh2605"
         ]
     },
     {
@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2603",
-            "pl2602"
+            "pl2604"
         ]
     },
     {
