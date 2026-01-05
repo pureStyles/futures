@@ -20,7 +20,7 @@ async function main() {
     const today = moment().format("YYYY-MM-DD");
     if(!exchangeDays.includes(today)) {
         /** 如果不是交易日就不用更新 */
-        process.stdout.write(`\r🔄 今日不是交易日，无需更新数据`);
+        console.log(`\r🔄 今日不是交易日，无需更新数据`);
         process.exit(1);
     }
     /** 在现有数据的基础上，需要连续 */
