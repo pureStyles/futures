@@ -30,6 +30,7 @@ async function main() {
     const positionData = JSON.parse(positionRaw);
     const curIndex = exchangeDays.findIndex(date => date === positionData[positionData.length - 1].date);
     if (curIndex < 0) {
+        console.log('历史数据不对');
         process.exit(1);
     }
     if (exchangeDays[curIndex + 1] !== today) {
