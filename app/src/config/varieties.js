@@ -51,8 +51,8 @@ export const VARIETIES_LIST = [
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2602",
-            "ss2603"
+            "ss2603",
+            "ss2602"
         ]
     },
     {
@@ -67,8 +67,8 @@ export const VARIETIES_LIST = [
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2602",
-            "br2603"
+            "br2603",
+            "br2602"
         ]
     },
     {
@@ -196,7 +196,7 @@ export const VARIETIES_LIST = [
         "symbol": "EG",
         "mainVariety": [
             "eg2605",
-            "eg2602"
+            "eg2603"
         ]
     },
     {
@@ -252,7 +252,7 @@ export const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2602"
+            "ps2606"
         ]
     },
     {
@@ -260,7 +260,7 @@ export const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2603",
-            "cy2605"
+            "cy2601"
         ]
     },
     {
@@ -268,7 +268,7 @@ export const VARIETIES_LIST = [
         "symbol": "AP",
         "mainVariety": [
             "ap2605",
-            "ap2603"
+            "ap2610"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2603",
-            "sf2605"
+            "sf2604"
         ]
     },
     {
@@ -396,7 +396,7 @@ export const VARIETIES_LIST = [
         "symbol": "SH",
         "mainVariety": [
             "sh2603",
-            "sh2605"
+            "sh2604"
         ]
     },
     {
