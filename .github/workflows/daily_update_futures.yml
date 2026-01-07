@@ -32,6 +32,8 @@ jobs:
           npm install
 
       - name: Run Script
+        env:
+          USER_COOKIE: ${{ secrets.USER_COOKIE }} # 引用 Secret
         run: node server/schedule/index.js
 
       - name: Commit and Push Data
