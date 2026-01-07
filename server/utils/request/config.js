@@ -1,12 +1,11 @@
 
-const cookie = process.env.USER_COOKIE;
 
 const serverConfig = {
     baseURL: "https://www.jiaoyikecha.com",
     useTokenAuthorization: false,
 };
 
-const HEADERS = {
+const getHeaders = () => ({
     "accept": "*/*",
     "accept-language": "zh-CN,zh;q=0.9,ar;q=0.8",
     "cache-control": "no-cache",
@@ -20,13 +19,13 @@ const HEADERS = {
     "sec-fetch-mode": "cors",
     "sec-fetch-site": "same-origin",
     "x-requested-with": "XMLHttpRequest",
-    "cookie": cookie,
+    "cookie": process.env.USER_COOKIE,
     "Referer": "https://www.jiaoyikecha.com/",
     "Referrer-Policy": "strict-origin-when-cross-origin"
-  }
+  });
 
 
 module.exports = {
     serverConfig,
-    HEADERS
+    getHeaders,
 }

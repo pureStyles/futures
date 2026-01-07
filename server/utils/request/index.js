@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { serverConfig, HEADERS } = require("./config.js");
+const { serverConfig, getHeaders } = require("./config.js");
 
 const serviceAxios = axios.create({
     baseURL: serverConfig.baseURL,
@@ -12,7 +12,7 @@ const MAX_RETRY_COUNT = 3;
 const RETRY_DELAY = 1000; // 1秒
 
 serviceAxios.interceptors.request.use((config => {
-    config.headers = { ...config.headers, ...HEADERS };
+    config.headers = { ...config.headers, ...getHeaders() };
     return config;
 }), error => {
     return Promise.reject(error);
