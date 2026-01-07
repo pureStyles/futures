@@ -36,7 +36,7 @@ serviceAxios.interceptors.response.use((response) => {
 
     // 检查是否是因为超时（timeout）导致，并且次数未达上限
     // code === 'ECONNABORTED' 是 axios 超时的典型错误码
-    if (error.code === 'ECONNABORTED' && config.__retryCount < MAX_RETRY_COUNT) {
+    if (config.__retryCount < MAX_RETRY_COUNT) {
         config.__retryCount += 1;
 
         console.warn(`请求超时，正在进行第 ${config.__retryCount} 次重试...`);
