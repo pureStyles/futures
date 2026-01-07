@@ -21,6 +21,7 @@ const getHeaders = () => {
         "sec-fetch-mode": "cors",
         "sec-fetch-site": "same-origin",
         "x-requested-with": "XMLHttpRequest",
+        "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
         "cookie": process.env.USER_COOKIE,
         "Referer": "https://www.jiaoyikecha.com/",
         "Referrer-Policy": "strict-origin-when-cross-origin"
