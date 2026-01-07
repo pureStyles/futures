@@ -13,7 +13,7 @@ const RETRY_DELAY = 1000; // 1秒
 
 serviceAxios.interceptors.request.use((config => {
     config.headers = { ...config.headers, ...getHeaders() };
-    console.log('headers', headers);
+    console.log('headers', config.headers);
     return config;
 }), error => {
     return Promise.reject(error);
