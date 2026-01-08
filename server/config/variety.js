@@ -44,7 +44,7 @@ const VARIETIES_LIST = [
         "symbol": "NR",
         "mainVariety": [
             "nr2603",
-            "nr2602"
+            "nr2604"
         ]
     },
     {
@@ -211,8 +211,8 @@ const VARIETIES_LIST = [
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2602",
-            "pg2603"
+            "pg2603",
+            "pg2602"
         ]
     },
     {
@@ -371,8 +371,8 @@ const VARIETIES_LIST = [
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2602",
-            "pf2603"
+            "pf2603",
+            "pf2602"
         ]
     },
     {
@@ -476,7 +476,7 @@ const VARIETIES_LIST = [
         "symbol": "AG",
         "mainVariety": [
             "ag2604",
-            "ag2602"
+            "ag2606"
         ]
     },
     {
