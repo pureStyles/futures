@@ -10,7 +10,7 @@ class varietyProfit {
     profits = {};
     typicalBroker = {};
     appOutPath = path.join(process.cwd(), 'app', `public/data/profit.json`);
-    serverOutpath = path.join(process.cwd(), 'server', 'config/positveBroker.js');
+    serverOutpath = path.join(process.cwd(), 'server', 'config/typicalBroker.js');
 
     async fetchVarietyProfitData(name, dates) {
         try {
@@ -89,4 +89,5 @@ class varietyProfit {
     }
 }
 
-new varietyProfit().run();
+// new varietyProfit().run();
+module.exports = varietyProfit;

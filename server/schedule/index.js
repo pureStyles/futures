@@ -5,6 +5,8 @@ const fs = require('fs').promises;
 const MainContracts = require("./refreshMainContracts.js");
 const VarietyPositions = require("./refreshVarietyPositons.js");
 const BrokerStructure  = require('./refreshBrokerStructure.js');
+const VarietyProfits = require("./updateVarietyProfits.js");
+
 const exchangeDays = require("../config/exChangeDay.js");
 
 
@@ -55,7 +57,10 @@ async function main() {
     /** 1. 刷新合约主力数据 */
     await new MainContracts().run();
 
-    /** 2. 获取感兴趣商品持仓详情
+    /** 2 跟新盈亏数据 */
+    new VarietyProfits().run();
+
+    /** 3. 获取感兴趣商品持仓详情
      * 中包括主力合约、次主力合约、合约汇总数据的持仓详情（只写入盈亏靠前的席位持仓） 
     */
    const varietyPositions = new VarietyPositions();

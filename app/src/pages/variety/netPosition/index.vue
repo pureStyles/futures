@@ -8,11 +8,11 @@
             placeholder="商品"
         />
 
-        <h2>{{ varietyName }}主连K线图</h2>
+        <!-- <h2>{{ varietyName }}主连K线图</h2>
         <KLineChart 
             :data="varietyKData" 
             :title="varietyName" 
-        />
+        /> -->
         <div class="header-bar">
         <h2>席位多维监控雷达</h2>
       </div>
