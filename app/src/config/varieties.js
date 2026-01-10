@@ -12,7 +12,7 @@ export const VARIETIES_LIST = [
         "symbol": "HC",
         "mainVariety": [
             "hc2605",
-            "hc2603"
+            "hc2607"
         ]
     },
     {
@@ -20,7 +20,7 @@ export const VARIETIES_LIST = [
         "symbol": "BU",
         "mainVariety": [
             "bu2603",
-            "bu2602"
+            "bu2606"
         ]
     },
     {
@@ -44,7 +44,7 @@ export const VARIETIES_LIST = [
         "symbol": "NR",
         "mainVariety": [
             "nr2603",
-            "nr2602"
+            "nr2604"
         ]
     },
     {
@@ -75,8 +75,8 @@ export const VARIETIES_LIST = [
         "name": "集运欧线",
         "symbol": "EC",
         "mainVariety": [
-            "ec2602",
-            "ec2604"
+            "ec2604",
+            "ec2602"
         ]
     },
     {
@@ -211,8 +211,8 @@ export const VARIETIES_LIST = [
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2602",
-            "pg2603"
+            "pg2603",
+            "pg2602"
         ]
     },
     {
@@ -252,7 +252,7 @@ export const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2606"
+            "ps2602"
         ]
     },
     {
@@ -268,7 +268,7 @@ export const VARIETIES_LIST = [
         "symbol": "AP",
         "mainVariety": [
             "ap2605",
-            "ap2603"
+            "ap2610"
         ]
     },
     {
@@ -371,8 +371,8 @@ export const VARIETIES_LIST = [
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2602",
-            "pf2603"
+            "pf2603",
+            "pf2602"
         ]
     },
     {
@@ -380,7 +380,7 @@ export const VARIETIES_LIST = [
         "symbol": "PK",
         "mainVariety": [
             "pk2603",
-            "pk2604"
+            "pk2605"
         ]
     },
     {
@@ -476,7 +476,7 @@ export const VARIETIES_LIST = [
         "symbol": "AG",
         "mainVariety": [
             "ag2604",
-            "ag2602"
+            "ag2606"
         ]
     },
     {
