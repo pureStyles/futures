@@ -60,7 +60,7 @@ const VARIETIES_LIST = [
         "symbol": "AO",
         "mainVariety": [
             "ao2605",
-            "ao2602"
+            "ao2603"
         ]
     },
     {
@@ -252,7 +252,7 @@ const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2606"
+            "ps2603"
         ]
     },
     {
@@ -268,7 +268,7 @@ const VARIETIES_LIST = [
         "symbol": "AP",
         "mainVariety": [
             "ap2605",
-            "ap2610"
+            "ap2603"
         ]
     },
     {
@@ -508,7 +508,7 @@ const VARIETIES_LIST = [
         "symbol": "IM",
         "mainVariety": [
             "im2603",
-            "im2601"
+            "im2606"
         ]
     }
 ];
