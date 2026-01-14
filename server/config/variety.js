@@ -212,7 +212,7 @@ const VARIETIES_LIST = [
         "symbol": "PG",
         "mainVariety": [
             "pg2603",
-            "pg2602"
+            "pg2604"
         ]
     },
     {
@@ -252,7 +252,7 @@ const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2603"
+            "ps2606"
         ]
     },
     {
@@ -268,7 +268,7 @@ const VARIETIES_LIST = [
         "symbol": "AP",
         "mainVariety": [
             "ap2605",
-            "ap2603"
+            "ap2610"
         ]
     },
     {
@@ -316,7 +316,7 @@ const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2603",
-            "sf2605"
+            "sf2604"
         ]
     },
     {
@@ -372,7 +372,7 @@ const VARIETIES_LIST = [
         "symbol": "PF",
         "mainVariety": [
             "pf2603",
-            "pf2602"
+            "pf2604"
         ]
     },
     {
@@ -467,8 +467,8 @@ const VARIETIES_LIST = [
         "name": "沪金",
         "symbol": "AU",
         "mainVariety": [
-            "au2602",
-            "au2604"
+            "au2604",
+            "au2602"
         ]
     },
     {
@@ -484,7 +484,7 @@ const VARIETIES_LIST = [
         "symbol": "IF",
         "mainVariety": [
             "if2603",
-            "if2601"
+            "if2606"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2603",
-            "ih2601"
+            "ih2606"
         ]
     },
     {
