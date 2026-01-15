@@ -52,7 +52,7 @@ export const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2603",
-            "ss2602"
+            "ss2605"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2603",
-            "sf2604"
+            "sf2605"
         ]
     },
     {
