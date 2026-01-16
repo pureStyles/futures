@@ -68,7 +68,7 @@ const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2603",
-            "br2602"
+            "br2605"
         ]
     },
     {
@@ -252,7 +252,7 @@ const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2606"
+            "ps2603"
         ]
     },
     {
