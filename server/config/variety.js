@@ -52,7 +52,7 @@ const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2603",
-            "ss2605"
+            "ss2604"
         ]
     },
     {
@@ -68,7 +68,7 @@ const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2603",
-            "br2605"
+            "br2604"
         ]
     },
     {
@@ -203,8 +203,8 @@ const VARIETIES_LIST = [
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2602",
-            "eb2603"
+            "eb2603",
+            "eb2602"
         ]
     },
     {
@@ -252,7 +252,7 @@ const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2603"
+            "ps2606"
         ]
     },
     {
@@ -323,8 +323,8 @@ const VARIETIES_LIST = [
         "name": "锰硅",
         "symbol": "SM",
         "mainVariety": [
-            "sm2603",
-            "sm2605"
+            "sm2605",
+            "sm2603"
         ]
     },
     {
@@ -428,7 +428,7 @@ const VARIETIES_LIST = [
         "symbol": "AL",
         "mainVariety": [
             "al2603",
-            "al2602"
+            "al2604"
         ]
     },
     {
@@ -459,8 +459,8 @@ const VARIETIES_LIST = [
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2602",
-            "sn2603"
+            "sn2603",
+            "sn2602"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2603",
-            "ih2606"
+            "ih2602"
         ]
     },
     {
