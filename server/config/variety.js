@@ -52,7 +52,7 @@ const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2603",
-            "ss2604"
+            "ss2605"
         ]
     },
     {
@@ -76,7 +76,7 @@ const VARIETIES_LIST = [
         "symbol": "EC",
         "mainVariety": [
             "ec2604",
-            "ec2602"
+            "ec2610"
         ]
     },
     {
@@ -276,7 +276,7 @@ const VARIETIES_LIST = [
         "symbol": "CF",
         "mainVariety": [
             "cf2605",
-            "cf2603"
+            "cf2609"
         ]
     },
     {
@@ -436,7 +436,7 @@ const VARIETIES_LIST = [
         "symbol": "ZN",
         "mainVariety": [
             "zn2603",
-            "zn2602"
+            "zn2604"
         ]
     },
     {
@@ -444,7 +444,7 @@ const VARIETIES_LIST = [
         "symbol": "PB",
         "mainVariety": [
             "pb2603",
-            "pb2602"
+            "pb2604"
         ]
     },
     {
