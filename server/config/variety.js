@@ -52,7 +52,7 @@ const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2603",
-            "ss2605"
+            "ss2604"
         ]
     },
     {
@@ -76,7 +76,7 @@ const VARIETIES_LIST = [
         "symbol": "EC",
         "mainVariety": [
             "ec2604",
-            "ec2610"
+            "ec2606"
         ]
     },
     {
@@ -420,7 +420,7 @@ const VARIETIES_LIST = [
         "symbol": "CU",
         "mainVariety": [
             "cu2603",
-            "cu2602"
+            "cu2604"
         ]
     },
     {
