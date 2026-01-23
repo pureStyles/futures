@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2603",
-            "eb2602"
+            "eb2604"
         ]
     },
     {
@@ -276,7 +276,7 @@ export const VARIETIES_LIST = [
         "symbol": "CF",
         "mainVariety": [
             "cf2605",
-            "cf2603"
+            "cf2609"
         ]
     },
     {
@@ -387,8 +387,8 @@ export const VARIETIES_LIST = [
         "name": "对二甲苯",
         "symbol": "PX",
         "mainVariety": [
-            "px2603",
-            "px2605"
+            "px2605",
+            "px2603"
         ]
     },
     {
@@ -451,8 +451,8 @@ export const VARIETIES_LIST = [
         "name": "沪镍",
         "symbol": "NI",
         "mainVariety": [
-            "ni2602",
-            "ni2603"
+            "ni2603",
+            "ni2602"
         ]
     },
     {
@@ -468,7 +468,7 @@ export const VARIETIES_LIST = [
         "symbol": "AU",
         "mainVariety": [
             "au2604",
-            "au2602"
+            "au2606"
         ]
     },
     {
@@ -500,7 +500,7 @@ export const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2603",
-            "ih2602"
+            "ih2606"
         ]
     },
     {
