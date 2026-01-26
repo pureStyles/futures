@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2603",
-            "ih2606"
+            "ih2602"
         ]
     },
     {
