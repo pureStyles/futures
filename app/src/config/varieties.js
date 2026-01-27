@@ -20,7 +20,7 @@ export const VARIETIES_LIST = [
         "symbol": "BU",
         "mainVariety": [
             "bu2603",
-            "bu2606"
+            "bu2604"
         ]
     },
     {
@@ -108,7 +108,7 @@ export const VARIETIES_LIST = [
         "symbol": "A",
         "mainVariety": [
             "a2605",
-            "a2603"
+            "a2607"
         ]
     },
     {
@@ -284,7 +284,7 @@ export const VARIETIES_LIST = [
         "symbol": "FG",
         "mainVariety": [
             "fg2605",
-            "fg2603"
+            "fg2609"
         ]
     },
     {
@@ -452,7 +452,7 @@ export const VARIETIES_LIST = [
         "symbol": "NI",
         "mainVariety": [
             "ni2603",
-            "ni2602"
+            "ni2605"
         ]
     },
     {
@@ -460,7 +460,7 @@ export const VARIETIES_LIST = [
         "symbol": "SN",
         "mainVariety": [
             "sn2603",
-            "sn2602"
+            "sn2604"
         ]
     },
     {
