@@ -252,7 +252,7 @@ export const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2606"
+            "ps2603"
         ]
     },
     {
@@ -364,7 +364,7 @@ export const VARIETIES_LIST = [
         "symbol": "SA",
         "mainVariety": [
             "sa2605",
-            "sa2603"
+            "sa2609"
         ]
     },
     {
