@@ -252,7 +252,7 @@ const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2603"
+            "ps2606"
         ]
     },
     {
@@ -332,7 +332,7 @@ const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2605",
-            "sr2603"
+            "sr2609"
         ]
     },
     {
@@ -340,7 +340,7 @@ const VARIETIES_LIST = [
         "symbol": "TA",
         "mainVariety": [
             "ta2605",
-            "ta2603"
+            "ta2609"
         ]
     },
     {
