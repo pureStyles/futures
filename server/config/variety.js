@@ -43,8 +43,8 @@ const VARIETIES_LIST = [
         "name": "20号胶",
         "symbol": "NR",
         "mainVariety": [
-            "nr2603",
-            "nr2604"
+            "nr2604",
+            "nr2603"
         ]
     },
     {
@@ -292,7 +292,7 @@ const VARIETIES_LIST = [
         "symbol": "MA",
         "mainVariety": [
             "ma2605",
-            "ma2603"
+            "ma2609"
         ]
     },
     {
@@ -411,8 +411,8 @@ const VARIETIES_LIST = [
         "name": "丙烯",
         "symbol": "PL",
         "mainVariety": [
-            "pl2603",
-            "pl2604"
+            "pl2604",
+            "pl2603"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2603",
-            "ih2602"
+            "ih2606"
         ]
     },
     {
