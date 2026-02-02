@@ -219,8 +219,8 @@ export const VARIETIES_LIST = [
         "name": "生猪",
         "symbol": "LH",
         "mainVariety": [
-            "lh2603",
-            "lh2605"
+            "lh2605",
+            "lh2603"
         ]
     },
     {
@@ -300,7 +300,7 @@ export const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2603"
+            "oi2607"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2605",
-            "ur2603"
+            "ur2604"
         ]
     },
     {
@@ -403,8 +403,8 @@ export const VARIETIES_LIST = [
         "name": "瓶片",
         "symbol": "PR",
         "mainVariety": [
-            "pr2603",
-            "pr2604"
+            "pr2604",
+            "pr2603"
         ]
     },
     {
@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2604",
-            "pl2603"
+            "pl2605"
         ]
     },
     {
