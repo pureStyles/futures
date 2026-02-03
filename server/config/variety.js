@@ -259,8 +259,8 @@ const VARIETIES_LIST = [
         "name": "棉纱",
         "symbol": "CY",
         "mainVariety": [
-            "cy2603",
-            "cy2605"
+            "cy2605",
+            "cy2603"
         ]
     },
     {
@@ -356,7 +356,7 @@ const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2605",
-            "ur2604"
+            "ur2606"
         ]
     },
     {
@@ -388,7 +388,7 @@ const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2605",
-            "px2603"
+            "px2606"
         ]
     },
     {
@@ -403,16 +403,16 @@ const VARIETIES_LIST = [
         "name": "瓶片",
         "symbol": "PR",
         "mainVariety": [
-            "pr2604",
-            "pr2603"
+            "pr2605",
+            "pr2604"
         ]
     },
     {
         "name": "丙烯",
         "symbol": "PL",
         "mainVariety": [
-            "pl2604",
-            "pl2605"
+            "pl2605",
+            "pl2604"
         ]
     },
     {
