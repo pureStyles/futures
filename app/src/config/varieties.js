@@ -315,8 +315,8 @@ export const VARIETIES_LIST = [
         "name": "硅铁",
         "symbol": "SF",
         "mainVariety": [
-            "sf2603",
-            "sf2605"
+            "sf2605",
+            "sf2603"
         ]
     },
     {
@@ -371,8 +371,8 @@ export const VARIETIES_LIST = [
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2603",
-            "pf2604"
+            "pf2604",
+            "pf2603"
         ]
     },
     {
