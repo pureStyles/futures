@@ -19,8 +19,8 @@ export const VARIETIES_LIST = [
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2603",
-            "bu2604"
+            "bu2604",
+            "bu2603"
         ]
     },
     {
@@ -44,15 +44,15 @@ export const VARIETIES_LIST = [
         "symbol": "NR",
         "mainVariety": [
             "nr2604",
-            "nr2603"
+            "nr2605"
         ]
     },
     {
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2603",
-            "ss2604"
+            "ss2604",
+            "ss2603"
         ]
     },
     {
@@ -60,7 +60,7 @@ export const VARIETIES_LIST = [
         "symbol": "AO",
         "mainVariety": [
             "ao2605",
-            "ao2603"
+            "ao2609"
         ]
     },
     {
@@ -123,8 +123,8 @@ export const VARIETIES_LIST = [
         "name": "玉米",
         "symbol": "C",
         "mainVariety": [
-            "c2603",
-            "c2605"
+            "c2605",
+            "c2603"
         ]
     },
     {
@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2605",
-            "sm2603"
+            "sm2606"
         ]
     },
     {
@@ -332,7 +332,7 @@ export const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2605",
-            "sr2609"
+            "sr2607"
         ]
     },
     {
