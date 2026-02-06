@@ -67,8 +67,8 @@ export const VARIETIES_LIST = [
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2603",
-            "br2604"
+            "br2604",
+            "br2603"
         ]
     },
     {
@@ -116,7 +116,7 @@ export const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2605",
-            "b2603"
+            "b2604"
         ]
     },
     {
@@ -252,7 +252,7 @@ export const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2606"
+            "ps2603"
         ]
     },
     {
@@ -364,7 +364,7 @@ export const VARIETIES_LIST = [
         "symbol": "SA",
         "mainVariety": [
             "sa2605",
-            "sa2609"
+            "sa2607"
         ]
     },
     {
