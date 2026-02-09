@@ -67,8 +67,8 @@ const VARIETIES_LIST = [
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2604",
-            "br2603"
+            "br2603",
+            "br2604"
         ]
     },
     {
@@ -116,7 +116,7 @@ const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2605",
-            "b2604"
+            "b2607"
         ]
     },
     {
@@ -139,8 +139,8 @@ const VARIETIES_LIST = [
         "name": "鸡蛋",
         "symbol": "JD",
         "mainVariety": [
-            "jd2603",
-            "jd2604"
+            "jd2604",
+            "jd2603"
         ]
     },
     {
@@ -211,8 +211,8 @@ const VARIETIES_LIST = [
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2603",
-            "pg2604"
+            "pg2604",
+            "pg2603"
         ]
     },
     {
@@ -316,7 +316,7 @@ const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2605",
-            "sf2603"
+            "sf2607"
         ]
     },
     {
@@ -364,7 +364,7 @@ const VARIETIES_LIST = [
         "symbol": "SA",
         "mainVariety": [
             "sa2605",
-            "sa2607"
+            "sa2609"
         ]
     },
     {
@@ -372,15 +372,15 @@ const VARIETIES_LIST = [
         "symbol": "PF",
         "mainVariety": [
             "pf2604",
-            "pf2603"
+            "pf2606"
         ]
     },
     {
         "name": "花生",
         "symbol": "PK",
         "mainVariety": [
-            "pk2603",
-            "pk2605"
+            "pk2605",
+            "pk2603"
         ]
     },
     {
@@ -388,7 +388,7 @@ const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2605",
-            "px2606"
+            "px2604"
         ]
     },
     {
