@@ -67,8 +67,8 @@ const VARIETIES_LIST = [
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2603",
-            "br2604"
+            "br2604",
+            "br2603"
         ]
     },
     {
@@ -116,7 +116,7 @@ const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2605",
-            "b2607"
+            "b2604"
         ]
     },
     {
@@ -131,8 +131,8 @@ const VARIETIES_LIST = [
         "name": "淀粉",
         "symbol": "CS",
         "mainVariety": [
-            "cs2603",
-            "cs2605"
+            "cs2605",
+            "cs2603"
         ]
     },
     {
@@ -236,7 +236,7 @@ const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2603"
+            "si2609"
         ]
     },
     {
@@ -252,7 +252,7 @@ const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2605",
-            "ps2603"
+            "ps2606"
         ]
     },
     {
@@ -324,7 +324,7 @@ const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2605",
-            "sm2606"
+            "sm2607"
         ]
     },
     {
@@ -443,8 +443,8 @@ const VARIETIES_LIST = [
         "name": "沪铅",
         "symbol": "PB",
         "mainVariety": [
-            "pb2603",
-            "pb2604"
+            "pb2604",
+            "pb2603"
         ]
     },
     {
