@@ -116,7 +116,7 @@ const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2605",
-            "b2604"
+            "b2607"
         ]
     },
     {
@@ -196,15 +196,15 @@ const VARIETIES_LIST = [
         "symbol": "EG",
         "mainVariety": [
             "eg2605",
-            "eg2603"
+            "eg2609"
         ]
     },
     {
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2603",
-            "eb2604"
+            "eb2604",
+            "eb2603"
         ]
     },
     {
@@ -395,8 +395,8 @@ const VARIETIES_LIST = [
         "name": "烧碱",
         "symbol": "SH",
         "mainVariety": [
-            "sh2603",
-            "sh2605"
+            "sh2605",
+            "sh2603"
         ]
     },
     {
@@ -427,8 +427,8 @@ const VARIETIES_LIST = [
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2603",
-            "al2604"
+            "al2604",
+            "al2603"
         ]
     },
     {
@@ -451,8 +451,8 @@ const VARIETIES_LIST = [
         "name": "沪镍",
         "symbol": "NI",
         "mainVariety": [
-            "ni2603",
-            "ni2605"
+            "ni2605",
+            "ni2603"
         ]
     },
     {
