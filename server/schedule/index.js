@@ -58,7 +58,7 @@ async function main() {
     await new MainContracts().run();
 
     /** 2 跟新盈亏数据 */
-    new VarietyProfits().run();
+    await new VarietyProfits().run();
 
     /** 3. 获取感兴趣商品持仓详情
      * 中包括主力合约、次主力合约、合约汇总数据的持仓详情（只写入盈亏靠前的席位持仓） 

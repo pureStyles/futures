@@ -20,9 +20,15 @@ async function queryMainVarieies(params) {
     return request.post('/ajax/recent_contracts.php', params);
 }
 
+/** 查询品种之间的相关性关系 */
+async function queryVarietyCorrelation(params) {
+    return request.post('/ajax/variety_correlation.php', params);
+}
+
 module.exports = {
     queryNetPositon,
     queryVarietyPostion,
     queryVarietyProfit,
     queryMainVarieies,
+    queryVarietyCorrelation,
 }
