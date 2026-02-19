@@ -2,37 +2,38 @@ const moment = require('moment');
 const path = require('path');
 const fs = require('fs').promises;
 const { queryVarietyCorrelation } = require('../api/variety.js');
+const { VARIETIES_LIST } = require('../config/variety.js');
 
 class CorrelationTask {
     constructor() {
-        // 输出路径保持与你的项目结构一致
-        this.outPath = path.join(process.cwd(), 'app', 'src/config/correlationData.js');
+        // 输出到 public 供前端 fetch
+        this.outPath = path.join(process.cwd(), 'app', 'public/data/correlationData.json');
         
-        // 品种列表：建议涵盖主要能化、黑色、农产品板块，方便分析相关性
-        this.varieties = [
-            "低硫油", "原油", "燃料油", "沥青", "LPG", 
-            "螺纹钢", "铁矿石", "热卷", "焦炭", "焦煤",
-            "甲醇", "纯碱", "玻璃", "尿素", "白糖"
-        ];
+        // 板块定义：根据你的需求分类
+        // 这里会自动匹配 VARIETIES_LIST 中的品种
+        this.sectorConfig = {
+            "贵金属": ["沪金", "沪银"],
+            "有色金属": ["沪铜", "沪铝", "沪锌", "沪铅", "沪镍", "沪锡"],
+            "股指": ["300沪深", "50上证", "500中证", "1000中证"],
+            "其他": [] // 剩余品种会自动填充到这里
+        };
     }
 
-    /**
-     * 获取数据逻辑：利用你改造后的 queryVarietyCorrelation
-     */
     async fetchData() {
-        // 使用 moment 处理日期，更符合你的习惯
         const end = moment().format('YYYY-MM-DD');
         const start = moment().subtract(1, 'years').format('YYYY-MM-DD');
 
         try {
+            // 获取全部品种名称
+            const allNames = VARIETIES_LIST.map(v => v.name).concat(['燃料油', '原油', '低硫油']);
             const params = {
                 start,
                 end,
-                varieties: this.varieties.join(',')
+                varieties: allNames.join(',')
             };
 
             const res = await queryVarietyCorrelation(params);
-            return res.data;
+            return res;
         } catch (error) {
             console.error("抓取相关性数据失败:", error.message);
             return null;
@@ -40,64 +41,98 @@ class CorrelationTask {
     }
 
     /**
-     * 数据清洗：将原始矩阵转换为 ECharts 友好的格式
+     * 核心逻辑：将大矩阵拆分为小板块矩阵
      */
-    processData(data) {
-        if (!data || !data.correlation) return null;
+    processSectors(rawData) {
+        if (!rawData || !rawData.correlation) return null;
 
-        const cleanedCorrelation = data.correlation.map(item => {
-            // item 结构: [xAxisIndex, yAxisIndex, value]
-            let val = item[2];
-            
-            // 相同品种相交显示为 "-"，在热力图中处理为 100 (满相关)
-            // 同时也兼容处理可能出现的 null 或非数字情况
-            if (val === '-') {
-                val = 100;
-            } else if (typeof val === 'string') {
-                val = parseFloat(val);
-            }
+        const { varieties: allNames, correlation: allValues } = rawData;
+        
+        // 1. 自动归类品种到板块
+        const sectorMapping = {
+            "贵金属": [],
+            "有色金属": [],
+            "股指": [],
+            "其他": []
+        };
 
-            return [item[0], item[1], val];
+        allNames.forEach((name, index) => {
+            if (this.sectorConfig["贵金属"].includes(name)) {
+                sectorMapping["贵金属"].push({ name, oldIdx: index });
+             } else if (this.sectorConfig["有色金属"].includes(name)) {
+                 sectorMapping["有色金属"].push({ name, oldIdx: index });
+             } else if (this.sectorConfig["股指"].includes(name)) {
+                 sectorMapping["股指"].push({ name, oldIdx: index });
+             } else {
+                 sectorMapping["其他"].push({ name, oldIdx: index });
+             }
+        });
+
+        const sectorsResult = {};
+
+        // 2. 为每个板块生成独立的矩阵
+        Object.keys(sectorMapping).forEach(sectorName => {
+            const list = sectorMapping[sectorName];
+            const newVarieties = list.map(item => item.name);
+            const newCorrelation = [];
+
+            // 双重循环构建该板块内的两两关系
+            list.forEach((rowItem, newRowIdx) => {
+                list.forEach((colItem, newColIdx) => {
+                    if (newRowIdx === newColIdx) {
+                        newCorrelation.push([newRowIdx, newColIdx, null]); // 对角线留白
+                    } else {
+                        // 从大矩阵中寻找对应的原始值
+                        const target = allValues.find(v => v[0] === rowItem.oldIdx && v[1] === colItem.oldIdx);
+                        let val = target ? target[2] : null;
+                        
+                        // 清洗数据
+                        if (val === '-') val = null;
+                        else if (typeof val === 'string') val = parseFloat(val);
+                        
+                        newCorrelation.push([newRowIdx, newColIdx, val]);
+                    }
+                });
+            });
+
+            sectorsResult[sectorName] = {
+                varieties: newVarieties,
+                correlation: newCorrelation
+            };
         });
 
         return {
-            varieties: data.varieties,
-            correlation: cleanedCorrelation,
+            sectors: sectorsResult,
             updateTime: moment().format('YYYY-MM-DD HH:mm:ss')
         };
     }
 
     async execute() {
-        console.log("🚀 开始采集品种相关性数据...");
+        console.log("🚀 开始采集并按板块分类相关性数据...");
         const rawData = await this.fetchData();
 
         if (!rawData) {
-            console.error("❌ 采集失败，停止写入文件。");
+            console.error("❌ 采集失败。");
             return;
         }
 
-        const finalData = this.processData(rawData);
-
-        const jsContent = `/** 自动生成的相关性分析数据 */\n` +
-                          `export const CORRELATION_DATA = ${JSON.stringify(finalData, null, 4)};`;
+        const finalData = this.processSectors(rawData);
 
         try {
-            // 确保目录存在（防止初次运行报错）
             const dir = path.dirname(this.outPath);
             await fs.mkdir(dir, { recursive: true });
             
-            await fs.writeFile(this.outPath, jsContent, 'utf-8');
-            console.log(`✅ 相关性数据已成功同步至: ${this.outPath}`);
+            // 写入 JSON
+            await fs.writeFile(this.outPath, JSON.stringify(finalData, null, 4), 'utf-8');
+            console.log(`✅ 数据已分类存储至: ${this.outPath}`);
         } catch (err) {
             console.error("写入文件失败:", err);
         }
     }
 }
 
-// 导出类以便在主控脚本中使用
 module.exports = CorrelationTask;
 
-// 脚本直接运行时执行
 if (require.main === module) {
     new CorrelationTask().execute();
 }

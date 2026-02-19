@@ -16,7 +16,14 @@ export const MENU_LIST = [
             route: {
               name: 'netPosition',
             }
-          }
+        },
+        {
+            key: 'correlation',
+            name: '相关性分析',
+            route: {
+              name: 'correlation'
+            }
+        }
       ]
     },
     {

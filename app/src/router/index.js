@@ -29,6 +29,11 @@ export default new Router({
             path: 'netPosition/:variety?',
             name: 'netPosition',
             component: netPosition,
+        },
+        {
+            path: 'correlation',
+            name: 'correlation',
+            component: () => import('../pages/variety/correlation') // 示例：按需加载
         }
       ]
     },
