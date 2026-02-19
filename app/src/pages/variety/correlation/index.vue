@@ -51,7 +51,7 @@ const currentSectorData = computed(() => {
 const loadData = async () => {
   try {
     // 加上时间戳防止浏览器缓存 JSON
-    const res = await fetch(`/data/correlationData.json?t=${Date.now()}`);
+    const res = await fetch(`./data/correlationData.json?t=${Date.now()}`);
     const result = await res.json();
     
     sectors.value = result.sectors;
