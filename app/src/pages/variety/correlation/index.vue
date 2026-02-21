@@ -48,6 +48,7 @@ const currentSectorData = computed(() => {
   return sectors.value[currentSector.value] || null;
 });
 
+
 const loadData = async () => {
   try {
     // 加上时间戳防止浏览器缓存 JSON

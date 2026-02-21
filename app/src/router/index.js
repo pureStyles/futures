@@ -53,6 +53,11 @@ export default new Router({
           component: () => import('../pages/broker/fundFlow/index') // 示例：按需加载
         },
         {
+          path: 'correlationPosition',
+          name: 'correlationPosition',
+          component: () => import('../pages/broker/correlationPosition/index') // 示例：按需加载
+        },
+        {
           path: 'structure',
           name: 'positionStructure',
         //   component: () => import('../pages/seat/Structure.vue')

@@ -31,13 +31,18 @@ export const MENU_LIST = [
       name: '席位',
       children: [
         {
+          key: 'correlation-position',
+          name: '强正相关持仓',
+          route: { name: 'correlationPosition' }
+        },
+        {
           key: 'core-seat',
-          name: '重点席位持仓',
+          name: '持仓',
           route: { name: 'coreSeatPosition' }
         },
         {
           key: 'broker-fund',
-          name: '席位资金动向',
+          name: '资金动向',
           route: { name: 'brokerFundFlow' }
         },
         {
