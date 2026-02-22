@@ -51,7 +51,7 @@
   
   const init = async () => {
     try {
-      const res = await fetch('/data/brokerQuadrant.json');
+      const res = await fetch('./data/brokerQuadrant.json');
       const json = await res.json();
       allData.value = json.data;
       updateTime.value = json.updateTime;
