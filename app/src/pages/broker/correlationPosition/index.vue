@@ -12,12 +12,22 @@
           </select>
         </div>
       </div>
+
+      <div class="net-positions-wrapper">
+        <!-- <brokerNetPosition
+            :rawData="positionData"
+            :variety="'all'"
+            :symbol="currentVariety"
+            :broker="b.name"
+        /> -->
+      </div>
   
       <div class="chart-wrapper">
         <QuadrantChart 
           v-if="currentData" 
           :chart-data="currentData" 
-          :broker-name="selectedBroker" 
+          :broker-name="selectedBroker"
+          @circle-click="handleCircleClick"
         />
         <div v-else class="loading-box">正在解析席位头寸数据...</div>
       </div>
@@ -27,10 +37,14 @@
   <script setup>
   import { ref, computed, onMounted } from 'vue';
   import QuadrantChart from './components/QuadrantChart.vue';
+  import brokerNetPosition from '@/pages/variety/components/brokerNetPosition.vue';
   
   const allData = ref({});
   const updateTime = ref('');
   const selectedBroker = ref('国泰君安');
+
+  const selectedGroupName = ref('');
+  const activeVarieties = ref([]);
   
   const brokerList = computed(() => Object.keys(allData.value));
   const currentData = computed(() => allData.value[selectedBroker.value] || null);
@@ -50,6 +64,20 @@
       console.error("Data Load Error", e);
     }
   };
+    const handleCircleClick = (groupName) => {
+        selectedGroupName.value = groupName;
+        
+        // 从 currentData 中找到选中的集群，提取品种列表
+        // 我们之前的 Task 脚本里已经在详情里带了品种
+        const group = currentData.value.find(item => item.name === groupName);
+        console.log("点击了集群:", groupName, group);
+        if (group && group.details && group.details.varieties) {
+            activeVarieties.value = group.details.varieties;
+            
+            // 自动滚动到上方查看图表
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+    }
   
   onMounted(init);
   </script>

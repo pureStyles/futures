@@ -13,12 +13,24 @@
     brokerName: { type: String, default: '席位' }
   });
   
+  const emit = defineEmits(['circle-click']);
+  
   const chartRef = ref(null);
   let myChart = null;
   
   const renderChart = () => {
     if (!chartRef.value || !props.chartData) return;
     if (!myChart) myChart = echarts.init(chartRef.value);
+
+    myChart.on('click', (params) => {
+      // params.data 结构取决于我们在 series.data 中定义的数组内容
+      // 按照之前的代码，数组是 [x, y, size, name]
+      if (params.componentType === 'series') {
+        const groupName = params.data[3];
+        // 触发自定义事件，通知父组件
+        emit('circle-click', groupName);
+      }
+    });
   
     const option = {
       title: { 
