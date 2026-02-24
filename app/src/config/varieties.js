@@ -220,15 +220,15 @@ export const VARIETIES_LIST = [
         "symbol": "LH",
         "mainVariety": [
             "lh2605",
-            "lh2603"
+            "lh2607"
         ]
     },
     {
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2603",
-            "bz2604"
+            "bz2604",
+            "bz2603"
         ]
     },
     {
@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2605",
-            "sm2607"
+            "sm2606"
         ]
     },
     {
@@ -419,8 +419,8 @@ export const VARIETIES_LIST = [
         "name": "沪铜",
         "symbol": "CU",
         "mainVariety": [
-            "cu2603",
-            "cu2604"
+            "cu2604",
+            "cu2603"
         ]
     },
     {
