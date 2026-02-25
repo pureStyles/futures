@@ -68,7 +68,7 @@ export const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2604",
-            "br2603"
+            "br2605"
         ]
     },
     {
@@ -116,7 +116,7 @@ export const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2605",
-            "b2607"
+            "b2604"
         ]
     },
     {
@@ -132,7 +132,7 @@ export const VARIETIES_LIST = [
         "symbol": "CS",
         "mainVariety": [
             "cs2605",
-            "cs2603"
+            "cs2607"
         ]
     },
     {
@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2605",
-            "pl2604"
+            "pl2606"
         ]
     },
     {
@@ -428,7 +428,7 @@ export const VARIETIES_LIST = [
         "symbol": "AL",
         "mainVariety": [
             "al2604",
-            "al2603"
+            "al2605"
         ]
     },
     {
@@ -436,7 +436,7 @@ export const VARIETIES_LIST = [
         "symbol": "ZN",
         "mainVariety": [
             "zn2604",
-            "zn2603"
+            "zn2605"
         ]
     },
     {
@@ -444,7 +444,7 @@ export const VARIETIES_LIST = [
         "symbol": "PB",
         "mainVariety": [
             "pb2604",
-            "pb2603"
+            "pb2605"
         ]
     },
     {
@@ -459,8 +459,8 @@ export const VARIETIES_LIST = [
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2603",
-            "sn2604"
+            "sn2604",
+            "sn2603"
         ]
     },
     {
