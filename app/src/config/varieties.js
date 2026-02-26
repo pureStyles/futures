@@ -116,7 +116,7 @@ export const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2605",
-            "b2604"
+            "b2607"
         ]
     },
     {
@@ -124,7 +124,7 @@ export const VARIETIES_LIST = [
         "symbol": "C",
         "mainVariety": [
             "c2605",
-            "c2603"
+            "c2607"
         ]
     },
     {
@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2604",
-            "eb2603"
+            "eb2605"
         ]
     },
     {
@@ -212,7 +212,7 @@ export const VARIETIES_LIST = [
         "symbol": "PG",
         "mainVariety": [
             "pg2604",
-            "pg2603"
+            "pg2605"
         ]
     },
     {
@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2605",
-            "sm2606"
+            "sm2607"
         ]
     },
     {
@@ -332,7 +332,7 @@ export const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2605",
-            "sr2607"
+            "sr2609"
         ]
     },
     {
@@ -452,7 +452,7 @@ export const VARIETIES_LIST = [
         "symbol": "NI",
         "mainVariety": [
             "ni2605",
-            "ni2603"
+            "ni2604"
         ]
     },
     {
