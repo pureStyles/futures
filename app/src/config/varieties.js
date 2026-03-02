@@ -43,8 +43,8 @@ export const VARIETIES_LIST = [
         "name": "20号胶",
         "symbol": "NR",
         "mainVariety": [
-            "nr2604",
-            "nr2605"
+            "nr2605",
+            "nr2604"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2605",
-            "ur2606"
+            "ur2609"
         ]
     },
     {
@@ -388,7 +388,7 @@ export const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2605",
-            "px2604"
+            "px2607"
         ]
     },
     {
@@ -396,7 +396,7 @@ export const VARIETIES_LIST = [
         "symbol": "SH",
         "mainVariety": [
             "sh2605",
-            "sh2604"
+            "sh2607"
         ]
     },
     {
@@ -404,7 +404,7 @@ export const VARIETIES_LIST = [
         "symbol": "PR",
         "mainVariety": [
             "pr2605",
-            "pr2604"
+            "pr2606"
         ]
     },
     {
