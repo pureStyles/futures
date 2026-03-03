@@ -12,7 +12,7 @@ export const VARIETIES_LIST = [
         "symbol": "HC",
         "mainVariety": [
             "hc2605",
-            "hc2607"
+            "hc2610"
         ]
     },
     {
@@ -51,8 +51,8 @@ export const VARIETIES_LIST = [
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2604",
-            "ss2605"
+            "ss2605",
+            "ss2604"
         ]
     },
     {
@@ -76,7 +76,7 @@ export const VARIETIES_LIST = [
         "symbol": "EC",
         "mainVariety": [
             "ec2604",
-            "ec2606"
+            "ec2610"
         ]
     },
     {
@@ -139,8 +139,8 @@ export const VARIETIES_LIST = [
         "name": "鸡蛋",
         "symbol": "JD",
         "mainVariety": [
-            "jd2604",
-            "jd2605"
+            "jd2605",
+            "jd2604"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2604"
+            "si2609"
         ]
     },
     {
@@ -332,7 +332,7 @@ export const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2605",
-            "sr2609"
+            "sr2607"
         ]
     },
     {
