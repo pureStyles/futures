@@ -19,8 +19,8 @@ export const VARIETIES_LIST = [
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2604",
-            "bu2606"
+            "bu2606",
+            "bu2604"
         ]
     },
     {
@@ -76,7 +76,7 @@ export const VARIETIES_LIST = [
         "symbol": "EC",
         "mainVariety": [
             "ec2604",
-            "ec2610"
+            "ec2606"
         ]
     },
     {
@@ -332,7 +332,7 @@ export const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2605",
-            "sr2607"
+            "sr2609"
         ]
     },
     {
@@ -475,8 +475,8 @@ export const VARIETIES_LIST = [
         "name": "沪银",
         "symbol": "AG",
         "mainVariety": [
-            "ag2604",
-            "ag2606"
+            "ag2606",
+            "ag2604"
         ]
     },
     {
