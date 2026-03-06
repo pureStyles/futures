@@ -220,7 +220,7 @@ const VARIETIES_LIST = [
         "symbol": "LH",
         "mainVariety": [
             "lh2605",
-            "lh2607"
+            "lh2609"
         ]
     },
     {
@@ -236,7 +236,7 @@ const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2609"
+            "si2604"
         ]
     },
     {
@@ -260,7 +260,7 @@ const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2605",
-            "cy2603"
+            "cy2609"
         ]
     },
     {
