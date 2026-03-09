@@ -44,7 +44,7 @@ const VARIETIES_LIST = [
         "symbol": "NR",
         "mainVariety": [
             "nr2605",
-            "nr2604"
+            "nr2606"
         ]
     },
     {
@@ -67,8 +67,8 @@ const VARIETIES_LIST = [
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2604",
-            "br2605"
+            "br2605",
+            "br2604"
         ]
     },
     {
@@ -236,7 +236,7 @@ const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2604"
+            "si2609"
         ]
     },
     {
@@ -260,7 +260,7 @@ const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2605",
-            "cy2609"
+            "cy2603"
         ]
     },
     {
@@ -300,7 +300,7 @@ const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2607"
+            "oi2609"
         ]
     },
     {
@@ -388,7 +388,7 @@ const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2605",
-            "px2607"
+            "px2609"
         ]
     },
     {
