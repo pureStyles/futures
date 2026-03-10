@@ -260,7 +260,7 @@ export const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2605",
-            "cy2603"
+            "cy2609"
         ]
     },
     {
@@ -371,8 +371,8 @@ export const VARIETIES_LIST = [
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2604",
-            "pf2606"
+            "pf2606",
+            "pf2604"
         ]
     },
     {
