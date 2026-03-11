@@ -140,7 +140,7 @@ export const VARIETIES_LIST = [
         "symbol": "JD",
         "mainVariety": [
             "jd2605",
-            "jd2604"
+            "jd2606"
         ]
     },
     {
@@ -220,7 +220,7 @@ export const VARIETIES_LIST = [
         "symbol": "LH",
         "mainVariety": [
             "lh2605",
-            "lh2609"
+            "lh2607"
         ]
     },
     {
@@ -244,7 +244,7 @@ export const VARIETIES_LIST = [
         "symbol": "LC",
         "mainVariety": [
             "lc2605",
-            "lc2607"
+            "lc2609"
         ]
     },
     {
@@ -260,7 +260,7 @@ export const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2605",
-            "cy2609"
+            "cy2603"
         ]
     },
     {
@@ -300,7 +300,7 @@ export const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2609"
+            "oi2607"
         ]
     },
     {
@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2605",
-            "pl2606"
+            "pl2604"
         ]
     },
     {
@@ -427,8 +427,8 @@ export const VARIETIES_LIST = [
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2604",
-            "al2605"
+            "al2605",
+            "al2604"
         ]
     },
     {
