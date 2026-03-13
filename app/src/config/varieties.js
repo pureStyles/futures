@@ -52,7 +52,7 @@ export const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2605",
-            "ss2604"
+            "ss2606"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2609"
+            "si2606"
         ]
     },
     {
@@ -260,7 +260,7 @@ export const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2605",
-            "cy2603"
+            "cy2609"
         ]
     },
     {
@@ -372,7 +372,7 @@ export const VARIETIES_LIST = [
         "symbol": "PF",
         "mainVariety": [
             "pf2606",
-            "pf2604"
+            "pf2605"
         ]
     },
     {
@@ -452,7 +452,7 @@ export const VARIETIES_LIST = [
         "symbol": "NI",
         "mainVariety": [
             "ni2605",
-            "ni2604"
+            "ni2606"
         ]
     },
     {
