@@ -380,7 +380,7 @@ export const VARIETIES_LIST = [
         "symbol": "PK",
         "mainVariety": [
             "pk2605",
-            "pk2604"
+            "pk2610"
         ]
     },
     {
@@ -491,8 +491,8 @@ export const VARIETIES_LIST = [
         "name": "500中证",
         "symbol": "IC",
         "mainVariety": [
-            "ic2603",
-            "ic2606"
+            "ic2606",
+            "ic2603"
         ]
     },
     {
