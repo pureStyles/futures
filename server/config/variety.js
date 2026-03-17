@@ -20,7 +20,7 @@ const VARIETIES_LIST = [
         "symbol": "BU",
         "mainVariety": [
             "bu2606",
-            "bu2604"
+            "bu2605"
         ]
     },
     {
@@ -36,7 +36,7 @@ const VARIETIES_LIST = [
         "symbol": "SP",
         "mainVariety": [
             "sp2605",
-            "sp2607"
+            "sp2609"
         ]
     },
     {
@@ -300,7 +300,7 @@ const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2607"
+            "oi2609"
         ]
     },
     {
@@ -443,8 +443,8 @@ const VARIETIES_LIST = [
         "name": "沪铅",
         "symbol": "PB",
         "mainVariety": [
-            "pb2604",
-            "pb2605"
+            "pb2605",
+            "pb2604"
         ]
     },
     {
@@ -507,8 +507,8 @@ const VARIETIES_LIST = [
         "name": "1000中证",
         "symbol": "IM",
         "mainVariety": [
-            "im2603",
-            "im2606"
+            "im2606",
+            "im2603"
         ]
     }
 ];
