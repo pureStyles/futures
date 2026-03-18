@@ -227,8 +227,8 @@ const VARIETIES_LIST = [
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2604",
-            "bz2605"
+            "bz2605",
+            "bz2604"
         ]
     },
     {
@@ -236,7 +236,7 @@ const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2606"
+            "si2609"
         ]
     },
     {
@@ -300,7 +300,7 @@ const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2609"
+            "oi2607"
         ]
     },
     {
@@ -419,8 +419,8 @@ const VARIETIES_LIST = [
         "name": "沪铜",
         "symbol": "CU",
         "mainVariety": [
-            "cu2604",
-            "cu2605"
+            "cu2605",
+            "cu2604"
         ]
     },
     {
@@ -435,8 +435,8 @@ const VARIETIES_LIST = [
         "name": "沪锌",
         "symbol": "ZN",
         "mainVariety": [
-            "zn2604",
-            "zn2605"
+            "zn2605",
+            "zn2604"
         ]
     },
     {
@@ -483,8 +483,8 @@ const VARIETIES_LIST = [
         "name": "300沪深",
         "symbol": "IF",
         "mainVariety": [
-            "if2603",
-            "if2606"
+            "if2606",
+            "if2603"
         ]
     },
     {
@@ -499,8 +499,8 @@ const VARIETIES_LIST = [
         "name": "50上证",
         "symbol": "IH",
         "mainVariety": [
-            "ih2603",
-            "ih2606"
+            "ih2606",
+            "ih2603"
         ]
     },
     {
