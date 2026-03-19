@@ -203,8 +203,8 @@ const VARIETIES_LIST = [
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2604",
-            "eb2605"
+            "eb2605",
+            "eb2604"
         ]
     },
     {
@@ -300,7 +300,7 @@ const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2607"
+            "oi2609"
         ]
     },
     {
@@ -467,8 +467,8 @@ const VARIETIES_LIST = [
         "name": "沪金",
         "symbol": "AU",
         "mainVariety": [
-            "au2604",
-            "au2606"
+            "au2606",
+            "au2604"
         ]
     },
     {
@@ -492,7 +492,7 @@ const VARIETIES_LIST = [
         "symbol": "IC",
         "mainVariety": [
             "ic2606",
-            "ic2603"
+            "ic2604"
         ]
     },
     {
