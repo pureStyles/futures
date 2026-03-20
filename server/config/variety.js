@@ -211,8 +211,8 @@ const VARIETIES_LIST = [
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2604",
-            "pg2605"
+            "pg2605",
+            "pg2604"
         ]
     },
     {
@@ -372,7 +372,7 @@ const VARIETIES_LIST = [
         "symbol": "PF",
         "mainVariety": [
             "pf2606",
-            "pf2605"
+            "pf2607"
         ]
     },
     {
@@ -428,7 +428,7 @@ const VARIETIES_LIST = [
         "symbol": "AL",
         "mainVariety": [
             "al2605",
-            "al2604"
+            "al2606"
         ]
     },
     {
@@ -484,7 +484,7 @@ const VARIETIES_LIST = [
         "symbol": "IF",
         "mainVariety": [
             "if2606",
-            "if2603"
+            "if2604"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2606",
-            "ih2603"
+            "ih2604"
         ]
     },
     {
@@ -508,7 +508,7 @@ const VARIETIES_LIST = [
         "symbol": "IM",
         "mainVariety": [
             "im2606",
-            "im2603"
+            "im2604"
         ]
     }
 ];
