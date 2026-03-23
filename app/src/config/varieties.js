@@ -68,7 +68,7 @@ export const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2605",
-            "br2604"
+            "br2606"
         ]
     },
     {
