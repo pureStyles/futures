@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2605",
-            "eb2604"
+            "eb2606"
         ]
     },
     {
@@ -212,7 +212,7 @@ export const VARIETIES_LIST = [
         "symbol": "PG",
         "mainVariety": [
             "pg2605",
-            "pg2604"
+            "pg2606"
         ]
     },
     {
@@ -444,7 +444,7 @@ export const VARIETIES_LIST = [
         "symbol": "PB",
         "mainVariety": [
             "pb2605",
-            "pb2604"
+            "pb2606"
         ]
     },
     {
