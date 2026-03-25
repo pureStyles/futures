@@ -212,7 +212,7 @@ export const VARIETIES_LIST = [
         "symbol": "PG",
         "mainVariety": [
             "pg2605",
-            "pg2606"
+            "pg2607"
         ]
     },
     {
@@ -420,7 +420,7 @@ export const VARIETIES_LIST = [
         "symbol": "CU",
         "mainVariety": [
             "cu2605",
-            "cu2604"
+            "cu2606"
         ]
     },
     {
@@ -436,7 +436,7 @@ export const VARIETIES_LIST = [
         "symbol": "ZN",
         "mainVariety": [
             "zn2605",
-            "zn2604"
+            "zn2606"
         ]
     },
     {
@@ -459,8 +459,8 @@ export const VARIETIES_LIST = [
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2604",
-            "sn2605"
+            "sn2605",
+            "sn2604"
         ]
     },
     {
