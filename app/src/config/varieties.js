@@ -20,7 +20,7 @@ export const VARIETIES_LIST = [
         "symbol": "BU",
         "mainVariety": [
             "bu2606",
-            "bu2605"
+            "bu2609"
         ]
     },
     {
@@ -75,8 +75,8 @@ export const VARIETIES_LIST = [
         "name": "集运欧线",
         "symbol": "EC",
         "mainVariety": [
-            "ec2604",
-            "ec2606"
+            "ec2606",
+            "ec2604"
         ]
     },
     {
@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2605",
-            "eb2606"
+            "eb2607"
         ]
     },
     {
@@ -228,7 +228,7 @@ export const VARIETIES_LIST = [
         "symbol": "BZ",
         "mainVariety": [
             "bz2605",
-            "bz2604"
+            "bz2606"
         ]
     },
     {
