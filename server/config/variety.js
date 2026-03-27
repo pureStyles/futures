@@ -36,7 +36,7 @@ const VARIETIES_LIST = [
         "symbol": "SP",
         "mainVariety": [
             "sp2605",
-            "sp2609"
+            "sp2607"
         ]
     },
     {
@@ -468,7 +468,7 @@ const VARIETIES_LIST = [
         "symbol": "AU",
         "mainVariety": [
             "au2606",
-            "au2604"
+            "au2608"
         ]
     },
     {
