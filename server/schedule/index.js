@@ -83,23 +83,24 @@ function getPendingBackfillDates(lastSavedIndex, today) {
         return [];
     }
 
+    let startDate = firstMissingDate;
     if (configuredStartDate) {
         const normalizedStartDate = resolveTradingDay(configuredStartDate, "补数开始日期");
-        if (normalizedStartDate > firstMissingDate) {
-            console.log(`⚠️补数开始日期 ${normalizedStartDate} 晚于首个缺失交易日 ${firstMissingDate}，已自动从 ${firstMissingDate} 开始补齐`);
-        } else if (normalizedStartDate < firstMissingDate) {
+        if (normalizedStartDate < firstMissingDate) {
             console.log(`⚠️补数开始日期 ${normalizedStartDate} 早于首个缺失交易日 ${firstMissingDate}，已自动从 ${firstMissingDate} 开始补齐`);
+        } else {
+            startDate = normalizedStartDate;
         }
     }
 
     const endDate = resolveTradingDay(configuredEndDate, "补数结束日期");
-    if (endDate < firstMissingDate) {
-        console.log(`ℹ️补数结束日期 ${endDate} 早于首个缺失交易日 ${firstMissingDate}，无需补数`);
+    if (endDate < startDate) {
+        console.log(`ℹ️补数结束日期 ${endDate} 早于补数开始日期 ${startDate}，无需补数`);
         return [];
     }
 
-    const pendingDates = exchangeDays.filter(date => date >= firstMissingDate && date <= endDate);
-    console.log(`📦 本次补数区间: ${firstMissingDate} -> ${endDate}，共 ${pendingDates.length} 个交易日`);
+    const pendingDates = exchangeDays.filter(date => date >= startDate && date <= endDate);
+    console.log(`📦 本次补数区间: ${startDate} -> ${endDate}，共 ${pendingDates.length} 个交易日`);
 
     return pendingDates;
 }
