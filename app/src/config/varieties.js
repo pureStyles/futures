@@ -4,7 +4,7 @@ export const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2605",
-            "rb2607"
+            "rb2610"
         ]
     },
     {
@@ -12,15 +12,15 @@ export const VARIETIES_LIST = [
         "symbol": "HC",
         "mainVariety": [
             "hc2605",
-            "hc2607"
+            "hc2610"
         ]
     },
     {
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2604",
-            "bu2606"
+            "bu2606",
+            "bu2609"
         ]
     },
     {
@@ -36,23 +36,23 @@ export const VARIETIES_LIST = [
         "symbol": "SP",
         "mainVariety": [
             "sp2605",
-            "sp2607"
+            "sp2609"
         ]
     },
     {
         "name": "20号胶",
         "symbol": "NR",
         "mainVariety": [
-            "nr2604",
-            "nr2605"
+            "nr2605",
+            "nr2606"
         ]
     },
     {
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2604",
-            "ss2605"
+            "ss2605",
+            "ss2606"
         ]
     },
     {
@@ -67,16 +67,16 @@ export const VARIETIES_LIST = [
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2604",
-            "br2603"
+            "br2605",
+            "br2606"
         ]
     },
     {
         "name": "集运欧线",
         "symbol": "EC",
         "mainVariety": [
-            "ec2604",
-            "ec2606"
+            "ec2606",
+            "ec2604"
         ]
     },
     {
@@ -124,7 +124,7 @@ export const VARIETIES_LIST = [
         "symbol": "C",
         "mainVariety": [
             "c2605",
-            "c2603"
+            "c2607"
         ]
     },
     {
@@ -132,15 +132,15 @@ export const VARIETIES_LIST = [
         "symbol": "CS",
         "mainVariety": [
             "cs2605",
-            "cs2603"
+            "cs2607"
         ]
     },
     {
         "name": "鸡蛋",
         "symbol": "JD",
         "mainVariety": [
-            "jd2604",
-            "jd2605"
+            "jd2605",
+            "jd2606"
         ]
     },
     {
@@ -203,16 +203,16 @@ export const VARIETIES_LIST = [
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2604",
-            "eb2603"
+            "eb2605",
+            "eb2607"
         ]
     },
     {
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2604",
-            "pg2603"
+            "pg2605",
+            "pg2607"
         ]
     },
     {
@@ -220,15 +220,15 @@ export const VARIETIES_LIST = [
         "symbol": "LH",
         "mainVariety": [
             "lh2605",
-            "lh2603"
+            "lh2607"
         ]
     },
     {
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2603",
-            "bz2604"
+            "bz2605",
+            "bz2606"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2605",
-            "si2604"
+            "si2609"
         ]
     },
     {
@@ -244,7 +244,7 @@ export const VARIETIES_LIST = [
         "symbol": "LC",
         "mainVariety": [
             "lc2605",
-            "lc2607"
+            "lc2609"
         ]
     },
     {
@@ -260,7 +260,7 @@ export const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2605",
-            "cy2603"
+            "cy2609"
         ]
     },
     {
@@ -300,7 +300,7 @@ export const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2605",
-            "oi2607"
+            "oi2609"
         ]
     },
     {
@@ -332,7 +332,7 @@ export const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2605",
-            "sr2607"
+            "sr2609"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2605",
-            "ur2606"
+            "ur2609"
         ]
     },
     {
@@ -371,8 +371,8 @@ export const VARIETIES_LIST = [
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2604",
-            "pf2606"
+            "pf2606",
+            "pf2607"
         ]
     },
     {
@@ -380,7 +380,7 @@ export const VARIETIES_LIST = [
         "symbol": "PK",
         "mainVariety": [
             "pk2605",
-            "pk2604"
+            "pk2610"
         ]
     },
     {
@@ -388,7 +388,7 @@ export const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2605",
-            "px2604"
+            "px2609"
         ]
     },
     {
@@ -396,7 +396,7 @@ export const VARIETIES_LIST = [
         "symbol": "SH",
         "mainVariety": [
             "sh2605",
-            "sh2603"
+            "sh2607"
         ]
     },
     {
@@ -404,7 +404,7 @@ export const VARIETIES_LIST = [
         "symbol": "PR",
         "mainVariety": [
             "pr2605",
-            "pr2604"
+            "pr2606"
         ]
     },
     {
@@ -412,39 +412,39 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2605",
-            "pl2604"
+            "pl2606"
         ]
     },
     {
         "name": "沪铜",
         "symbol": "CU",
         "mainVariety": [
-            "cu2603",
-            "cu2604"
+            "cu2605",
+            "cu2606"
         ]
     },
     {
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2604",
-            "al2603"
+            "al2605",
+            "al2606"
         ]
     },
     {
         "name": "沪锌",
         "symbol": "ZN",
         "mainVariety": [
-            "zn2604",
-            "zn2603"
+            "zn2605",
+            "zn2606"
         ]
     },
     {
         "name": "沪铅",
         "symbol": "PB",
         "mainVariety": [
-            "pb2604",
-            "pb2603"
+            "pb2605",
+            "pb2606"
         ]
     },
     {
@@ -452,63 +452,63 @@ export const VARIETIES_LIST = [
         "symbol": "NI",
         "mainVariety": [
             "ni2605",
-            "ni2603"
+            "ni2606"
         ]
     },
     {
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2603",
-            "sn2604"
+            "sn2605",
+            "sn2606"
         ]
     },
     {
         "name": "沪金",
         "symbol": "AU",
         "mainVariety": [
-            "au2604",
-            "au2606"
+            "au2606",
+            "au2608"
         ]
     },
     {
         "name": "沪银",
         "symbol": "AG",
         "mainVariety": [
-            "ag2604",
-            "ag2606"
+            "ag2606",
+            "ag2608"
         ]
     },
     {
         "name": "300沪深",
         "symbol": "IF",
         "mainVariety": [
-            "if2603",
-            "if2606"
+            "if2606",
+            "if2604"
         ]
     },
     {
         "name": "500中证",
         "symbol": "IC",
         "mainVariety": [
-            "ic2603",
-            "ic2606"
+            "ic2606",
+            "ic2604"
         ]
     },
     {
         "name": "50上证",
         "symbol": "IH",
         "mainVariety": [
-            "ih2603",
-            "ih2606"
+            "ih2606",
+            "ih2604"
         ]
     },
     {
         "name": "1000中证",
         "symbol": "IM",
         "mainVariety": [
-            "im2603",
-            "im2606"
+            "im2606",
+            "im2604"
         ]
     }
 ];
