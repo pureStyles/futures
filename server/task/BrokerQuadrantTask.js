@@ -5,6 +5,7 @@ const { queryBrokerPositions, queryBrokerNetValue } = require('../api/broker.js'
 
 const typicalBroker = require('../config/typicalBroker.js');
 const correlationGroups  = require('../config/correlation.js');
+const exchangeDays = require('../config/exChangeDay.js');
 
 class BrokerQuadrantTask {
     constructor() {
@@ -15,6 +16,75 @@ class BrokerQuadrantTask {
          * 重点监控的席位列表
          */
         this.targetBrokers = [...new Set(Object.values(typicalBroker).flat())];
+    }
+
+    async writeFile(outPath, output) {
+        const dir = path.dirname(outPath);
+        await fs.mkdir(dir, { recursive: true });
+        await fs.writeFile(outPath, JSON.stringify(output, null), 'utf-8');
+    }
+
+    /**
+     * 获取最近30天的席位净持仓数据，只用来获取历史数据，以后每天定时更新
+     */
+    async fetchHistoricalNetPositions() {
+
+        function calculateVarietyNetPosition(positions) {
+            for(const varietyName in positions) {
+                let totalBuy = 0;
+                let totalSS = 0;
+
+                let totalBuyChange = 0;
+                let totalSSChange = 0;
+
+                positions[varietyName].forEach(contract => {
+                    totalBuy += (contract.buy || 0);
+                    totalSS += (contract.ss || 0);
+                    totalBuyChange += (contract.buy_chge || 0);
+                    totalSSChange += (contract.ss_chge || 0);
+                    
+                });
+                positions[varietyName] = {
+                    netPosition: totalBuy - totalSS,
+                    netChange: (totalBuy - totalSS) > 0 ? (totalBuyChange - totalSSChange) : (totalSSChange - totalBuyChange)
+                }
+            }
+        }
+        
+        const historicalData = {};
+
+        try {
+            for (const broker of this.targetBrokers) {
+                const dailyData = [];
+                for (let i = 0; i < 22; i++) {
+                    const structRes = await queryBrokerPositions({ 
+                        broker: broker,
+                        date: dateStr
+                    });
+
+                    dailyData.push({
+                        date: dateStr,
+                        positions: calculateVarietyNetPosition(structRes.positions),
+                    });
+                }
+                historicalData[broker] = dailyData;
+            }
+        } catch (error) {
+            console.error("❌ 获取历史净持仓数据失败:", error.message);
+        }
+    }
+    async storeNetPostion() {
+        try {
+            for (const broker of this.targetBrokers) {
+                const structRes = await queryBrokerPositions({ 
+                    page: 1,
+                    limit: 100,
+                    broker: broker,
+                });
+            }
+        } catch (error) {
+            
+        }
     }
 
     /**
@@ -37,7 +107,7 @@ class BrokerQuadrantTask {
                 // 2. 获取席位市值结构表 (接口 2)
                 // 入参示例: { page: 1, limit: 100, broker: '国泰君安', family: 'all' }
                 const structRes = await queryBrokerNetValue({ 
-                    page: 1, 
+                    page: 1,
                     limit: 100, 
                     broker: broker, 
                     family: 'all' 

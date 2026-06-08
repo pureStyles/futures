@@ -13,11 +13,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai  # 👈 这样设置后，该 Job 下的所有步骤都会生效
+      PUSH_TOKEN: ${{ secrets.MY_GITHUB_TOKEN != '' && secrets.MY_GITHUB_TOKEN || github.token }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          token: ${{ secrets.MY_GITHUB_TOKEN }} # 使用你自定义的 Token
+          persist-credentials: false
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -38,7 +39,13 @@ jobs:
 
       - name: Commit and Push Data
         run: |
-          git config --global user.name "pureStyles"
-          git config --global user.email "siyuan.wen@outlook.com"
+          git config user.name "pureStyles"
+          git config user.email "siyuan.wen@outlook.com"
           git add .
-          git diff --quiet && git diff --staged --quiet || (git commit -m "Update dayily data" && git push)
+          if git diff --quiet && git diff --staged --quiet; then
+            echo "No changes to commit"
+            exit 0
+          fi
+
+          git commit -m "Update daily data"
+          git push "https://x-access-token:${PUSH_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:${{ github.ref_name }}"
