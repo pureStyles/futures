@@ -14,11 +14,11 @@ module.exports = class  {
     outpath1 = path.join(process.cwd(), "app", "src/config/varieties.js");
     outpath2 = path.join(process.cwd(), "server", "config/variety.js");
 
-    async fetchRecentContracts(name) {
+    async fetchRecentContracts(name, date) {
         try {
             const data = await queryMainVarieies({
                 variety: name,
-                date: undefined,
+                date,
             });
             return data;
         } catch (error) {
@@ -56,10 +56,11 @@ module.exports = class  {
         console.log("合约主力刷新成功✅！");
     }
 
-    async run() {
+    async run(date) {
+        this.mainContracts = [];
         for(const variety of VARIETIES_LIST) {
             console.log(`🟦正在查询${variety.name}的主里合约数据...`)
-            const contracts = await this.fetchRecentContracts(variety.name);
+            const contracts = await this.fetchRecentContracts(variety.name, date);
             /** 选择前两个作为主力合约 */
             this.mainContracts.push({
                 name: variety.name,
@@ -72,6 +73,6 @@ module.exports = class  {
 
         console.log(`✅合约主力数据查询完成`);
 
-        this.saveData();
+        await this.saveData();
     }
 }

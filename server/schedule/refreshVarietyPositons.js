@@ -9,8 +9,6 @@ const fs = require('fs').promises;
 
 const exchangeDays = require("../config/exChangeDay.js");
 const { queryVarietyPostion } = require("../api/variety.js");
-const typicalBroker = require("../config/typicalBroker.js");
-const { VARIETIES_LIST } = require("../config/index.js");
 
 
 class PositionTask {
@@ -29,13 +27,25 @@ class PositionTask {
          */
     }
 
-    async fetchVarietyPositionData(params, variety) {
+    loadVarietiesList() {
+        delete require.cache[require.resolve("../config/index.js")];
+        delete require.cache[require.resolve("../config/variety.js")];
+        return require("../config/index.js").VARIETIES_LIST || [];
+    }
+
+    loadTypicalBroker() {
+        delete require.cache[require.resolve("../config/typicalBroker.js")];
+        return require("../config/typicalBroker.js");
+    }
+
+    async fetchVarietyPositionData(params, variety, typicalBrokerMap) {
         const { symbol } = variety || {};
+        const typicalBrokers = typicalBrokerMap[symbol] || [];
         try {
             const data = await queryVarietyPostion(params);
             return {
-                longPosition: (data.buy || []).filter(e => typicalBroker[symbol].includes(e.broker)),
-                shortPosition: (data.ss || []).filter(e => typicalBroker[symbol].includes(e.broker)),
+                longPosition: (data.buy || []).filter(e => typicalBrokers.includes(e.broker)),
+                shortPosition: (data.ss || []).filter(e => typicalBrokers.includes(e.broker)),
             }
         } catch (error) {
             this.errorInfo['request'].push({
@@ -49,9 +59,11 @@ class PositionTask {
 
     /** 获取某一天的持仓详情数据 */
     async collectData(date) {
+        const varietiesList = this.loadVarietiesList();
+        const typicalBrokerMap = this.loadTypicalBroker();
         const varietyPosition = {};
         /** 收集商品维度的持仓数据 */
-        for (const variety of VARIETIES_LIST) {
+        for (const variety of varietiesList) {
             for (const contract of ['all', ...variety.mainVariety]) {
                 console.log(`\n🎸正在获取${variety.name}${contract}的持仓详情...`);
                 try {
@@ -59,7 +71,7 @@ class PositionTask {
                         variety: variety.name,
                         code: contract,
                         date,
-                    }, variety);
+                    }, variety, typicalBrokerMap);
                     if (!varietyPosition[variety.symbol]) {
                         varietyPosition[variety.symbol] = {};
                     }

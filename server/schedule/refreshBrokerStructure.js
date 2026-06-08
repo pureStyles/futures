@@ -1,8 +1,5 @@
 const { queryBrokerStructure } = require('../api/broker');
 
-const typicalBroker = require('../config/typicalBroker');
-
-
 const path = require('path');
 const fs = require('fs').promises;
 
@@ -10,6 +7,11 @@ class Structure {
     
     constructor() {
         this.outPath = path.join(process.cwd(), 'app', 'public/data/brokerStructure.json');
+    }
+
+    loadTypicalBroker() {
+        delete require.cache[require.resolve("../config/typicalBroker.js")];
+        return require("../config/typicalBroker.js");
     }
 
     async fetchBrokerStructure(broker) {
@@ -35,11 +37,11 @@ class Structure {
     async writeFile(object) {
         const json = JSON.stringify(object);
 
-        fs.writeFile(
+        await fs.writeFile(
             this.outPath,
             json,
             'utf-8'
-        )
+        );
     }
 
     async execute() {
@@ -47,6 +49,7 @@ class Structure {
          * 数据结构如下
          * { dates: [], 国泰君安: { 沪深300: [a, b, c, ..., f]} }
          */
+        const typicalBroker = this.loadTypicalBroker();
         const brokerStructure = { };
         for(const brokers of Object.values(typicalBroker)) {
             for(const broker of brokers ) {

@@ -4,6 +4,23 @@ on:
   schedule:
     - cron: '50 9 * * 1-5'
   workflow_dispatch:
+    inputs:
+      update_mode:
+        description: 运行模式
+        required: true
+        default: daily
+        type: choice
+        options:
+          - daily
+          - backfill
+      backfill_start_date:
+        description: 补数开始日期（可留空，自动从首个缺失交易日开始）
+        required: false
+        type: string
+      backfill_end_date:
+        description: 补数结束日期（可留空，默认今天）
+        required: false
+        type: string
 
 permissions:
   contents: write
@@ -35,6 +52,9 @@ jobs:
       - name: Run Script
         env:
           USER_COOKIE: ${{ vars.USER_COOKIE }}
+          UPDATE_MODE: ${{ github.event.inputs.update_mode }}
+          BACKFILL_START_DATE: ${{ github.event.inputs.backfill_start_date }}
+          BACKFILL_END_DATE: ${{ github.event.inputs.backfill_end_date }}
         run: node server/schedule/index.js
 
       - name: Commit and Push Data
@@ -47,5 +67,11 @@ jobs:
             exit 0
           fi
 
-          git commit -m "Update daily data"
+          if [ "${UPDATE_MODE}" = "backfill" ]; then
+            git commit -m "Backfill futures data"
+          else
+            git commit -m "Update daily data"
+          fi
           git push "https://x-access-token:${PUSH_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:${{ github.ref_name }}"
+        env:
+          UPDATE_MODE: ${{ github.event.inputs.update_mode }}
