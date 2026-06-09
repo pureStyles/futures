@@ -118,8 +118,9 @@ function getPendingBackfillDates(lastSavedIndex, today) {
     const configuredEndDate = normalizeInput(process.env.BACKFILL_END_DATE);
     const defaultEndDate = configuredEndDate ? "" : getLatestReadyTradingDay(today);
     const firstMissingDate = exchangeDays[lastSavedIndex + 1];
+    const hasConfiguredRange = Boolean(configuredStartDate || configuredEndDate);
 
-    if (!firstMissingDate) {
+    if (!firstMissingDate && !hasConfiguredRange) {
         return {
             endDate: "",
             pendingDates: [],
@@ -128,12 +129,15 @@ function getPendingBackfillDates(lastSavedIndex, today) {
 
     let startDate = firstMissingDate;
     if (configuredStartDate) {
-        const normalizedStartDate = resolveTradingDay(configuredStartDate, "补数开始日期");
-        if (normalizedStartDate < firstMissingDate) {
-            console.log(`⚠️补数开始日期 ${normalizedStartDate} 早于首个缺失交易日 ${firstMissingDate}，已自动从 ${firstMissingDate} 开始补齐`);
-        } else {
-            startDate = normalizedStartDate;
-        }
+        startDate = resolveTradingDay(configuredStartDate, "补数开始日期");
+    }
+
+    if (!startDate) {
+        console.log("ℹ️当前历史数据已到最新交易日，没有自动补数区间");
+        return {
+            endDate: "",
+            pendingDates: [],
+        };
     }
 
     const endDate = resolveTradingDay(configuredEndDate || defaultEndDate, "补数结束日期");
@@ -146,7 +150,8 @@ function getPendingBackfillDates(lastSavedIndex, today) {
     }
 
     const pendingDates = exchangeDays.filter(date => date >= startDate && date <= endDate);
-    console.log(`📦 本次补数区间: ${startDate} -> ${endDate}，共 ${pendingDates.length} 个交易日`);
+    const modeText = hasConfiguredRange ? "指定修复区间" : "自动补齐区间";
+    console.log(`📦 本次${modeText}: ${startDate} -> ${endDate}，共 ${pendingDates.length} 个交易日`);
 
     return {
         endDate,
@@ -207,8 +212,7 @@ async function runBackfill(today, positionData) {
     }
 
     const taskOptions = getTaskOptions();
-    const includesToday = pendingDates.includes(today);
-    const profitEndDate = includesToday ? today : endDate;
+    const profitEndDate = lastSavedDate > endDate ? lastSavedDate : endDate;
     const profitVarietiesList = await runPhase("刷新盈亏统计基准主力合约", () => new MainContracts(taskOptions).run({
         date: profitEndDate,
         persist: false,

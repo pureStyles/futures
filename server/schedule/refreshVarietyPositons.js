@@ -127,17 +127,43 @@ class PositionTask {
         console.log("💯💯历史数据更新成功");
     }
 
+    sortByTradingDay(data) {
+        return [...data].sort((a, b) => {
+            const aIndex = exchangeDays.indexOf(a.date);
+            const bIndex = exchangeDays.indexOf(b.date);
+            return aIndex - bIndex;
+        });
+    }
+
+    mergePositionData(currentData, nextItem, maxLength) {
+        const index = currentData.findIndex(item => item.date === nextItem.date);
+        const mergedData = [...currentData];
+
+        if (index >= 0) {
+            mergedData[index] = nextItem;
+        } else {
+            mergedData.push(nextItem);
+        }
+
+        const sortedData = this.sortByTradingDay(mergedData);
+        if (maxLength && sortedData.length > maxLength) {
+            return sortedData.slice(sortedData.length - maxLength);
+        }
+
+        return sortedData;
+    }
+
     async updateNearPosition(date, options = {}) {
         const currentData = await this.loadData(this.outPath);
         const positions = await this.collectData(date, options);
+        const maxLength = currentData.length;
 
-        currentData.shift();
-        currentData.push({
+        const nextData = this.mergePositionData(currentData, {
             date,
             positions,
-        });
+        }, maxLength);
 
-        await fs.writeFile(this.outPath, JSON.stringify(currentData), "utf-8");
+        await fs.writeFile(this.outPath, JSON.stringify(nextData), "utf-8");
     }
 }
 
