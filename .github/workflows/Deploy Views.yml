@@ -4,17 +4,32 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+  workflow_run:
+    workflows:
+      - Daily Update Futures Data
+    types:
+      - completed
+    branches:
+      - main
+
+concurrency:
+  group: deploy-pages-${{ github.ref }}
+  cancel-in-progress: true
 
 permissions:
   contents: write
 
 jobs:
   deploy:
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.workflow_run.head_branch || github.ref }}
 
       - name: Setup Node
         uses: actions/setup-node@v4
