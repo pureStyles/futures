@@ -40,13 +40,18 @@ function getReadyTime(now) {
     return now.clone().hour(9).minute(30).second(0).millisecond(0);
 }
 
-function ensureReadyForToday(today) {
+function isTodayReady(today) {
     const now = moment();
     const readyTime = getReadyTime(now);
     if (today !== moment().format("YYYY-MM-DD")) {
-        return;
+        return true;
     }
-    if (now.isBefore(readyTime)) {
+
+    return !now.isBefore(readyTime);
+}
+
+function ensureReadyForToday(today) {
+    if (!isTodayReady(today)) {
         console.log("🔄 还没到更新时间");
         process.exit(1);
     }
@@ -91,13 +96,34 @@ function resolveTradingDay(date, label) {
     return fallback;
 }
 
+function getLatestReadyTradingDay(today) {
+    const latestReadyDate = [...exchangeDays].reverse().find(date => (
+        date < today || (date === today && isTodayReady(today))
+    ));
+
+    if (!latestReadyDate) {
+        console.log("❌没有可补齐的已就绪交易日");
+        process.exit(1);
+    }
+
+    if (latestReadyDate !== today) {
+        console.log(`ℹ️今日数据未就绪，补数结束日期自动回退到 ${latestReadyDate}`);
+    }
+
+    return latestReadyDate;
+}
+
 function getPendingBackfillDates(lastSavedIndex, today) {
     const configuredStartDate = normalizeInput(process.env.BACKFILL_START_DATE);
-    const configuredEndDate = normalizeInput(process.env.BACKFILL_END_DATE) || today;
+    const configuredEndDate = normalizeInput(process.env.BACKFILL_END_DATE);
+    const defaultEndDate = configuredEndDate ? "" : getLatestReadyTradingDay(today);
     const firstMissingDate = exchangeDays[lastSavedIndex + 1];
 
     if (!firstMissingDate) {
-        return [];
+        return {
+            endDate: "",
+            pendingDates: [],
+        };
     }
 
     let startDate = firstMissingDate;
@@ -110,16 +136,22 @@ function getPendingBackfillDates(lastSavedIndex, today) {
         }
     }
 
-    const endDate = resolveTradingDay(configuredEndDate, "补数结束日期");
+    const endDate = resolveTradingDay(configuredEndDate || defaultEndDate, "补数结束日期");
     if (endDate < startDate) {
         console.log(`ℹ️补数结束日期 ${endDate} 早于补数开始日期 ${startDate}，无需补数`);
-        return [];
+        return {
+            endDate,
+            pendingDates: [],
+        };
     }
 
     const pendingDates = exchangeDays.filter(date => date >= startDate && date <= endDate);
     console.log(`📦 本次补数区间: ${startDate} -> ${endDate}，共 ${pendingDates.length} 个交易日`);
 
-    return pendingDates;
+    return {
+        endDate,
+        pendingDates,
+    };
 }
 
 async function runDailyUpdate(today, positionData) {
@@ -163,7 +195,7 @@ async function runDailyUpdate(today, positionData) {
 
 async function runBackfill(today, positionData) {
     const { lastSavedDate, lastSavedIndex } = getLastSavedTradingDay(positionData);
-    const pendingDates = getPendingBackfillDates(lastSavedIndex, today);
+    const { endDate, pendingDates } = getPendingBackfillDates(lastSavedIndex, today);
 
     if (!pendingDates.length) {
         console.log(`ℹ️当前最新数据是 ${lastSavedDate}，没有需要补齐的交易日`);
@@ -176,12 +208,13 @@ async function runBackfill(today, positionData) {
 
     const taskOptions = getTaskOptions();
     const includesToday = pendingDates.includes(today);
+    const profitEndDate = includesToday ? today : endDate;
     const profitVarietiesList = await runPhase("刷新盈亏统计基准主力合约", () => new MainContracts(taskOptions).run({
-        date: includesToday ? today : undefined,
+        date: profitEndDate,
         persist: false,
     }));
     const { typicalBroker } = await runPhase("更新盈亏与典型席位", () => new VarietyProfits(taskOptions).run({
-        today,
+        today: profitEndDate,
         varietiesList: profitVarietiesList,
     }));
 
