@@ -3,223 +3,223 @@ export const VARIETIES_LIST = [
         "name": "螺纹钢",
         "symbol": "RB",
         "mainVariety": [
-            "rb2605",
-            "rb2610"
+            "rb2610",
+            "rb2609"
         ]
     },
     {
         "name": "热卷",
         "symbol": "HC",
         "mainVariety": [
-            "hc2605",
-            "hc2610"
+            "hc2610",
+            "hc2609"
         ]
     },
     {
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2606",
-            "bu2609"
+            "bu2609",
+            "bu2607"
         ]
     },
     {
         "name": "天然橡胶",
         "symbol": "RU",
         "mainVariety": [
-            "ru2605",
-            "ru2609"
+            "ru2609",
+            "ru2701"
         ]
     },
     {
         "name": "纸浆",
         "symbol": "SP",
         "mainVariety": [
-            "sp2605",
-            "sp2609"
+            "sp2609",
+            "sp2611"
         ]
     },
     {
         "name": "20号胶",
         "symbol": "NR",
         "mainVariety": [
-            "nr2605",
-            "nr2606"
+            "nr2608",
+            "nr2609"
         ]
     },
     {
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2605",
-            "ss2606"
+            "ss2607",
+            "ss2608"
         ]
     },
     {
         "name": "氧化铝",
         "symbol": "AO",
         "mainVariety": [
-            "ao2605",
-            "ao2609"
+            "ao2609",
+            "ao2610"
         ]
     },
     {
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2605",
-            "br2606"
+            "br2607",
+            "br2609"
         ]
     },
     {
         "name": "集运欧线",
         "symbol": "EC",
         "mainVariety": [
-            "ec2606",
-            "ec2604"
+            "ec2607",
+            "ec2608"
         ]
     },
     {
         "name": "铁矿石",
         "symbol": "I",
         "mainVariety": [
-            "i2605",
-            "i2609"
+            "i2609",
+            "i2701"
         ]
     },
     {
         "name": "焦煤",
         "symbol": "JM",
         "mainVariety": [
-            "jm2605",
-            "jm2609"
+            "jm2609",
+            "jm2701"
         ]
     },
     {
         "name": "焦炭",
         "symbol": "J",
         "mainVariety": [
-            "j2605",
-            "j2609"
+            "j2609",
+            "j2701"
         ]
     },
     {
         "name": "豆一",
         "symbol": "A",
         "mainVariety": [
-            "a2605",
-            "a2607"
+            "a2607",
+            "a2609"
         ]
     },
     {
         "name": "豆二",
         "symbol": "B",
         "mainVariety": [
-            "b2605",
-            "b2607"
+            "b2607",
+            "b2609"
         ]
     },
     {
         "name": "玉米",
         "symbol": "C",
         "mainVariety": [
-            "c2605",
-            "c2607"
+            "c2607",
+            "c2609"
         ]
     },
     {
         "name": "淀粉",
         "symbol": "CS",
         "mainVariety": [
-            "cs2605",
-            "cs2607"
+            "cs2607",
+            "cs2609"
         ]
     },
     {
         "name": "鸡蛋",
         "symbol": "JD",
         "mainVariety": [
-            "jd2605",
-            "jd2606"
+            "jd2608",
+            "jd2607"
         ]
     },
     {
         "name": "塑料",
         "symbol": "L",
         "mainVariety": [
-            "l2605",
-            "l2609"
+            "l2609",
+            "l2701"
         ]
     },
     {
         "name": "豆粕",
         "symbol": "M",
         "mainVariety": [
-            "m2605",
-            "m2609"
+            "m2609",
+            "m2701"
         ]
     },
     {
         "name": "棕榈油",
         "symbol": "P",
         "mainVariety": [
-            "p2605",
-            "p2609"
+            "p2609",
+            "p2701"
         ]
     },
     {
         "name": "PP",
         "symbol": "PP",
         "mainVariety": [
-            "pp2605",
-            "pp2609"
+            "pp2609",
+            "pp2701"
         ]
     },
     {
         "name": "PVC",
         "symbol": "V",
         "mainVariety": [
-            "v2605",
-            "v2609"
+            "v2609",
+            "v2701"
         ]
     },
     {
         "name": "豆油",
         "symbol": "Y",
         "mainVariety": [
-            "y2605",
-            "y2609"
+            "y2609",
+            "y2701"
         ]
     },
     {
         "name": "乙二醇",
         "symbol": "EG",
         "mainVariety": [
-            "eg2605",
-            "eg2609"
+            "eg2609",
+            "eg2607"
         ]
     },
     {
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2605",
-            "eb2607"
+            "eb2607",
+            "eb2608"
         ]
     },
     {
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2605",
-            "pg2607"
+            "pg2607",
+            "pg2608"
         ]
     },
     {
         "name": "生猪",
         "symbol": "LH",
         "mainVariety": [
-            "lh2605",
+            "lh2609",
             "lh2607"
         ]
     },
@@ -227,103 +227,103 @@ export const VARIETIES_LIST = [
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2605",
-            "bz2606"
+            "bz2607",
+            "bz2608"
         ]
     },
     {
         "name": "工业硅",
         "symbol": "SI",
         "mainVariety": [
-            "si2605",
-            "si2609"
+            "si2609",
+            "si2608"
         ]
     },
     {
         "name": "碳酸锂",
         "symbol": "LC",
         "mainVariety": [
-            "lc2605",
-            "lc2609"
+            "lc2609",
+            "lc2607"
         ]
     },
     {
         "name": "多晶硅",
         "symbol": "PS",
         "mainVariety": [
-            "ps2605",
-            "ps2606"
+            "ps2609",
+            "ps2607"
         ]
     },
     {
         "name": "棉纱",
         "symbol": "CY",
         "mainVariety": [
-            "cy2605",
-            "cy2609"
+            "cy2609",
+            "cy2607"
         ]
     },
     {
         "name": "苹果",
         "symbol": "AP",
         "mainVariety": [
-            "ap2605",
-            "ap2610"
+            "ap2610",
+            "ap2701"
         ]
     },
     {
         "name": "棉花",
         "symbol": "CF",
         "mainVariety": [
-            "cf2605",
-            "cf2609"
+            "cf2609",
+            "cf2611"
         ]
     },
     {
         "name": "玻璃",
         "symbol": "FG",
         "mainVariety": [
-            "fg2605",
-            "fg2609"
+            "fg2609",
+            "fg2611"
         ]
     },
     {
         "name": "甲醇",
         "symbol": "MA",
         "mainVariety": [
-            "ma2605",
-            "ma2609"
+            "ma2609",
+            "ma2610"
         ]
     },
     {
         "name": "菜油",
         "symbol": "OI",
         "mainVariety": [
-            "oi2605",
-            "oi2609"
+            "oi2609",
+            "oi2611"
         ]
     },
     {
         "name": "菜粕",
         "symbol": "RM",
         "mainVariety": [
-            "rm2605",
-            "rm2609"
+            "rm2609",
+            "rm2701"
         ]
     },
     {
         "name": "硅铁",
         "symbol": "SF",
         "mainVariety": [
-            "sf2605",
-            "sf2607"
+            "sf2607",
+            "sf2609"
         ]
     },
     {
         "name": "锰硅",
         "symbol": "SM",
         "mainVariety": [
-            "sm2605",
+            "sm2609",
             "sm2607"
         ]
     },
@@ -331,152 +331,152 @@ export const VARIETIES_LIST = [
         "name": "白糖",
         "symbol": "SR",
         "mainVariety": [
-            "sr2605",
-            "sr2609"
+            "sr2609",
+            "sr2611"
         ]
     },
     {
         "name": "PTA",
         "symbol": "TA",
         "mainVariety": [
-            "ta2605",
-            "ta2609"
+            "ta2609",
+            "ta2701"
         ]
     },
     {
         "name": "红枣",
         "symbol": "CJ",
         "mainVariety": [
-            "cj2605",
-            "cj2609"
+            "cj2609",
+            "cj2701"
         ]
     },
     {
         "name": "尿素",
         "symbol": "UR",
         "mainVariety": [
-            "ur2605",
-            "ur2609"
+            "ur2609",
+            "ur2610"
         ]
     },
     {
         "name": "纯碱",
         "symbol": "SA",
         "mainVariety": [
-            "sa2605",
-            "sa2609"
+            "sa2609",
+            "sa2611"
         ]
     },
     {
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2606",
-            "pf2607"
+            "pf2608",
+            "pf2609"
         ]
     },
     {
         "name": "花生",
         "symbol": "PK",
         "mainVariety": [
-            "pk2605",
-            "pk2610"
+            "pk2610",
+            "pk2611"
         ]
     },
     {
         "name": "对二甲苯",
         "symbol": "PX",
         "mainVariety": [
-            "px2605",
-            "px2609"
+            "px2609",
+            "px2610"
         ]
     },
     {
         "name": "烧碱",
         "symbol": "SH",
         "mainVariety": [
-            "sh2605",
-            "sh2607"
+            "sh2607",
+            "sh2609"
         ]
     },
     {
         "name": "瓶片",
         "symbol": "PR",
         "mainVariety": [
-            "pr2605",
-            "pr2606"
+            "pr2609",
+            "pr2608"
         ]
     },
     {
         "name": "丙烯",
         "symbol": "PL",
         "mainVariety": [
-            "pl2605",
-            "pl2606"
+            "pl2609",
+            "pl2610"
         ]
     },
     {
         "name": "沪铜",
         "symbol": "CU",
         "mainVariety": [
-            "cu2605",
-            "cu2606"
+            "cu2607",
+            "cu2608"
         ]
     },
     {
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2605",
-            "al2606"
+            "al2607",
+            "al2608"
         ]
     },
     {
         "name": "沪锌",
         "symbol": "ZN",
         "mainVariety": [
-            "zn2605",
-            "zn2606"
+            "zn2607",
+            "zn2608"
         ]
     },
     {
         "name": "沪铅",
         "symbol": "PB",
         "mainVariety": [
-            "pb2605",
-            "pb2606"
+            "pb2607",
+            "pb2608"
         ]
     },
     {
         "name": "沪镍",
         "symbol": "NI",
         "mainVariety": [
-            "ni2605",
-            "ni2606"
+            "ni2607",
+            "ni2609"
         ]
     },
     {
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2605",
-            "sn2606"
+            "sn2607",
+            "sn2608"
         ]
     },
     {
         "name": "沪金",
         "symbol": "AU",
         "mainVariety": [
-            "au2606",
-            "au2608"
+            "au2608",
+            "au2610"
         ]
     },
     {
         "name": "沪银",
         "symbol": "AG",
         "mainVariety": [
-            "ag2606",
-            "ag2608"
+            "ag2608",
+            "ag2610"
         ]
     },
     {
@@ -484,7 +484,7 @@ export const VARIETIES_LIST = [
         "symbol": "IF",
         "mainVariety": [
             "if2606",
-            "if2604"
+            "if2609"
         ]
     },
     {
@@ -492,7 +492,7 @@ export const VARIETIES_LIST = [
         "symbol": "IC",
         "mainVariety": [
             "ic2606",
-            "ic2604"
+            "ic2609"
         ]
     },
     {
@@ -500,7 +500,7 @@ export const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2606",
-            "ih2604"
+            "ih2609"
         ]
     },
     {
@@ -508,7 +508,7 @@ export const VARIETIES_LIST = [
         "symbol": "IM",
         "mainVariety": [
             "im2606",
-            "im2604"
+            "im2609"
         ]
     }
 ];
