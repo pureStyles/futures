@@ -45,12 +45,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai  # 👈 这样设置后，该 Job 下的所有步骤都会生效
-      PUSH_TOKEN: ${{ secrets.MY_GITHUB_TOKEN != '' && secrets.MY_GITHUB_TOKEN || github.token }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          persist-credentials: false
+          token: ${{ github.token }}
+          persist-credentials: true
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -90,6 +90,6 @@ jobs:
           else
             git commit -m "Update daily data"
           fi
-          git push "https://x-access-token:${PUSH_TOKEN}@github.com/${{ github.repository }}.git" "HEAD:${{ github.ref_name }}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
         env:
           UPDATE_MODE: ${{ github.event.inputs.update_mode }}
