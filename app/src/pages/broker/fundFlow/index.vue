@@ -1,6 +1,11 @@
 <template>
-<div class="container">
-    <div class="search-form">
+<div class="fund-page">
+    <section class="toolbar">
+      <div>
+        <h2>{{ selectedBroker || '席位' }} 资金动向</h2>
+        <p>观察席位资金在品种间的分布，以及选中商品的净市值时间变化。</p>
+      </div>
+      <div class="search-form">
         <Select
             v-model="selectedBroker"
             :options="brokers"
@@ -16,22 +21,30 @@
             valueKey="symbol"
             placeholder="商品"
         />
-    </div>
-    <h3>席位资金结构</h3>
+      </div>
+    </section>
 
-    <BrokerDistributionPie 
-        :rawData="brokerStructure" 
-        :broker="selectedBroker" 
-    />
+    <section class="panel">
+      <div class="panel-header">
+        <h3>席位资金结构</h3>
+      </div>
+      <BrokerDistributionPie
+          :rawData="brokerStructure"
+          :broker="selectedBroker"
+      />
+    </section>
 
-    <div class="title">
-        商品净市值变化
-    </div>
-    <MarketValueChart 
-        :rawData="brokerStructure" 
-        :broker="selectedBroker" 
-        :variety="varietyName" 
-    />
+    <section class="panel">
+      <div class="panel-header">
+        <h3>商品净市值变化</h3>
+        <span>{{ varietyName || '请选择商品' }}</span>
+      </div>
+      <MarketValueChart
+          :rawData="brokerStructure"
+          :broker="selectedBroker"
+          :variety="varietyName"
+      />
+    </section>
 </div>
 </template>
 
@@ -46,8 +59,8 @@
     const route = useRoute();
 
     const brokerStructure = ref({});
-    const selectedBroker = ref('');
-    const selectedSymbol = ref('');
+    const selectedBroker = ref('国泰君安');
+    const selectedSymbol = ref('RB');
 
     const fetchData = async () => {
         const result = await fetch('./data/brokerStructure.json');
@@ -83,8 +96,77 @@
 </script> 
 
 <style scoped> 
+.fund-page {
+    display: grid;
+    gap: 18px;
+}
+
+.toolbar,
+.panel {
+    border: 1px solid #e1e7ef;
+    border-radius: 8px;
+    background: #ffffff;
+}
+
+.toolbar {
+    min-height: 88px;
+    padding: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+}
+
 .search-form {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
+}
+
+.panel {
+    padding: 18px;
+}
+
+.panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+h2 {
+    color: #111827;
+    font-size: 22px;
+    letter-spacing: 0;
+}
+
+h3 {
+    color: #111827;
+    font-size: 18px;
+}
+
+p,
+.panel-header span {
+    color: #667085;
+    font-size: 13px;
+}
+
+p {
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+@media (max-width: 860px) {
+    .toolbar {
+        align-items: stretch;
+        flex-direction: column;
+    }
 }
 </style>

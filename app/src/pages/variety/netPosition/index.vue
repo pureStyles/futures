@@ -1,59 +1,94 @@
 <template>
-    <div class="page-layout">
-        <Select
-            v-model="selectedSymbol"
-            :options="VARIETIES_LIST"
-            labelKey="name"
-            valueKey="symbol"
-            placeholder="商品"
-        />
-
-        <!-- <h2>{{ varietyName }}主连K线图</h2>
-        <KLineChart 
-            :data="varietyKData" 
-            :title="varietyName" 
-        /> -->
-        <div class="header-bar">
-        <h2>席位多维监控雷达</h2>
+  <div class="radar-workspace">
+    <section class="toolbar">
+      <div>
+        <h2>{{ varietyName }} 席位雷达</h2>
+        <p>把同一品种下的强势席位和反向席位并排展示，快速判断跟随或反向观察对象。</p>
       </div>
-        <SeatRadarView :currentVariety="selectedSymbol" />
-    </div>
+      <Select
+        v-model="selectedSymbol"
+        :options="VARIETIES_LIST"
+        labelKey="name"
+        valueKey="symbol"
+        placeholder="商品"
+      />
+    </section>
+
+    <section class="panel">
+      <SeatRadarView :currentVariety="selectedSymbol" />
+    </section>
+  </div>
 </template>
 
 <script setup>
-import { ref, computed  } from 'vue';
-import { VARIETIES_LIST  } from '@/config/varieties';
-import { useData } from '@/composables/useData';
-import brokerNetPosition from '../components/brokerNetPosition.vue';
+import { ref, computed, watch } from 'vue';
+import { useRoute } from 'vue-router/composables';
+import { VARIETIES_LIST } from '@/config/varieties';
 import SeatRadarView from '../components/SeatRadarView.vue';
-import KLineChart from '../components/KLineChart.vue';
 
-const selectedSymbol = ref('RB');
-const kData = ref({});
+const route = useRoute();
+const selectedSymbol = ref(route.params.variety || 'RB');
+
+watch(
+  () => route.params.variety,
+  (symbol) => {
+    if (symbol) selectedSymbol.value = symbol;
+  }
+);
 
 const varietyName = computed(() => {
-    const variety = VARIETIES_LIST.find(e => e.symbol === selectedSymbol.value);
-    if (variety) {
-        return variety.name;
-    }
-    return '';
-})
-
-const varietyKData = computed(() => kData.value[selectedSymbol.value] || {});
-
-const fetchKData = async () => {
-    try {
-        const response = await fetch(process.env.BASE_URL + 'data/k.json');
-        const res = await response.json();
-        kData.value = res;
-    } catch (error) {
-        console.log(error);
-    }
-}
-
-fetchKData();
+  return VARIETIES_LIST.find(e => e.symbol === selectedSymbol.value)?.name || selectedSymbol.value;
+});
 </script>
 
 <style scoped>
+.radar-workspace {
+  display: grid;
+  gap: 18px;
+}
 
+.toolbar,
+.panel {
+  border: 1px solid #e1e7ef;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.toolbar {
+  min-height: 88px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  color: #111827;
+  font-size: 22px;
+  letter-spacing: 0;
+}
+
+p {
+  margin-top: 6px;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+@media (max-width: 820px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+}
 </style>

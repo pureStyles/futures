@@ -1,6 +1,12 @@
 <template>
     <div class="custom-select" :class="{ 'is-open': isOpen }" ref="selectRef">
-      <div class="select-trigger" @click.stop="toggleSelect">
+      <div
+        class="select-trigger"
+        tabindex="0"
+        @click.stop="toggleSelect"
+        @keydown.enter.prevent="toggleSelect"
+        @keydown.esc.prevent="closeSelect"
+      >
         <input
           v-if="isOpen"
           ref="inputRef"
@@ -9,6 +15,7 @@
           v-model="searchQuery"
           :placeholder="selectedLabel || placeholder"
           @click.stop
+          @keydown.esc.prevent="closeSelect"
         />
         <span v-else :class="{ 'placeholder': !value }" class="trigger-label">
           {{ selectedLabel || placeholder }}
@@ -78,17 +85,20 @@
     }
   };
   
+  const closeSelect = () => {
+    isOpen.value = false;
+    searchQuery.value = '';
+  };
+
   const handleSelect = (option) => {
     emit('input', option[props.valueKey]);
     emit('change', option[props.valueKey]);
-    isOpen.value = false;
-    searchQuery.value = ''; // 选择后清空搜索
+    closeSelect();
   };
   
   const handleClickOutside = (event) => {
     if (selectRef.value && !selectRef.value.contains(event.target)) {
-      isOpen.value = false;
-      searchQuery.value = '';
+      closeSelect();
     }
   };
   
@@ -98,22 +108,30 @@
   
   <style scoped>
   .custom-select {
-    width: 180px;
+    width: 190px;
     position: relative;
     font-size: 14px;
   }
   
   .select-trigger {
-    border: 1px solid #ccc;
+    border: 1px solid #d8e0ea;
     border-radius: 8px;
-    padding: 8px 12px;
+    padding: 0 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: #fff; /* 修正：确保背景色可见 */
-    height: 36px;
+    background: #fff;
+    height: 40px;
     box-sizing: border-box;
+    transition: border-color 0.16s ease, box-shadow 0.16s ease;
+  }
+
+  .select-trigger:hover,
+  .select-trigger:focus {
+    border-color: #8bb7e8;
+    box-shadow: 0 0 0 3px rgba(15, 95, 183, 0.08);
+    outline: none;
   }
   
   .trigger-label {
@@ -145,15 +163,15 @@
     left: 0;
     right: 0;
     background: #fff; /* 统一白底风格 */
-    border: 1px solid #eee;
+    border: 1px solid #dfe7f1;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
     z-index: 1000;
     padding: 4px;
   }
   
   .option-item {
-    padding: 8px 12px;
+    padding: 9px 10px;
     border-radius: 6px;
     cursor: pointer;
     color: #333;
@@ -165,9 +183,9 @@
   }
   
   .option-item.is-selected {
-    background: rgba(78, 117, 255, 0.1);
-    color: #4e75ff;
-    font-weight: 500;
+    background: #e9f2ff;
+    color: #0f5fb7;
+    font-weight: 700;
   }
   
   .no-data {

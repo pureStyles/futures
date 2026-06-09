@@ -1,17 +1,19 @@
 <template>
     <div class="page-layout">
-      <div class="top-nav">
-        <div class="title-section">
-          <span class="main-title">席位强相关品种分布分析</span>
-          <span class="sub-tag" v-if="updateTime">Update: {{ updateTime }}</span>
+      <section class="toolbar">
+        <div>
+          <h2>席位强相关品种分布分析</h2>
+          <p>把同一席位下相关性更强的品种聚成象限，辅助识别组合暴露。</p>
+          <span class="sub-tag" v-if="updateTime">更新时间 {{ updateTime }}</span>
         </div>
-        <div class="filter-section">
-          <label>分析席位：</label>
-          <select v-model="selectedBroker" class="broker-select">
-            <option v-for="name in brokerList" :key="name" :value="name">{{ name }}</option>
-          </select>
-        </div>
-      </div>
+        <Select
+          v-model="selectedBroker"
+          :options="brokerOptions"
+          labelKey="label"
+          valueKey="value"
+          placeholder="席位"
+        />
+      </section>
 
       <div class="net-positions-wrapper">
         <!-- <brokerNetPosition
@@ -22,7 +24,7 @@
         /> -->
       </div>
   
-      <div class="chart-wrapper">
+      <section class="chart-wrapper">
         <QuadrantChart 
           v-if="currentData" 
           :chart-data="currentData" 
@@ -30,7 +32,7 @@
           @circle-click="handleCircleClick"
         />
         <div v-else class="loading-box">正在解析席位头寸数据...</div>
-      </div>
+      </section>
     </div>
   </template>
   
@@ -47,6 +49,7 @@
   const activeVarieties = ref([]);
   
   const brokerList = computed(() => Object.keys(allData.value));
+  const brokerOptions = computed(() => brokerList.value.map(name => ({ label: name, value: name })));
   const currentData = computed(() => allData.value[selectedBroker.value] || null);
   
   const init = async () => {
@@ -83,11 +86,62 @@
   </script>
   
   <style scoped>
-  .page-layout { padding: 20px; background: #f4f6f9; min-height: 100vh; font-family: sans-serif; }
-  .top-nav { display: flex; justify-content: space-between; align-items: center; background: #fff; padding: 15px 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
-  .main-title { font-size: 18px; font-weight: bold; color: #2c3e50; }
-  .sub-tag { font-size: 12px; color: #95a5a6; margin-left: 10px; }
-  .broker-select { padding: 6px 12px; border: 1px solid #dcdfe6; border-radius: 5px; cursor: pointer; }
-  .chart-wrapper { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+  .page-layout {
+    display: grid;
+    gap: 18px;
+  }
+
+  .toolbar,
+  .chart-wrapper {
+    border: 1px solid #e1e7ef;
+    border-radius: 8px;
+    background: #fff;
+  }
+
+  .toolbar {
+    min-height: 88px;
+    padding: 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    color: #111827;
+    font-size: 22px;
+    letter-spacing: 0;
+  }
+
+  p {
+    margin-top: 6px;
+    color: #667085;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .sub-tag {
+    display: inline-block;
+    margin-top: 10px;
+    color: #667085;
+    font-size: 12px;
+  }
+
+  .chart-wrapper {
+    padding: 18px;
+  }
+
   .loading-box { height: 400px; display: flex; align-items: center; justify-content: center; color: #999; }
+
+  @media (max-width: 760px) {
+    .toolbar {
+      align-items: stretch;
+      flex-direction: column;
+    }
+  }
   </style>

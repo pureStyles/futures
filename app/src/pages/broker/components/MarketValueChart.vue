@@ -60,12 +60,12 @@
     const seriesData = prepareData();
   
     const option = {
-      backgroundColor: '#fff',
+      backgroundColor: 'transparent',
       title: {
         text: `${props.broker} - ${props.variety} 净市值变化趋势`,
         left: 'center',
         top: 10,
-        textStyle: { fontSize: 16, color: '#333' }
+        textStyle: { fontSize: 16, color: '#111827', fontWeight: 700 }
       },
       tooltip: {
         trigger: 'axis',
@@ -97,8 +97,8 @@
       xAxis: {
         type: 'category',
         data: seriesData.map(i => i.date),
-        axisLine: { lineStyle: { color: '#ddd' } },
-        axisLabel: { color: '#666' }
+        axisLine: { lineStyle: { color: '#d8e0ea' } },
+        axisLabel: { color: '#667085' }
       },
       yAxis: [
         {
@@ -106,17 +106,18 @@
           name: '净市值 (亿)',
           position: 'left',
           axisLine: { show: true, lineStyle: { color: '#5470c6' } },
-          splitLine: { lineStyle: { type: 'dashed', color: '#eee' } }
+          splitLine: { lineStyle: { type: 'dashed', color: '#eef2f7' } },
+          axisLabel: { color: '#667085' }
         },
         {
           type: 'value',
           name: '变化率 (%)',
           position: 'right',
-          axisLine: { show: true, lineStyle: { color: '#666' } },
+          axisLine: { show: true, lineStyle: { color: '#667085' } },
           splitLine: { show: false },
           axisLabel: {
             formatter: '{value}%',
-            color: '#666'
+            color: '#667085'
           }
         }
       ],
@@ -175,9 +176,5 @@
   <style scoped>
   .chart-container {
     width: 100%;
-    background: #fff;
-    padding: 15px;
-    border-radius: 8px;
-    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
   }
   </style>

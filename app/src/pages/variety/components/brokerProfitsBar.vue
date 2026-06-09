@@ -81,15 +81,15 @@
       },
       xAxis: {
         type: 'value',
-        splitLine: { lineStyle: { type: 'dashed', color: '#30363d' } },
-        axisLabel: { }
+        splitLine: { lineStyle: { type: 'dashed', color: '#e5eaf2' } },
+        axisLabel: { color: '#667085' }
       },
       yAxis: {
         type: 'category',
         data: brokers,
         axisLine: { show: false },
         axisTick: { show: false },
-        axisLabel: { fontSize: 12 }
+        axisLabel: { fontSize: 12, color: '#344054' }
       },
       series: [
         {
@@ -134,9 +134,10 @@
   
   <style scoped>
   .pnl-container {
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid #30363d;
+    border-radius: 8px;
+    padding: 16px;
+    border: 1px solid #eef2f7;
+    background: #ffffff;
   }
   
   .chart-header {
@@ -148,13 +149,14 @@
   
   .chart-title {
     font-size: 16px;
-    font-weight: bold;
+    font-weight: 800;
+    color: #111827;
   }
   
   .time-tabs {
-    background-color: #8892b0;
+    background-color: #f0f4f8;
     padding: 4px;
-    border-radius: 6px;
+    border-radius: 8px;
     display: flex;
     gap: 4px;
   }
@@ -163,12 +165,16 @@
     padding: 4px 12px;
     font-size: 12px;
     cursor: pointer;
-    border-radius: 4px;
+    border-radius: 6px;
     transition: all 0.3s;
+    color: #667085;
   }
   
   .time-tabs span.active {
     background: #fff;
+    color: #0f5fb7;
+    font-weight: 800;
+    box-shadow: 0 1px 4px rgba(15, 23, 42, 0.08);
   }
   
   .echarts-dom {

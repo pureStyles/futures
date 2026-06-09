@@ -1,87 +1,131 @@
 <template>
-    <div class="container">
-        <div class="variety">
-            <Select
-                v-model="selectedSymbol"
-                :options="VARIETIES_LIST"
-                labelKey="name"
-                valueKey="symbol"
-                placeholder="商品"
-            />
-        </div>
-      <section class="section-card">
-        <div class="section-header">
-          <div class="title">代表性席位盈亏情况</div>
-        </div>
-        <brokerProfitsBar :pnlData="varietyProfits" :variety="variety.symbol" />
-      </section>
-  
-      <div class="section-header" style="margin-top: 40px;">
-        <div class="title">核心席位头寸监控</div>
-        <div class="subtitle">对比同一席位在不同合约上的持仓演变</div>
+  <div class="position-page">
+    <section class="toolbar">
+      <div>
+        <h2>{{ variety.name || selectedSymbol }} 持仓详情</h2>
+        <p>结合盈亏榜和主力合约净持仓曲线，观察代表性席位是否持续同向。</p>
       </div>
-  
-      <div 
-        v-for="(broker, index) in alwaysWinningBrokers.positive" 
-        :key="selectedSymbol + index" 
-      >
-        <div class="broker-name">
-          <router-link :to="{ name: 'brokerFundFlow'}">
-            {{ broker.name }}/{{ broker.score }}
-          </router-link>
+      <Select
+        v-model="selectedSymbol"
+        :options="VARIETIES_LIST"
+        labelKey="name"
+        valueKey="symbol"
+        placeholder="商品"
+      />
+    </section>
+
+    <section class="summary-grid">
+      <div class="summary-card">
+        <span>主力合约</span>
+        <strong>{{ contractText }}</strong>
+      </div>
+      <div class="summary-card">
+        <span>跟踪席位</span>
+        <strong>{{ alwaysWinningBrokers.positive.length }}</strong>
+      </div>
+      <div class="summary-card">
+        <span>风险席位</span>
+        <strong>{{ alwaysWinningBrokers.negative.length }}</strong>
+      </div>
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>代表性席位盈亏情况</h3>
+          <p>盈利席位和亏损席位同时用于筛选后续持仓观察对象。</p>
         </div>
-  
-        <div class="contracts-scroll-area">
-          <div 
-            v-for="(item, idx) in mainVariety" 
-            :key="idx" 
-            class="contract-chart-item"
-          >
-            <div class="chart-label">
-              <span class="dot"></span>
-              {{ item === 'all' ? '全合约汇总' : item }}
-            </div>
-            <brokersPositionSeries
-              :rawData="positionData"
-              :variety="item"
-              :symbol="selectedSymbol"
-              :broker="broker.name"
-              :show="['net']"
-            />
+      </div>
+      <brokerProfitsBar :pnlData="varietyProfits" :variety="variety.symbol" />
+    </section>
+
+    <section class="panel">
+      <div class="panel-header">
+        <div>
+          <h3>核心席位头寸监控</h3>
+          <p>横向对比全合约、主力与次主力的净持仓变化。</p>
+        </div>
+      </div>
+
+      <div v-if="alwaysWinningBrokers.positive.length" class="broker-stack">
+        <article
+          v-for="broker in alwaysWinningBrokers.positive"
+          :key="selectedSymbol + broker.name"
+          class="broker-card"
+        >
+          <div class="broker-card-header">
+            <router-link
+              :to="{ name: 'brokerFundFlow', query: { broker: broker.name, variety: selectedSymbol } }"
+            >
+              {{ broker.name }}
+            </router-link>
+            <span>score {{ broker.score }}</span>
           </div>
-        </div>
+
+          <div class="contracts-scroll-area">
+            <div
+              v-for="item in mainVariety"
+              :key="item"
+              class="contract-chart-item"
+            >
+              <div class="chart-label">
+                <span class="dot"></span>
+                {{ item === 'all' ? '全合约汇总' : item }}
+              </div>
+              <brokersPositionSeries
+                :rawData="positionData"
+                :variety="item"
+                :symbol="selectedSymbol"
+                :broker="broker.name"
+                :show="['net']"
+              />
+            </div>
+          </div>
+        </article>
       </div>
-    </div>
-  </template>
+
+      <div v-else class="empty-state">当前品种暂未筛选出稳定盈利席位。</div>
+    </section>
+  </div>
+</template>
 
 <script setup>
-import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router/composables'; // 注意：Vue 2.7 需从这里导入
+import { computed, ref, watch } from 'vue';
+import { useRoute } from 'vue-router/composables';
 import brokersPositionSeries from '../components/brokersPositionSeries.vue';
 import brokerProfitsBar from '../components/brokerProfitsBar.vue';
 import { VARIETIES_LIST } from '@/config/varieties';
-
 import { useData } from '@/composables/useData';
 
+const route = useRoute();
+const selectedSymbol = ref(route.params.variety || 'RB');
 
-/** 商品盈亏数据 */
-const selectedSymbol = ref('RB');
+watch(
+  () => route.params.variety,
+  (symbol) => {
+    if (symbol) selectedSymbol.value = symbol;
+  }
+);
 
 const { positionData, profitData, fetchData, getAnalyzedBrokers } = useData();
 
 const variety = computed(() => {
-    return VARIETIES_LIST.find(v => v.symbol === selectedSymbol.value);
+  return VARIETIES_LIST.find(v => v.symbol === selectedSymbol.value) || {};
 });
 
 const mainVariety = computed(() => {
-    if (variety.value) {
-        return ['all', ...variety.value.mainVariety];
-    }
-    return [];
+  if (variety.value.mainVariety) {
+    return ['all', ...variety.value.mainVariety];
+  }
+  return [];
+});
+
+const contractText = computed(() => {
+  return variety.value.mainVariety?.join(' / ') || '--';
 });
 
 const varietyProfits = computed(() => {
-    return profitData.value[selectedSymbol.value] || {};
+  return profitData.value[selectedSymbol.value] || {};
 });
 
 const alwaysWinningBrokers = getAnalyzedBrokers(selectedSymbol);
@@ -90,105 +134,162 @@ fetchData();
 </script>
 
 <style scoped>
-    .container {
-      width: 100%;
-      min-height: 100vh;
-    }
-    
-    .section-header {
-      margin-bottom: 24px;
-    }
-    .title {
-      font-size: 20px;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-    }
-    .subtitle {
-      color: #8892b0;
-      font-size: 13px;
-    }
-    
-    /* 席位行容器 */
-    .broker-row-container {
-      display: flex;
-      border-radius: 12px;
-      overflow: hidden; /* 确保内部区域不超出圆角 */
-    }
-    
-    
-    .avatar {
-      width: 48px;
-      height: 48px;
-      background: #4e75ff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 20px;
-      font-weight: bold;
-      color: #fff;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(78, 117, 255, 0.3);
-    }
-    
-    .name {
-      font-weight: 600;
-      font-size: 15px;
-    }
-    
-    .tag {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 4px;
-      background: #2d3343;
-      color: #8892b0;
-    }
-    .tag-hot {
-      background: rgba(78, 117, 255, 0.15);
-      color: #4e75ff;
-      border: 1px solid rgba(78, 117, 255, 0.3);
-    }
-    
-    /* 右侧滚动图表区 */
-    .contracts-scroll-area {
-      flex: 1;
-      display: flex;
-      gap: 8px;
-      overflow-x: auto; /* 核心：支持横向对比 */
-    }
-    
-    /* 隐藏滚动条美化 */
-    .contracts-scroll-area::-webkit-scrollbar {
-      height: 6px;
-    }
-    .contracts-scroll-area::-webkit-scrollbar-thumb {
-      background: #2d3343;
-      border-radius: 3px;
-    }
-    
-    .contract-chart-item {
-        flex: 1;
-    }
-    
-    .chart-label {
-      font-size: 12px;
-      color: #8892b0;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .dot {
-      width: 6px;
-      height: 6px;
-      background: #4e75ff;
-      border-radius: 50%;
-    }
+.position-page {
+  display: grid;
+  gap: 18px;
+}
 
-    .broker-name {
-      &:hover {
-        cursor: pointer;
-        color: #4e75ff;
-      }
-    }
-    </style>
+.toolbar,
+.panel,
+.summary-card,
+.broker-card {
+  border: 1px solid #e1e7ef;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.toolbar {
+  min-height: 88px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+h2 {
+  color: #111827;
+  font-size: 22px;
+  letter-spacing: 0;
+}
+
+h3 {
+  color: #111827;
+  font-size: 18px;
+  letter-spacing: 0;
+}
+
+p {
+  margin-top: 6px;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 14px;
+}
+
+.summary-card {
+  padding: 16px;
+}
+
+.summary-card span {
+  display: block;
+  color: #667085;
+  font-size: 12px;
+}
+
+.summary-card strong {
+  display: block;
+  margin-top: 10px;
+  color: #111827;
+  font-size: 20px;
+}
+
+.panel {
+  padding: 18px;
+}
+
+.panel-header {
+  margin-bottom: 16px;
+}
+
+.broker-stack {
+  display: grid;
+  gap: 14px;
+}
+
+.broker-card {
+  padding: 14px;
+  min-width: 0;
+}
+
+.broker-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.broker-card-header a {
+  color: #0f5fb7;
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.broker-card-header span {
+  color: #667085;
+  font-size: 12px;
+}
+
+.contracts-scroll-area {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.contract-chart-item {
+  flex: 0 0 360px;
+  max-width: 420px;
+  border: 1px solid #eef2f7;
+  border-radius: 8px;
+  padding: 10px;
+}
+
+.chart-label {
+  color: #667085;
+  font-size: 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dot {
+  width: 7px;
+  height: 7px;
+  background: #0f5fb7;
+  border-radius: 50%;
+}
+
+.empty-state {
+  min-height: 180px;
+  display: grid;
+  place-items: center;
+  color: #667085;
+  border: 1px dashed #cbd5e1;
+  border-radius: 8px;
+}
+
+@media (max-width: 820px) {
+  .toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .summary-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

@@ -1,25 +1,38 @@
 export const MENU_LIST = [
     {
+      key: 'overview',
+      name: '总览',
+      children: [
+        {
+          key: 'dashboard',
+          name: '市场总览',
+          route: {
+            name: 'dashboard',
+          }
+        }
+      ]
+    },
+    {
       key: 'commodity',
       name: '商品',
       children: [
         {
           key: 'position',
-          name: '持仓详情',
+          name: '品种持仓详情',
           route: {
             name: 'position',
           }
         },
         {
             key: 'netPosition',
-            name: '净持仓',
+            name: '席位雷达',
             route: {
               name: 'netPosition',
             }
         },
         {
             key: 'correlation',
-            name: '相关性分析',
+            name: '品种相关性',
             route: {
               name: 'correlation'
             }
@@ -37,18 +50,13 @@ export const MENU_LIST = [
         },
         {
           key: 'core-seat',
-          name: '持仓',
+          name: '席位持仓工作台',
           route: { name: 'coreSeatPosition' }
         },
         {
           key: 'broker-fund',
           name: '资金动向',
           route: { name: 'brokerFundFlow' }
-        },
-        {
-          key: 'position-structure',
-          name: '持仓结构',
-          route: { name: 'positionStructure' }
         }
       ]
     }

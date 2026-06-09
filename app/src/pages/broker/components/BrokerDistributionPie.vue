@@ -119,9 +119,7 @@
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    background: #fff;
-    padding: 20px;
-    border-radius: 8px;
+    gap: 12px;
   }
   .chart-box {
     width: 48%;

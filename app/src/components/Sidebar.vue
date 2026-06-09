@@ -1,162 +1,214 @@
 <template>
-    <div class="sidebar">
-      <div
+  <nav class="sidebar">
+    <div class="brand">
+      <div class="brand-mark">FM</div>
+      <div>
+        <div class="brand-title">期货监控台</div>
+        <div class="brand-subtitle">Position Intelligence</div>
+      </div>
+    </div>
+
+    <div class="nav-scroll">
+      <section
         v-for="menu in MENU_LIST"
         :key="menu.key"
         class="menu-block"
       >
-        <!-- 一级标题 -->
-        <div
+        <button
           class="menu-header"
           :class="{ open: openMap[menu.key] }"
+          type="button"
           @click="toggle(menu.key)"
         >
-          {{ menu.name }}
+          <span>{{ menu.name }}</span>
           <span class="arrow"></span>
+        </button>
+
+        <div class="collapsible-wrapper" :class="{ expanded: openMap[menu.key] }">
+          <router-link
+            v-for="child in menu.children"
+            :key="child.key"
+            class="menu-link"
+            active-class="active"
+            exact-active-class="active"
+            :to="child.route"
+          >
+            <span class="link-dot"></span>
+            <span>{{ child.name }}</span>
+          </router-link>
         </div>
-  
-        <!-- 二级菜单 -->
-        <div
-          class="collapsible-wrapper"
-          :class="{ expanded: openMap[menu.key] }"
-        >
-          <ul class="menu-list">
-            <li
-              v-for="child in menu.children"
-              :key="child.key"
-            >
-              <router-link :to="child.route">
-                {{ child.name }}
-              </router-link>
-            </li>
-          </ul>
-        </div>
-      </div>
+      </section>
     </div>
-  </template>
-  
-  
-  <script setup>
-    import { ref } from 'vue';
-    import { MENU_LIST } from '@/config/sideBar';
-    
-    const openMap = ref({});
-    
-    // 默认全部展开（也可以只展开第一个）
-    MENU_LIST.forEach(menu => {
-      openMap.value[menu.key] = true;
-    });
-    
-    const toggle = (key) => {
-      openMap.value[key] = !openMap.value[key];
-    };
-    </script>
-    
-  
-  <style scoped>
+  </nav>
+</template>
+
+<script setup>
+import { ref } from 'vue';
+import { MENU_LIST } from '@/config/sideBar';
+
+const openMap = ref({});
+
+MENU_LIST.forEach(menu => {
+  openMap.value[menu.key] = true;
+});
+
+const toggle = (key) => {
+  openMap.value[key] = !openMap.value[key];
+};
+</script>
+
+<style scoped>
+.sidebar {
+  height: 100%;
+  padding: 22px 16px;
+  user-select: none;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 8px 22px;
+  border-bottom: 1px solid #edf1f7;
+}
+
+.brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  background: #111827;
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.brand-title {
+  color: #111827;
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.brand-subtitle {
+  margin-top: 2px;
+  color: #7a8699;
+  font-size: 11px;
+}
+
+.nav-scroll {
+  height: calc(100vh - 108px);
+  overflow-y: auto;
+  padding: 18px 4px 8px;
+}
+
+.menu-block + .menu-block {
+  margin-top: 16px;
+}
+
+.menu-header {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: #6b7280;
+  padding: 8px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.arrow {
+  width: 7px;
+  height: 7px;
+  border-right: 1.5px solid #94a3b8;
+  border-bottom: 1.5px solid #94a3b8;
+  transform: rotate(45deg);
+  transition: transform 0.2s ease;
+}
+
+.menu-header.open .arrow {
+  transform: rotate(-135deg);
+}
+
+.collapsible-wrapper {
+  display: grid;
+  gap: 4px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.collapsible-wrapper.expanded {
+  max-height: 360px;
+}
+
+.menu-link {
+  min-height: 38px;
+  padding: 0 10px;
+  border-radius: 8px;
+  color: #344054;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: background 0.16s ease, color 0.16s ease;
+}
+
+.menu-link:hover {
+  background: #f3f6fb;
+  color: #111827;
+}
+
+.menu-link.active {
+  background: #e9f2ff;
+  color: #0f5fb7;
+}
+
+.link-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  border: 1px solid currentColor;
+  opacity: 0.7;
+}
+
+.menu-link.active .link-dot {
+  background: currentColor;
+}
+
+.nav-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.nav-scroll::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 8px;
+}
+
+@media (max-width: 960px) {
   .sidebar {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    max-width: 300px;
-    background-color: transparent; /* 改为透明以适配你的背景 */
-    user-select: none;
+    padding: 14px;
   }
-  
-  /* 标题栏 */
-  .menu-header {
-    font-size: 24px;
-    font-weight: 300;
-    color: #1a1a1a;
+
+  .brand {
+    padding-bottom: 14px;
+  }
+
+  .nav-scroll {
+    height: auto;
     display: flex;
-    align-items: center;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  /* 箭头动效 */
-  .arrow {
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    border-right: 1.5px solid #1a1a1a;
-    border-bottom: 1.5px solid #1a1a1a;
-    transform: rotate(45deg); /* 默认向下 */
-    margin-left: 12px;
-    margin-top: -4px;
-    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-  
-  /* 展开时箭头旋转 */
-  .menu-header.open .arrow {
-    transform: rotate(-135deg);
-    margin-top: 4px;
-  }
-  
-  /* --- 折叠动画核心 --- */
-  .collapsible-wrapper {
-    max-height: 0;
-    overflow: hidden;
-    /* cubic-bezier 曲线让收起更自然 */
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-  }
-  
-  .collapsible-wrapper.expanded {
-    max-height: 2000px; /* 足够容纳列表的高度即可 */
-    transition: max-height 0.8s cubic-bezier(1, 0, 1, 0);
-  }
-  
-  /* 菜单列表样式 */
-  .menu-list {
-    max-height: 400px;
-    list-style: none;
-    padding: 20px 0 0 0;
-    margin: 0;
-
-    overflow-y: auto;
-  }
-  
-  .menu-list li {
-    margin-bottom: 22px;
-  }
-  
-  .menu-list a {
-    text-decoration: none;
-    font-size: 20px;
-    font-weight: 300;
-    color: #1a1a1a;
-    display: block;
-    transition: all 0.2s ease;
-  }
-  
-  .menu-list a:hover {
-    opacity: 0.5;
-  }
-  
-  /* 红色特殊标记项 */
-  .sale-item {
-    color: #e55e4d !important;
-    margin-top: 15px;
+    gap: 12px;
+    overflow-x: auto;
+    padding: 12px 0 2px;
   }
 
-  /* 1. 设置整个滚动条的宽度 */
-::-webkit-scrollbar {
-  width: 6px;  /* 纵向滚动条宽度 */
-  height: 6px; /* 横向滚动条高度 */
+  .menu-block {
+    min-width: 210px;
+  }
 }
-
-/* 2. 滚动条轨道 (背景) */
-::-webkit-scrollbar-track {
-  background: #f1f1f1; 
-  border-radius: 10px;
-}
-
-/* 3. 滚动条滑块 (移动部分) */
-::-webkit-scrollbar-thumb {
-  background: #888; 
-  border-radius: 10px; /* 圆角让它看起来更精致 */
-}
-
-/* 4. 滑块悬停时的颜色 */
-::-webkit-scrollbar-thumb:hover {
-  background: #555; 
-}
-  </style>
+</style>

@@ -1,10 +1,10 @@
 <template>
-    <div ref="chart" style="width:100%;height:400px"></div>
-  </template>
+  <div ref="chart" class="line-chart"></div>
+</template>
   
   <script setup>
   import * as echarts from 'echarts'
-  import { onMounted, ref, watch } from 'vue'
+  import { onMounted, onUnmounted, ref, watch } from 'vue'
   
   const props = defineProps({
   rawData: Array,
@@ -20,10 +20,17 @@
   
   const chart = ref(null);
   let instance = null;
+  const resizeChart = () => instance?.resize();
   
   onMounted(() => {
     instance = echarts.init(chart.value)
     render()
+    window.addEventListener('resize', resizeChart)
+  })
+
+  onUnmounted(() => {
+    window.removeEventListener('resize', resizeChart)
+    instance?.dispose()
   })
   
   watch(() => [props.rawData, props.variety, props.broker], render, {
@@ -32,9 +39,7 @@
 
   const buildBrokerSeries = (data, variety, brokerName) => {
   return data.map(day => {
-    console.log('day',day.positions)
-    const pos = day.positions?.[props.symbol][variety];
-    console.log('pos', pos);
+    const pos = day.positions?.[props.symbol]?.[variety];
     if (!pos) return null
 
     const longItem = pos.longPosition.find(i => i.broker === brokerName)
@@ -75,7 +80,7 @@ function render() {
       id: 'net',
       name: '净持仓',
       data: seriesData.map(i => i.net),
-      color: '#000'
+      color: '#0f5fb7'
     }
   ]
 
@@ -101,24 +106,27 @@ function render() {
       legend: {
         // 这里的 data 也要同步过滤，否则图例会显示多余项
         data: finalSeries.map(s => s.name),
-        top: 10
+        top: 4,
+        textStyle: { color: '#667085' }
       },
       grid: {
-        left: 50,
-        right: 30,
-        top: 50,
-        bottom: 40
+        left: 46,
+        right: 16,
+        top: 42,
+        bottom: 34
       },
       xAxis: {
         type: 'category',
         data: seriesData.map(i => i.date),
-        axisLine: { lineStyle: { color: '#ccc' } },
-        axisTick: { show: false }
+        axisLine: { lineStyle: { color: '#d8e0ea' } },
+        axisTick: { show: false },
+        axisLabel: { color: '#667085' }
       },
       yAxis: {
         type: 'value',
         axisLine: { show: false },
-        splitLine: { lineStyle: { color: '#eee' } }
+        axisLabel: { color: '#667085' },
+        splitLine: { lineStyle: { color: '#eef2f7' } }
       },
       series: finalSeries
     }
@@ -127,4 +135,11 @@ function render() {
   instance.setOption(buildOption(visibleSeries), true)
 }
   </script>
+
+<style scoped>
+.line-chart {
+  width: 100%;
+  height: 260px;
+}
+</style>
   

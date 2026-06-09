@@ -1,33 +1,36 @@
 <template>
   <div class="analysis-container">
-    <div class="header">
-      <div class="title-row">
+    <section class="toolbar">
+      <div>
         <h2>品种相关性矩阵</h2>
-        <span v-if="updateTime" class="time-tag">更新时间: {{ updateTime }}</span>
+        <p>按板块切换热力图，优先查看高相关品种簇。</p>
       </div>
-      
-      <div class="sector-tabs">
-        <button 
-          v-for="name in sectorNames" 
-          :key="name"
-          :class="{ active: currentSector === name }"
-          @click="currentSector = name"
-        >
-          {{ name }} ({{ sectors[name].varieties.length }})
-        </button>
-      </div>
-    </div>
-    
-    <div class="content-card">
-      <CorrelationHeatmap 
-        v-if="currentSectorData" 
-        :data="currentSectorData" 
+      <span v-if="updateTime" class="time-tag">更新时间 {{ updateTime }}</span>
+    </section>
+
+    <section class="tabs-panel">
+      <button
+        v-for="name in sectorNames"
+        :key="name"
+        :class="{ active: currentSector === name }"
+        type="button"
+        @click="currentSector = name"
+      >
+        {{ name }}
+        <span>{{ sectors[name].varieties.length }}</span>
+      </button>
+    </section>
+
+    <section class="content-card">
+      <CorrelationHeatmap
+        v-if="currentSectorData"
+        :data="currentSectorData"
       />
       <div v-else class="loading-state">
         <div class="spinner"></div>
         <p>正在加载分类数据...</p>
       </div>
-    </div>
+    </section>
   </div>
 </template>
 
@@ -35,30 +38,23 @@
 import { ref, computed, onMounted } from 'vue';
 import CorrelationHeatmap from '../components/CorrelationHeatmap.vue';
 
-// 原始 JSON 数据
 const sectors = ref({});
 const updateTime = ref('');
-const currentSector = ref('其他'); // 默认选中板块
+const currentSector = ref('其他');
 
-// 计算属性：提取所有板块名称
 const sectorNames = computed(() => Object.keys(sectors.value));
-
-// 计算属性：提取当前选中的板块数据
 const currentSectorData = computed(() => {
   return sectors.value[currentSector.value] || null;
 });
 
-
 const loadData = async () => {
   try {
-    // 加上时间戳防止浏览器缓存 JSON
     const res = await fetch(`./data/correlationData.json?t=${Date.now()}`);
     const result = await res.json();
-    
+
     sectors.value = result.sectors;
     updateTime.value = result.updateTime;
-    
-    // 如果“其他”板块没数据，自动选第一个
+
     if (!result.sectors['其他'] && sectorNames.value.length > 0) {
       currentSector.value = sectorNames.value[0];
     }
@@ -71,35 +67,99 @@ onMounted(loadData);
 </script>
 
 <style scoped>
-.analysis-container { padding: 25px; background: #f0f2f5; min-height: 100vh; }
+.analysis-container {
+  display: grid;
+  gap: 18px;
+}
 
-.header { margin-bottom: 20px; }
-.title-row { display: flex; align-items: baseline; gap: 15px; margin-bottom: 15px; }
-.time-tag { font-size: 12px; color: #999; }
+.toolbar,
+.tabs-panel,
+.content-card {
+  border: 1px solid #e1e7ef;
+  border-radius: 8px;
+  background: #ffffff;
+}
 
-.sector-tabs { display: flex; gap: 8px; flex-wrap: wrap; }
-.sector-tabs button {
-  border: 1px solid #dcdfe6;
+.toolbar {
+  min-height: 88px;
+  padding: 18px;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+h2,
+p {
+  margin: 0;
+}
+
+h2 {
+  color: #111827;
+  font-size: 22px;
+  letter-spacing: 0;
+}
+
+p {
+  margin-top: 6px;
+  color: #667085;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.time-tag {
+  color: #667085;
+  border: 1px solid #e1e7ef;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #f8fafc;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.tabs-panel {
+  padding: 12px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.tabs-panel button {
+  min-height: 34px;
+  border: 1px solid #d8e0ea;
   background: #fff;
-  border-radius: 6px;
+  border-radius: 8px;
+  padding: 0 10px;
   cursor: pointer;
-  transition: all 0.3s;
-  font-size: 14px;
-  color: #606266;
-}
-.sector-tabs button:hover { color: #409eff; border-color: #c6e2ff; background-color: #ecf5ff; }
-.sector-tabs button.active {
-  background: #409eff;
-  color: #fff;
-  border-color: #409eff;
-  box-shadow: 0 2px 6px rgba(64, 158, 255, 0.3);
+  color: #344054;
+  font-size: 13px;
+  font-weight: 700;
 }
 
-.content-card { 
-  background: #fff; 
-  border-radius: 12px; 
-  min-height: 700px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05); 
+.tabs-panel button span {
+  margin-left: 6px;
+  color: #7a8699;
+  font-size: 12px;
+}
+
+.tabs-panel button:hover {
+  border-color: #8bb7e8;
+  background: #f7fbff;
+}
+
+.tabs-panel button.active {
+  background: #0f5fb7;
+  color: #fff;
+  border-color: #0f5fb7;
+}
+
+.tabs-panel button.active span {
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.content-card {
+  min-height: 680px;
+  padding: 12px;
 }
 
 .loading-state {
@@ -108,16 +168,32 @@ onMounted(loadData);
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  color: #909399;
+  color: #667085;
 }
-/* 简单的加载动画 */
+
 .spinner {
-  width: 40px; height: 40px;
-  border: 4px solid #f3f3f3;
-  border-top: 4px solid #409eff;
+  width: 34px;
+  height: 34px;
+  border: 3px solid #e5eaf2;
+  border-top: 3px solid #0f5fb7;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
-@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 760px) {
+  .toolbar {
+    display: block;
+  }
+
+  .time-tag {
+    display: inline-block;
+    margin-top: 14px;
+  }
+}
 </style>
