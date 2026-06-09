@@ -1,24 +1,26 @@
-const { queryBrokerStructure } = require('../api/broker');
+const { queryBrokerStructure } = require("../api/broker");
 
-const path = require('path');
-const fs = require('fs').promises;
+const path = require("path");
+const fs = require("fs").promises;
 
-class Structure {
-    
-    constructor() {
-        this.outPath = path.join(process.cwd(), 'app', 'public/data/brokerStructure.json');
-    }
+const typicalBrokerConfig = require("../config/typicalBroker");
+const { createProgressLogger, mapWithConcurrency } = require("../utils/task.js");
+const { DEFAULT_TASK_OPTIONS } = require("./config.js");
 
-    loadTypicalBroker() {
-        delete require.cache[require.resolve("../config/typicalBroker.js")];
-        return require("../config/typicalBroker.js");
+class BrokerStructureTask {
+    constructor(options = {}) {
+        this.outPath = path.join(process.cwd(), "app", "public/data/brokerStructure.json");
+        this.concurrency = options.concurrency || DEFAULT_TASK_OPTIONS.concurrency;
+        this.delayMs = options.delayMs || DEFAULT_TASK_OPTIONS.delayMs;
+        this.progressEvery = options.progressEvery || DEFAULT_TASK_OPTIONS.progressEvery;
     }
 
     async fetchBrokerStructure(broker) {
         const res = await queryBrokerStructure({
             broker,
-            family: 'all'
+            family: "all",
         });
+
         res.data[0].shift();
         const varietyStructure = res.data.reduce((pre, cur, index) => {
             if (index === 0) {
@@ -27,45 +29,53 @@ class Structure {
             pre[cur[0]] = cur.slice(-22);
             return pre;
         }, {});
+
         return {
-            /** 只需要一部分数据 */
             dates: res.data[0].slice(-22),
             value: varietyStructure,
-        }
+        };
     }
 
     async writeFile(object) {
-        const json = JSON.stringify(object);
-
-        await fs.writeFile(
-            this.outPath,
-            json,
-            'utf-8'
-        );
+        await fs.writeFile(this.outPath, JSON.stringify(object), "utf-8");
     }
 
-    async execute() {
-        /**
-         * 数据结构如下
-         * { dates: [], 国泰君安: { 沪深300: [a, b, c, ..., f]} }
-         */
-        const typicalBroker = this.loadTypicalBroker();
-        const brokerStructure = { };
-        for(const brokers of Object.values(typicalBroker)) {
-            for(const broker of brokers ) {
+    getUniqueBrokers(typicalBrokerMap) {
+        return [...new Set(Object.values(typicalBrokerMap).flat())];
+    }
+
+    async execute(options = {}) {
+        const typicalBrokerMap = options.typicalBrokerMap || typicalBrokerConfig;
+        const brokers = this.getUniqueBrokers(typicalBrokerMap);
+        const brokerStructure = {};
+
+        const results = await mapWithConcurrency(
+            brokers,
+            async (broker) => {
                 console.log(`⏩正在查询${broker}的持仓结构`);
                 const result = await this.fetchBrokerStructure(broker);
-                brokerStructure.dates  = result.dates;
-                brokerStructure[broker] = result.value;
+                return {
+                    broker,
+                    result,
+                };
+            },
+            {
+                concurrency: this.concurrency,
+                delayMs: this.delayMs,
+                onProgress: createProgressLogger("席位结构", {
+                    every: this.progressEvery,
+                }),
             }
-            await new Promise(resolve => setTimeout(resolve, 1000));
-        }
-        console.log(`✅查询完毕`);
+        );
 
+        for (const { broker, result } of results) {
+            brokerStructure.dates = result.dates;
+            brokerStructure[broker] = result.value;
+        }
+
+        console.log("✅查询完毕");
         await this.writeFile(brokerStructure);
     }
 }
 
-// new Structure().execute();
-
-module.exports = Structure;
+module.exports = BrokerStructureTask;

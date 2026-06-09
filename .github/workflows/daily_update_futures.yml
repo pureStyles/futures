@@ -21,6 +21,21 @@ on:
         description: 补数结束日期（可留空，默认今天）
         required: false
         type: string
+      task_concurrency:
+        description: 请求并发数（默认 3，接口不稳定时调小）
+        required: false
+        default: '3'
+        type: string
+      task_delay_ms:
+        description: 每个 worker 请求间隔毫秒（默认 250）
+        required: false
+        default: '250'
+        type: string
+      task_progress_every:
+        description: 每完成 N 个请求输出一次进度（默认 10）
+        required: false
+        default: '10'
+        type: string
 
 permissions:
   contents: write
@@ -41,13 +56,13 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'yarn' # 开启缓存，加快后续运行速度
-          cache-dependency-path: server/yarn.lock
+          cache: 'npm'
+          cache-dependency-path: server/package-lock.json
 
       - name: Install dependencies
         run: |
           cd server
-          npm install
+          npm ci
 
       - name: Run Script
         env:
@@ -55,6 +70,9 @@ jobs:
           UPDATE_MODE: ${{ github.event.inputs.update_mode }}
           BACKFILL_START_DATE: ${{ github.event.inputs.backfill_start_date }}
           BACKFILL_END_DATE: ${{ github.event.inputs.backfill_end_date }}
+          TASK_CONCURRENCY: ${{ github.event.inputs.task_concurrency }}
+          TASK_DELAY_MS: ${{ github.event.inputs.task_delay_ms }}
+          TASK_PROGRESS_EVERY: ${{ github.event.inputs.task_progress_every }}
         run: node server/schedule/index.js
 
       - name: Commit and Push Data

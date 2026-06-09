@@ -1,153 +1,143 @@
-
-/** 更新今日合约的持仓数据
- * 更新频次： 一天一次
- * 注意：为解决空间，增加一天的同时，需要删除一天
- */
-
-const path = require('path');
-const fs = require('fs').promises;
+const path = require("path");
+const fs = require("fs").promises;
 
 const exchangeDays = require("../config/exChangeDay.js");
 const { queryVarietyPostion } = require("../api/variety.js");
-
+const { VARIETIES_LIST } = require("../config/index.js");
+const typicalBrokerConfig = require("../config/typicalBroker.js");
+const { createProgressLogger, mapWithConcurrency } = require("../utils/task.js");
+const { DEFAULT_TASK_OPTIONS } = require("./config.js");
 
 class PositionTask {
-    constructor() {
-        /** 用来收集错误信息，校验数据的完整性 */
+    constructor(options = {}) {
         this.errorInfo = {
-            /** 接口请求失败 */
             request: [],
-            /** 加载历史数据失败 */
             readFile: false,
         };
-        this.outPath = path.join(process.cwd(), 'app', `public/data/position.json`)
-        /**
-         * positionData的数据结构
-         * { CF2605: { longPostion: [ {broker: '国泰君安', buy: 233 }, {}]}}
-         */
-    }
-
-    loadVarietiesList() {
-        delete require.cache[require.resolve("../config/index.js")];
-        delete require.cache[require.resolve("../config/variety.js")];
-        return require("../config/index.js").VARIETIES_LIST || [];
-    }
-
-    loadTypicalBroker() {
-        delete require.cache[require.resolve("../config/typicalBroker.js")];
-        return require("../config/typicalBroker.js");
+        this.outPath = path.join(process.cwd(), "app", "public/data/position.json");
+        this.concurrency = options.concurrency || DEFAULT_TASK_OPTIONS.concurrency;
+        this.delayMs = options.delayMs || DEFAULT_TASK_OPTIONS.delayMs;
+        this.progressEvery = options.progressEvery || DEFAULT_TASK_OPTIONS.progressEvery;
     }
 
     async fetchVarietyPositionData(params, variety, typicalBrokerMap) {
         const { symbol } = variety || {};
         const typicalBrokers = typicalBrokerMap[symbol] || [];
+
         try {
             const data = await queryVarietyPostion(params);
             return {
-                longPosition: (data.buy || []).filter(e => typicalBrokers.includes(e.broker)),
-                shortPosition: (data.ss || []).filter(e => typicalBrokers.includes(e.broker)),
-            }
+                longPosition: (data.buy || []).filter(item => typicalBrokers.includes(item.broker)),
+                shortPosition: (data.ss || []).filter(item => typicalBrokers.includes(item.broker)),
+            };
         } catch (error) {
-            this.errorInfo['request'].push({
+            this.errorInfo.request.push({
                 date: params.date,
                 variety: variety.name,
-                code: variety.code
+                code: params.code,
             });
-            console.log(error)
+            console.log(error);
+            return {
+                longPosition: [],
+                shortPosition: [],
+            };
         }
     }
 
-    /** 获取某一天的持仓详情数据 */
-    async collectData(date) {
-        const varietiesList = this.loadVarietiesList();
-        const typicalBrokerMap = this.loadTypicalBroker();
-        const varietyPosition = {};
-        /** 收集商品维度的持仓数据 */
-        for (const variety of varietiesList) {
-            for (const contract of ['all', ...variety.mainVariety]) {
-                console.log(`\n🎸正在获取${variety.name}${contract}的持仓详情...`);
-                try {
-                    const data = await this.fetchVarietyPositionData({
-                        variety: variety.name,
-                        code: contract,
-                        date,
-                    }, variety, typicalBrokerMap);
-                    if (!varietyPosition[variety.symbol]) {
-                        varietyPosition[variety.symbol] = {};
-                    }
-                    varietyPosition[variety.symbol][contract] = data;
-                } catch (error) {
-                    console.log(error);
-                }
+    buildContractTasks(varietiesList) {
+        return varietiesList.flatMap(variety =>
+            ["all", ...variety.mainVariety].map(contract => ({
+                variety,
+                contract,
+            }))
+        );
+    }
 
-                await new Promise(resolve => setTimeout(resolve, 1000));
+    async collectData(date, options = {}) {
+        const varietiesList = options.varietiesList || VARIETIES_LIST;
+        const typicalBrokerMap = options.typicalBrokerMap || typicalBrokerConfig;
+        const varietyPosition = {};
+        const contractTasks = this.buildContractTasks(varietiesList);
+
+        const results = await mapWithConcurrency(
+            contractTasks,
+            async ({ variety, contract }) => {
+                console.log(`🎸正在获取${variety.name}${contract}的持仓详情...`);
+                const data = await this.fetchVarietyPositionData({
+                    variety: variety.name,
+                    code: contract,
+                    date,
+                }, variety, typicalBrokerMap);
+
+                return {
+                    symbol: variety.symbol,
+                    contract,
+                    data,
+                };
+            },
+            {
+                concurrency: this.concurrency,
+                delayMs: this.delayMs,
+                onProgress: createProgressLogger(`${date} 持仓详情`, {
+                    every: this.progressEvery,
+                }),
             }
+        );
+
+        for (const item of results) {
+            if (!varietyPosition[item.symbol]) {
+                varietyPosition[item.symbol] = {};
+            }
+            varietyPosition[item.symbol][item.contract] = item.data;
         }
+
         return varietyPosition;
     }
 
-    /**
-     * 收集指定交易日的数据
-     */
-    async collectDatesData(dates) {
-        let dateRangeContractsPosition = [];
-        for(let i = 0; i < dates.length; i++) {
-            const progress = ((i + 1) / dates.length * 100).toFixed(1);
-            process.stdout.write(`\r🔄 历史数据获取进度: ${i + 1}/${dates.length} (${progress}%)`);
+    async collectDatesData(dates, options = {}) {
+        const dateRangeContractsPosition = [];
+        for (let index = 0; index < dates.length; index += 1) {
+            const progress = ((index + 1) / dates.length * 100).toFixed(1);
+            process.stdout.write(`\r🔄 历史数据获取进度: ${index + 1}/${dates.length} (${progress}%)`);
 
-            const dateStr = dates[i];
-            /** 这一天下所有的合约持仓详情 */
-            const contratsPosition = await this.collectData(dateStr);
+            const dateStr = dates[index];
+            const contractsPosition = await this.collectData(dateStr, options);
             dateRangeContractsPosition.push({
                 date: dateStr,
-                positions: contratsPosition,
+                positions: contractsPosition,
             });
         }
-        return dateRangeContractsPosition || [];
+
+        return dateRangeContractsPosition;
     }
 
     async loadData(file) {
-        try { 
-          const raw = await fs.readFile(file, 'utf-8')
-          return JSON.parse(raw);
+        try {
+            const raw = await fs.readFile(file, "utf-8");
+            return JSON.parse(raw);
         } catch {
-            this.errorInfo['readFile'] = true;
+            this.errorInfo.readFile = true;
             return [];
         }
     }
 
-    /**
-     * 更新历史数据，一般只需要执行一次即可
-     */
-    async updateLast30DaysPosition()  {
-        const positions = await this.collectDatesData(exchangeDays);
-        await fs.writeFile(
-            this.outPath,
-            JSON.stringify(positions),
-            'utf-8'
-        );
-        console.log('💯💯历史数据更新成功')
+    async updateLast30DaysPosition(options = {}) {
+        const positions = await this.collectDatesData(exchangeDays, options);
+        await fs.writeFile(this.outPath, JSON.stringify(positions), "utf-8");
+        console.log("💯💯历史数据更新成功");
     }
 
-
-    /** 更新最新一个交易日的持仓详情
-     * 适用于在有历史数据的基础上新增数据
-     */
-    async updateNearPosition(date) {
+    async updateNearPosition(date, options = {}) {
         const currentData = await this.loadData(this.outPath);
-        const positions = await this.collectData(date);
-        /** 删除一个交易日的数据后再添加一个交易日数据 */
+        const positions = await this.collectData(date, options);
+
         currentData.shift();
         currentData.push({
             date,
-            positions: positions
+            positions,
         });
 
-        await fs.writeFile(
-            this.outPath,
-            JSON.stringify(currentData),
-            'utf-8'
-        );
+        await fs.writeFile(this.outPath, JSON.stringify(currentData), "utf-8");
     }
 }
 

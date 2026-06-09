@@ -8,15 +8,32 @@ const BrokerStructure = require("./refreshBrokerStructure.js");
 const VarietyProfits = require("./updateVarietyProfits.js");
 
 const exchangeDays = require("../config/exChangeDay.js");
+const {
+    getRunMode,
+    getTaskOptions,
+    normalizeInput,
+} = require("./config.js");
 
 const positionPath = path.join(process.cwd(), "app", "public/data/position.json");
 
-function normalizeInput(value) {
-    return typeof value === "string" ? value.trim() : "";
+function formatDuration(ms) {
+    if (ms < 1000) {
+        return `${ms}ms`;
+    }
+    return `${(ms / 1000).toFixed(1)}s`;
 }
 
-function getRunMode() {
-    return normalizeInput(process.env.UPDATE_MODE) === "backfill" ? "backfill" : "daily";
+async function runPhase(label, task) {
+    const start = Date.now();
+    console.log(`▶ ${label} 开始`);
+    try {
+        const result = await task();
+        console.log(`✓ ${label} 完成，用时 ${formatDuration(Date.now() - start)}`);
+        return result;
+    } catch (error) {
+        console.error(`✗ ${label} 失败，用时 ${formatDuration(Date.now() - start)}`);
+        throw error;
+    }
 }
 
 function getReadyTime(now) {
@@ -119,17 +136,29 @@ async function runDailyUpdate(today, positionData) {
 
     ensureReadyForToday(today);
 
-    await new MainContracts().run(today);
-    await new VarietyProfits().run();
+    const taskOptions = getTaskOptions();
+    const varietiesList = await runPhase("刷新主力合约", () => new MainContracts(taskOptions).run({
+        date: today,
+        persist: true,
+    }));
+    const { typicalBroker } = await runPhase("更新盈亏与典型席位", () => new VarietyProfits(taskOptions).run({
+        today,
+        varietiesList,
+    }));
 
-    const varietyPositions = new VarietyPositions();
-    await varietyPositions.updateNearPosition(today);
+    const varietyPositions = new VarietyPositions(taskOptions);
+    await runPhase("更新持仓详情", () => varietyPositions.updateNearPosition(today, {
+        varietiesList,
+        typicalBrokerMap: typicalBroker,
+    }));
     const { request } = varietyPositions.errorInfo;
     if (request && request.length) {
         console.warn("⚠️有接口请求失败了，需要补充数据完整性", JSON.stringify(request));
     }
 
-    await new BrokerStructure().execute();
+    await runPhase("更新席位持仓结构", () => new BrokerStructure(taskOptions).execute({
+        typicalBrokerMap: typicalBroker,
+    }));
 }
 
 async function runBackfill(today, positionData) {
@@ -145,13 +174,28 @@ async function runBackfill(today, positionData) {
         ensureReadyForToday(today);
     }
 
-    await new VarietyProfits().run();
+    const taskOptions = getTaskOptions();
+    const includesToday = pendingDates.includes(today);
+    const profitVarietiesList = await runPhase("刷新盈亏统计基准主力合约", () => new MainContracts(taskOptions).run({
+        date: includesToday ? today : undefined,
+        persist: false,
+    }));
+    const { typicalBroker } = await runPhase("更新盈亏与典型席位", () => new VarietyProfits(taskOptions).run({
+        today,
+        varietiesList: profitVarietiesList,
+    }));
 
-    const varietyPositions = new VarietyPositions();
+    const varietyPositions = new VarietyPositions(taskOptions);
     for (const date of pendingDates) {
         console.log(`\n🧩 开始补齐 ${date} 的数据`);
-        await new MainContracts().run(date);
-        await varietyPositions.updateNearPosition(date);
+        const varietiesList = await runPhase(`补齐 ${date} 主力合约`, () => new MainContracts(taskOptions).run({
+            date,
+            persist: false,
+        }));
+        await runPhase(`补齐 ${date} 持仓详情`, () => varietyPositions.updateNearPosition(date, {
+            varietiesList,
+            typicalBrokerMap: typicalBroker,
+        }));
     }
 
     const { request } = varietyPositions.errorInfo;
@@ -159,11 +203,11 @@ async function runBackfill(today, positionData) {
         console.warn("⚠️有接口请求失败了，需要补充数据完整性", JSON.stringify(request));
     }
 
-    if (pendingDates[pendingDates.length - 1] !== today) {
-        await new MainContracts().run();
-    }
+    await runPhase("写入最终主力合约配置", () => new MainContracts(taskOptions).saveData(profitVarietiesList));
 
-    await new BrokerStructure().execute();
+    await runPhase("更新席位持仓结构", () => new BrokerStructure(taskOptions).execute({
+        typicalBrokerMap: typicalBroker,
+    }));
 }
 
 async function main() {
@@ -171,14 +215,20 @@ async function main() {
 
     const today = moment().format("YYYY-MM-DD");
     const runMode = getRunMode();
+    console.log("runMode", runMode);
+    console.log("taskOptions", getTaskOptions());
+
     const positionData = await loadPositionData();
 
     if (runMode === "backfill") {
-        await runBackfill(today, positionData);
+        await runPhase("补齐历史数据", () => runBackfill(today, positionData));
         return;
     }
 
-    await runDailyUpdate(today, positionData);
+    await runPhase("每日数据更新", () => runDailyUpdate(today, positionData));
 }
 
-main();
+main().catch((error) => {
+    console.error("❌定时任务执行失败", error);
+    process.exit(1);
+});

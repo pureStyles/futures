@@ -5,6 +5,8 @@
   "main": "index.js",
   "type": "commonjs",
   "scripts": {
+    "schedule:daily": "node schedule/index.js",
+    "schedule:backfill": "UPDATE_MODE=backfill node schedule/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

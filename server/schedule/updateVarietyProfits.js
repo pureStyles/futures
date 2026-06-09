@@ -1,93 +1,122 @@
-const path = require('path');
-const fs = require('fs').promises;
+const path = require("path");
+const fs = require("fs").promises;
 const moment = require("moment");
 
 const { queryVarietyProfit } = require("../api/variety.js");
-
 const { VARIETIES_LIST } = require("../config/index");
+const { createProgressLogger, mapWithConcurrency } = require("../utils/task.js");
+const { DEFAULT_TASK_OPTIONS } = require("./config.js");
 
-class varietyProfit {
-    profits = {};
-    typicalBroker = {};
-    appOutPath = path.join(process.cwd(), 'app', `public/data/profit.json`);
-    serverOutpath = path.join(process.cwd(), 'server', 'config/typicalBroker.js');
+class VarietyProfitTask {
+    constructor(options = {}) {
+        this.appOutPath = path.join(process.cwd(), "app", "public/data/profit.json");
+        this.serverOutpath = path.join(process.cwd(), "server", "config/typicalBroker.js");
+        this.concurrency = options.concurrency || DEFAULT_TASK_OPTIONS.concurrency;
+        this.delayMs = options.delayMs || DEFAULT_TASK_OPTIONS.delayMs;
+        this.progressEvery = options.progressEvery || DEFAULT_TASK_OPTIONS.progressEvery;
+    }
 
     async fetchVarietyProfitData(name, dates) {
-        try {
-            const data = await queryVarietyProfit({
-                variety: name,
-                date1: dates[0],
-                date2: dates[1],
-            });
-            return data;
-        } catch (error) {
-            console.log(error)
-        }
+        return queryVarietyProfit({
+            variety: name,
+            date1: dates[0],
+            date2: dates[1],
+        });
     }
 
-    async collectRangeData(dates, type) {
-        for(const variety of VARIETIES_LIST) {
-            console.log(`🚀🚀正在获取${variety.name}盈亏数据...`);
-            const data = await this.fetchVarietyProfitData(variety.name, dates);
+    buildProfitEntry(variety, rangeData) {
+        const profitByRange = {};
+        const brokerSet = new Set();
+
+        for (const [rangeType, data] of Object.entries(rangeData)) {
             const { brokers, value } = data || {};
-            const profits = (brokers || []).map((name, index) => {
-                return {
-                    broker: name,
-                    value: value[index] || 0,
-                }
-            });
-            /** 盈亏数据从大到小排序 */
-            const sortedProfits = [... profits].sort((a, b) => b.value - a.value);
-            const winers = sortedProfits.slice(0, 6).filter(item => item.value > 0);
+            const profits = (brokers || []).map((name, index) => ({
+                broker: name,
+                value: (value || [])[index] || 0,
+            }));
+
+            const sortedProfits = [...profits].sort((a, b) => b.value - a.value);
+            const winners = sortedProfits.slice(0, 6).filter(item => item.value > 0);
             const losers = sortedProfits.slice(-6).filter(item => item.value < 0);
-            const _profits = [...winers, ...losers];
+            const currentRangeProfits = [...winners, ...losers];
 
-            if (!this.profits[variety.symbol]) {
-                this.profits[variety.symbol] = {};
-            }
-            if (!this.typicalBroker[variety.symbol]) {
-                this.typicalBroker[variety.symbol] = [];
-            }
-            this.profits[variety.symbol][type] = _profits;
-            const typicalBroker = _profits.filter(e => !this.typicalBroker[variety.symbol].includes(e.broker)).map(e => e.broker);
-            this.typicalBroker[variety.symbol].push(...typicalBroker);
-            await new Promise(resolve => setTimeout(resolve, 1000));
+            profitByRange[rangeType] = currentRangeProfits;
+            currentRangeProfits.forEach(item => brokerSet.add(item.broker));
         }
+
+        return {
+            symbol: variety.symbol,
+            profits: profitByRange,
+            brokers: [...brokerSet],
+        };
     }
 
-    async saveData() {
-        await fs.writeFile(
-            this.appOutPath,
-            JSON.stringify(this.profits),
-            'utf-8'
-        )
+    async collectProfitData(rangeMap, options = {}) {
+        const varietiesList = options.varietiesList || VARIETIES_LIST;
+        const entries = await mapWithConcurrency(
+            varietiesList,
+            async (variety) => {
+                console.log(`🚀🚀正在获取${variety.name}盈亏数据...`);
 
-        const typicalBrokerBrokerStr = JSON.stringify(this.typicalBroker, null, 4);
-        const nodeContent = `
-            const typicalBroker = ${typicalBrokerBrokerStr};
-            module.exports = typicalBroker;
-        `
-        await fs.writeFile(
-            this.serverOutpath,
-            nodeContent,
-            'utf-8'
-        )
-        console.log("💯💯盈数据更新成功✅！");
+                const rangeEntries = await Promise.all(
+                    Object.entries(rangeMap).map(async ([rangeType, dates]) => {
+                        const data = await this.fetchVarietyProfitData(variety.name, dates);
+                        return [rangeType, data];
+                    })
+                );
+
+                return this.buildProfitEntry(variety, Object.fromEntries(rangeEntries));
+            },
+            {
+                concurrency: this.concurrency,
+                delayMs: this.delayMs,
+                onProgress: createProgressLogger("盈亏数据", {
+                    every: this.progressEvery,
+                }),
+            }
+        );
+
+        return entries.reduce((result, entry) => {
+            result.profits[entry.symbol] = entry.profits;
+            result.typicalBroker[entry.symbol] = entry.brokers;
+            return result;
+        }, {
+            profits: {},
+            typicalBroker: {},
+        });
     }
 
-    async run() {
-        const today = moment();
-        const oneYearAgo = today.clone().subtract(1, 'year').format('YYYY-MM-DD');
-        const halfYearAgo = today.clone().subtract(6, 'months').format('YYYY-MM-DD');
-        const todayStr = today.format('YYYY-MM-DD');
+    async saveData(profits, typicalBroker) {
+        await fs.writeFile(this.appOutPath, JSON.stringify(profits), "utf-8");
 
-        await this.collectRangeData([oneYearAgo, todayStr], 'year');
-        await this.collectRangeData([halfYearAgo, todayStr], 'half_year');
-        await this.saveData();
+        const typicalBrokerContent = `const typicalBroker = ${JSON.stringify(typicalBroker, null, 4)};
+module.exports = typicalBroker;
+`;
+        await fs.writeFile(this.serverOutpath, typicalBrokerContent, "utf-8");
 
-        return this.profits;
+        console.log("💯💯盈亏数据更新成功✅！");
+    }
+
+    async run(options = {}) {
+        const today = options.today ? moment(options.today) : moment();
+        const rangeMap = {
+            year: [
+                today.clone().subtract(1, "year").format("YYYY-MM-DD"),
+                today.format("YYYY-MM-DD"),
+            ],
+            half_year: [
+                today.clone().subtract(6, "months").format("YYYY-MM-DD"),
+                today.format("YYYY-MM-DD"),
+            ],
+        };
+
+        const result = await this.collectProfitData(rangeMap, {
+            varietiesList: options.varietiesList,
+        });
+        await this.saveData(result.profits, result.typicalBroker);
+
+        return result;
     }
 }
 
-// new varietyProfit().run();
-module.exports = varietyProfit;
+module.exports = VarietyProfitTask;
