@@ -220,7 +220,7 @@ export const VARIETIES_LIST = [
         "symbol": "LH",
         "mainVariety": [
             "lh2609",
-            "lh2607"
+            "lh2611"
         ]
     },
     {
@@ -315,8 +315,8 @@ export const VARIETIES_LIST = [
         "name": "硅铁",
         "symbol": "SF",
         "mainVariety": [
-            "sf2607",
-            "sf2609"
+            "sf2609",
+            "sf2607"
         ]
     },
     {
