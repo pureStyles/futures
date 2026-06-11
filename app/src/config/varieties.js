@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2609",
-            "pl2610"
+            "pl2608"
         ]
     },
     {
