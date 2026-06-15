@@ -123,8 +123,8 @@ const VARIETIES_LIST = [
         "name": "玉米",
         "symbol": "C",
         "mainVariety": [
-            "c2607",
-            "c2609"
+            "c2609",
+            "c2607"
         ]
     },
     {
@@ -140,7 +140,7 @@ const VARIETIES_LIST = [
         "symbol": "JD",
         "mainVariety": [
             "jd2608",
-            "jd2607"
+            "jd2609"
         ]
     },
     {
@@ -292,7 +292,7 @@ const VARIETIES_LIST = [
         "symbol": "MA",
         "mainVariety": [
             "ma2609",
-            "ma2610"
+            "ma2701"
         ]
     },
     {
@@ -316,7 +316,7 @@ const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2609",
-            "sf2607"
+            "sf2611"
         ]
     },
     {
@@ -324,7 +324,7 @@ const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2609",
-            "sm2607"
+            "sm2611"
         ]
     },
     {
@@ -412,7 +412,7 @@ const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2609",
-            "pl2610"
+            "pl2608"
         ]
     },
     {
