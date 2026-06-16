@@ -51,8 +51,8 @@ export const VARIETIES_LIST = [
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2607",
-            "ss2608"
+            "ss2608",
+            "ss2607"
         ]
     },
     {
@@ -107,8 +107,8 @@ export const VARIETIES_LIST = [
         "name": "豆一",
         "symbol": "A",
         "mainVariety": [
-            "a2607",
-            "a2609"
+            "a2609",
+            "a2607"
         ]
     },
     {
@@ -292,7 +292,7 @@ export const VARIETIES_LIST = [
         "symbol": "MA",
         "mainVariety": [
             "ma2609",
-            "ma2701"
+            "ma2610"
         ]
     },
     {
@@ -395,8 +395,8 @@ export const VARIETIES_LIST = [
         "name": "烧碱",
         "symbol": "SH",
         "mainVariety": [
-            "sh2607",
-            "sh2609"
+            "sh2609",
+            "sh2607"
         ]
     },
     {
@@ -483,32 +483,32 @@ export const VARIETIES_LIST = [
         "name": "300沪深",
         "symbol": "IF",
         "mainVariety": [
-            "if2606",
-            "if2609"
+            "if2609",
+            "if2606"
         ]
     },
     {
         "name": "500中证",
         "symbol": "IC",
         "mainVariety": [
-            "ic2606",
-            "ic2609"
+            "ic2609",
+            "ic2606"
         ]
     },
     {
         "name": "50上证",
         "symbol": "IH",
         "mainVariety": [
-            "ih2606",
-            "ih2609"
+            "ih2609",
+            "ih2606"
         ]
     },
     {
         "name": "1000中证",
         "symbol": "IM",
         "mainVariety": [
-            "im2606",
-            "im2609"
+            "im2609",
+            "im2606"
         ]
     }
 ];
