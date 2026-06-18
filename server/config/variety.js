@@ -108,15 +108,15 @@ const VARIETIES_LIST = [
         "symbol": "A",
         "mainVariety": [
             "a2609",
-            "a2607"
+            "a2611"
         ]
     },
     {
         "name": "豆二",
         "symbol": "B",
         "mainVariety": [
-            "b2607",
-            "b2609"
+            "b2609",
+            "b2607"
         ]
     },
     {
@@ -131,8 +131,8 @@ const VARIETIES_LIST = [
         "name": "淀粉",
         "symbol": "CS",
         "mainVariety": [
-            "cs2607",
-            "cs2609"
+            "cs2609",
+            "cs2607"
         ]
     },
     {
@@ -227,8 +227,8 @@ const VARIETIES_LIST = [
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2607",
-            "bz2608"
+            "bz2608",
+            "bz2607"
         ]
     },
     {
@@ -244,7 +244,7 @@ const VARIETIES_LIST = [
         "symbol": "LC",
         "mainVariety": [
             "lc2609",
-            "lc2607"
+            "lc2701"
         ]
     },
     {
@@ -379,8 +379,8 @@ const VARIETIES_LIST = [
         "name": "花生",
         "symbol": "PK",
         "mainVariety": [
-            "pk2611",
-            "pk2610"
+            "pk2610",
+            "pk2611"
         ]
     },
     {
@@ -419,8 +419,8 @@ const VARIETIES_LIST = [
         "name": "沪铜",
         "symbol": "CU",
         "mainVariety": [
-            "cu2607",
-            "cu2608"
+            "cu2608",
+            "cu2607"
         ]
     },
     {
@@ -443,8 +443,8 @@ const VARIETIES_LIST = [
         "name": "沪铅",
         "symbol": "PB",
         "mainVariety": [
-            "pb2607",
-            "pb2608"
+            "pb2608",
+            "pb2607"
         ]
     },
     {
