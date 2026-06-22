@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2609",
-            "sm2611"
+            "sm2610"
         ]
     },
     {
@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2609",
-            "pl2610"
+            "pl2608"
         ]
     },
     {
@@ -484,7 +484,7 @@ export const VARIETIES_LIST = [
         "symbol": "IF",
         "mainVariety": [
             "if2609",
-            "if2606"
+            "if2607"
         ]
     },
     {
@@ -492,7 +492,7 @@ export const VARIETIES_LIST = [
         "symbol": "IC",
         "mainVariety": [
             "ic2609",
-            "ic2606"
+            "ic2607"
         ]
     },
     {
@@ -500,7 +500,7 @@ export const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2609",
-            "ih2606"
+            "ih2607"
         ]
     },
     {
@@ -508,7 +508,7 @@ export const VARIETIES_LIST = [
         "symbol": "IM",
         "mainVariety": [
             "im2609",
-            "im2606"
+            "im2607"
         ]
     }
 ];
