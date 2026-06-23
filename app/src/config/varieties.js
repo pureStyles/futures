@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2609",
-            "sm2610"
+            "sm2611"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2609",
-            "ur2610"
+            "ur2611"
         ]
     },
     {
@@ -427,8 +427,8 @@ export const VARIETIES_LIST = [
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2607",
-            "al2608"
+            "al2608",
+            "al2607"
         ]
     },
     {
