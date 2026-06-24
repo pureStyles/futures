@@ -68,7 +68,7 @@ const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2609",
-            "br2607"
+            "br2608"
         ]
     },
     {
@@ -116,7 +116,7 @@ const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2609",
-            "b2607"
+            "b2608"
         ]
     },
     {
@@ -124,7 +124,7 @@ const VARIETIES_LIST = [
         "symbol": "C",
         "mainVariety": [
             "c2609",
-            "c2607"
+            "c2611"
         ]
     },
     {
@@ -204,7 +204,7 @@ const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2608",
-            "eb2607"
+            "eb2610"
         ]
     },
     {
@@ -212,7 +212,7 @@ const VARIETIES_LIST = [
         "symbol": "PG",
         "mainVariety": [
             "pg2608",
-            "pg2607"
+            "pg2610"
         ]
     },
     {
@@ -396,7 +396,7 @@ const VARIETIES_LIST = [
         "symbol": "SH",
         "mainVariety": [
             "sh2609",
-            "sh2607"
+            "sh2611"
         ]
     },
     {
@@ -436,7 +436,7 @@ const VARIETIES_LIST = [
         "symbol": "ZN",
         "mainVariety": [
             "zn2608",
-            "zn2607"
+            "zn2609"
         ]
     },
     {
@@ -451,16 +451,16 @@ const VARIETIES_LIST = [
         "name": "沪镍",
         "symbol": "NI",
         "mainVariety": [
-            "ni2607",
-            "ni2609"
+            "ni2609",
+            "ni2607"
         ]
     },
     {
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2607",
-            "sn2608"
+            "sn2608",
+            "sn2607"
         ]
     },
     {
