@@ -52,7 +52,7 @@ const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2608",
-            "ss2607"
+            "ss2609"
         ]
     },
     {
@@ -132,7 +132,7 @@ const VARIETIES_LIST = [
         "symbol": "CS",
         "mainVariety": [
             "cs2609",
-            "cs2607"
+            "cs2611"
         ]
     },
     {
@@ -228,7 +228,7 @@ const VARIETIES_LIST = [
         "symbol": "BZ",
         "mainVariety": [
             "bz2608",
-            "bz2607"
+            "bz2609"
         ]
     },
     {
@@ -356,7 +356,7 @@ const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2609",
-            "ur2611"
+            "ur2610"
         ]
     },
     {
@@ -404,7 +404,7 @@ const VARIETIES_LIST = [
         "symbol": "PR",
         "mainVariety": [
             "pr2609",
-            "pr2608"
+            "pr2610"
         ]
     },
     {
@@ -420,7 +420,7 @@ const VARIETIES_LIST = [
         "symbol": "CU",
         "mainVariety": [
             "cu2608",
-            "cu2607"
+            "cu2609"
         ]
     },
     {
@@ -428,7 +428,7 @@ const VARIETIES_LIST = [
         "symbol": "AL",
         "mainVariety": [
             "al2608",
-            "al2607"
+            "al2609"
         ]
     },
     {
@@ -444,7 +444,7 @@ const VARIETIES_LIST = [
         "symbol": "PB",
         "mainVariety": [
             "pb2608",
-            "pb2607"
+            "pb2609"
         ]
     },
     {
