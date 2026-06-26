@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2608",
-            "eb2610"
+            "eb2609"
         ]
     },
     {
@@ -388,7 +388,7 @@ export const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2609",
-            "px2610"
+            "px2608"
         ]
     },
     {
@@ -412,7 +412,7 @@ export const VARIETIES_LIST = [
         "symbol": "PL",
         "mainVariety": [
             "pl2609",
-            "pl2608"
+            "pl2610"
         ]
     },
     {
@@ -452,7 +452,7 @@ export const VARIETIES_LIST = [
         "symbol": "NI",
         "mainVariety": [
             "ni2609",
-            "ni2607"
+            "ni2608"
         ]
     },
     {
@@ -460,7 +460,7 @@ export const VARIETIES_LIST = [
         "symbol": "SN",
         "mainVariety": [
             "sn2608",
-            "sn2607"
+            "sn2609"
         ]
     },
     {
