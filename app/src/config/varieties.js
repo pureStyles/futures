@@ -12,7 +12,7 @@ export const VARIETIES_LIST = [
         "symbol": "HC",
         "mainVariety": [
             "hc2610",
-            "hc2609"
+            "hc2611"
         ]
     },
     {
@@ -75,8 +75,8 @@ export const VARIETIES_LIST = [
         "name": "集运欧线",
         "symbol": "EC",
         "mainVariety": [
-            "ec2607",
-            "ec2608"
+            "ec2608",
+            "ec2607"
         ]
     },
     {
@@ -196,7 +196,7 @@ export const VARIETIES_LIST = [
         "symbol": "EG",
         "mainVariety": [
             "eg2609",
-            "eg2701"
+            "eg2610"
         ]
     },
     {
@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2608",
-            "eb2609"
+            "eb2610"
         ]
     },
     {
@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2609",
-            "sm2611"
+            "sm2610"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2609",
-            "ur2610"
+            "ur2611"
         ]
     },
     {
@@ -388,7 +388,7 @@ export const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2609",
-            "px2608"
+            "px2610"
         ]
     },
     {
