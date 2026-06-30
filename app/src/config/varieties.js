@@ -20,7 +20,7 @@ export const VARIETIES_LIST = [
         "symbol": "BU",
         "mainVariety": [
             "bu2609",
-            "bu2608"
+            "bu2610"
         ]
     },
     {
@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2609",
-            "sm2610"
+            "sm2611"
         ]
     },
     {
