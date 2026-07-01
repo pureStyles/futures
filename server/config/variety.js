@@ -43,8 +43,8 @@ const VARIETIES_LIST = [
         "name": "20号胶",
         "symbol": "NR",
         "mainVariety": [
-            "nr2608",
-            "nr2609"
+            "nr2609",
+            "nr2608"
         ]
     },
     {
@@ -196,7 +196,7 @@ const VARIETIES_LIST = [
         "symbol": "EG",
         "mainVariety": [
             "eg2609",
-            "eg2610"
+            "eg2701"
         ]
     },
     {
@@ -260,7 +260,7 @@ const VARIETIES_LIST = [
         "symbol": "CY",
         "mainVariety": [
             "cy2609",
-            "cy2607"
+            "cy2611"
         ]
     },
     {
@@ -332,7 +332,7 @@ const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2609",
-            "sr2611"
+            "sr2701"
         ]
     },
     {
