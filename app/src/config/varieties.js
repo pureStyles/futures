@@ -68,7 +68,7 @@ export const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2609",
-            "br2608"
+            "br2610"
         ]
     },
     {
@@ -116,7 +116,7 @@ export const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2609",
-            "b2608"
+            "b2611"
         ]
     },
     {
@@ -332,7 +332,7 @@ export const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2609",
-            "sr2701"
+            "sr2611"
         ]
     },
     {
@@ -340,7 +340,7 @@ export const VARIETIES_LIST = [
         "symbol": "TA",
         "mainVariety": [
             "ta2609",
-            "ta2701"
+            "ta2611"
         ]
     },
     {
@@ -371,8 +371,8 @@ export const VARIETIES_LIST = [
         "name": "短纤",
         "symbol": "PF",
         "mainVariety": [
-            "pf2608",
-            "pf2609"
+            "pf2609",
+            "pf2608"
         ]
     },
     {
