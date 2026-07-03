@@ -4,7 +4,7 @@ const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2610",
-            "rb2609"
+            "rb2701"
         ]
     },
     {
@@ -76,7 +76,7 @@ const VARIETIES_LIST = [
         "symbol": "EC",
         "mainVariety": [
             "ec2608",
-            "ec2607"
+            "ec2610"
         ]
     },
     {
@@ -236,7 +236,7 @@ const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2609",
-            "si2608"
+            "si2610"
         ]
     },
     {
@@ -308,7 +308,7 @@ const VARIETIES_LIST = [
         "symbol": "RM",
         "mainVariety": [
             "rm2609",
-            "rm2701"
+            "rm2611"
         ]
     },
     {
@@ -332,7 +332,7 @@ const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2609",
-            "sr2611"
+            "sr2701"
         ]
     },
     {
@@ -372,7 +372,7 @@ const VARIETIES_LIST = [
         "symbol": "PF",
         "mainVariety": [
             "pf2609",
-            "pf2608"
+            "pf2610"
         ]
     },
     {
