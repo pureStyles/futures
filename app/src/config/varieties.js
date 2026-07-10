@@ -340,7 +340,7 @@ export const VARIETIES_LIST = [
         "symbol": "TA",
         "mainVariety": [
             "ta2609",
-            "ta2611"
+            "ta2701"
         ]
     },
     {
