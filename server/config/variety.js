@@ -4,7 +4,7 @@ const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2610",
-            "rb2609"
+            "rb2701"
         ]
     },
     {
@@ -139,8 +139,8 @@ const VARIETIES_LIST = [
         "name": "鸡蛋",
         "symbol": "JD",
         "mainVariety": [
-            "jd2608",
-            "jd2609"
+            "jd2609",
+            "jd2608"
         ]
     },
     {
@@ -379,8 +379,8 @@ const VARIETIES_LIST = [
         "name": "花生",
         "symbol": "PK",
         "mainVariety": [
-            "pk2610",
-            "pk2611"
+            "pk2611",
+            "pk2610"
         ]
     },
     {
