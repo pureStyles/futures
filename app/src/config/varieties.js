@@ -44,7 +44,7 @@ export const VARIETIES_LIST = [
         "symbol": "NR",
         "mainVariety": [
             "nr2609",
-            "nr2608"
+            "nr2610"
         ]
     },
     {
