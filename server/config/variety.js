@@ -4,7 +4,7 @@ const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2610",
-            "rb2701"
+            "rb2611"
         ]
     },
     {
@@ -51,8 +51,8 @@ const VARIETIES_LIST = [
         "name": "不锈钢",
         "symbol": "SS",
         "mainVariety": [
-            "ss2608",
-            "ss2609"
+            "ss2609",
+            "ss2608"
         ]
     },
     {
@@ -236,7 +236,7 @@ const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2609",
-            "si2610"
+            "si2611"
         ]
     },
     {
@@ -427,8 +427,8 @@ const VARIETIES_LIST = [
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2608",
-            "al2609"
+            "al2609",
+            "al2608"
         ]
     },
     {
@@ -475,8 +475,8 @@ const VARIETIES_LIST = [
         "name": "沪银",
         "symbol": "AG",
         "mainVariety": [
-            "ag2608",
-            "ag2610"
+            "ag2610",
+            "ag2608"
         ]
     },
     {
@@ -484,7 +484,7 @@ const VARIETIES_LIST = [
         "symbol": "IF",
         "mainVariety": [
             "if2609",
-            "if2607"
+            "if2608"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2609",
-            "ih2607"
+            "ih2608"
         ]
     },
     {
