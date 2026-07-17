@@ -4,7 +4,7 @@ export const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2610",
-            "rb2611"
+            "rb2701"
         ]
     },
     {
@@ -140,7 +140,7 @@ export const VARIETIES_LIST = [
         "symbol": "JD",
         "mainVariety": [
             "jd2609",
-            "jd2608"
+            "jd2610"
         ]
     },
     {
@@ -227,8 +227,8 @@ export const VARIETIES_LIST = [
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2608",
-            "bz2609"
+            "bz2609",
+            "bz2608"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2609",
-            "si2611"
+            "si2610"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2609",
-            "ur2701"
+            "ur2611"
         ]
     },
     {
@@ -492,7 +492,7 @@ export const VARIETIES_LIST = [
         "symbol": "IC",
         "mainVariety": [
             "ic2609",
-            "ic2612"
+            "ic2608"
         ]
     },
     {
@@ -508,7 +508,7 @@ export const VARIETIES_LIST = [
         "symbol": "IM",
         "mainVariety": [
             "im2609",
-            "im2612"
+            "im2608"
         ]
     }
 ];
