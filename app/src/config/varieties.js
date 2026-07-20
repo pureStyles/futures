@@ -4,7 +4,7 @@ export const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2610",
-            "rb2701"
+            "rb2611"
         ]
     },
     {
@@ -203,16 +203,16 @@ export const VARIETIES_LIST = [
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2608",
-            "eb2609"
+            "eb2609",
+            "eb2608"
         ]
     },
     {
         "name": "液化气",
         "symbol": "PG",
         "mainVariety": [
-            "pg2608",
-            "pg2610"
+            "pg2610",
+            "pg2608"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2609",
-            "ur2611"
+            "ur2701"
         ]
     },
     {
