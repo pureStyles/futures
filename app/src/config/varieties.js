@@ -388,7 +388,7 @@ export const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2609",
-            "px2610"
+            "px2611"
         ]
     },
     {
