@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2609",
-            "eb2608"
+            "eb2610"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2609",
-            "si2610"
+            "si2611"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2609",
-            "ur2701"
+            "ur2611"
         ]
     },
     {
@@ -452,7 +452,7 @@ export const VARIETIES_LIST = [
         "symbol": "NI",
         "mainVariety": [
             "ni2609",
-            "ni2608"
+            "ni2610"
         ]
     },
     {
@@ -467,8 +467,8 @@ export const VARIETIES_LIST = [
         "name": "沪金",
         "symbol": "AU",
         "mainVariety": [
-            "au2608",
-            "au2610"
+            "au2610",
+            "au2608"
         ]
     },
     {
