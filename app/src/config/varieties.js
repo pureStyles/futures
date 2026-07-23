@@ -4,7 +4,7 @@ export const VARIETIES_LIST = [
         "symbol": "RB",
         "mainVariety": [
             "rb2610",
-            "rb2611"
+            "rb2701"
         ]
     },
     {
@@ -52,7 +52,7 @@ export const VARIETIES_LIST = [
         "symbol": "SS",
         "mainVariety": [
             "ss2609",
-            "ss2608"
+            "ss2610"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2609",
-            "si2611"
+            "si2610"
         ]
     },
     {
@@ -276,7 +276,7 @@ export const VARIETIES_LIST = [
         "symbol": "CF",
         "mainVariety": [
             "cf2609",
-            "cf2701"
+            "cf2611"
         ]
     },
     {
@@ -459,8 +459,8 @@ export const VARIETIES_LIST = [
         "name": "沪锡",
         "symbol": "SN",
         "mainVariety": [
-            "sn2608",
-            "sn2609"
+            "sn2609",
+            "sn2608"
         ]
     },
     {
