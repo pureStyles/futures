@@ -27,8 +27,8 @@ const VARIETIES_LIST = [
         "name": "天然橡胶",
         "symbol": "RU",
         "mainVariety": [
-            "ru2609",
-            "ru2701"
+            "ru2701",
+            "ru2609"
         ]
     },
     {
@@ -44,7 +44,7 @@ const VARIETIES_LIST = [
         "symbol": "NR",
         "mainVariety": [
             "nr2610",
-            "nr2609"
+            "nr2611"
         ]
     },
     {
@@ -59,16 +59,16 @@ const VARIETIES_LIST = [
         "name": "氧化铝",
         "symbol": "AO",
         "mainVariety": [
-            "ao2609",
-            "ao2610"
+            "ao2610",
+            "ao2609"
         ]
     },
     {
         "name": "合成橡胶",
         "symbol": "BR",
         "mainVariety": [
-            "br2609",
-            "br2610"
+            "br2610",
+            "br2609"
         ]
     },
     {
@@ -163,8 +163,8 @@ const VARIETIES_LIST = [
         "name": "棕榈油",
         "symbol": "P",
         "mainVariety": [
-            "p2609",
-            "p2701"
+            "p2701",
+            "p2609"
         ]
     },
     {
@@ -316,7 +316,7 @@ const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2611",
-            "sf2609"
+            "sf2610"
         ]
     },
     {
@@ -340,7 +340,7 @@ const VARIETIES_LIST = [
         "symbol": "TA",
         "mainVariety": [
             "ta2609",
-            "ta2611"
+            "ta2701"
         ]
     },
     {
@@ -364,7 +364,7 @@ const VARIETIES_LIST = [
         "symbol": "SA",
         "mainVariety": [
             "sa2609",
-            "sa2611"
+            "sa2701"
         ]
     },
     {
@@ -388,7 +388,7 @@ const VARIETIES_LIST = [
         "symbol": "PX",
         "mainVariety": [
             "px2611",
-            "px2609"
+            "px2610"
         ]
     },
     {
