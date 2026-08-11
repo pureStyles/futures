@@ -19,8 +19,8 @@ const VARIETIES_LIST = [
         "name": "沥青",
         "symbol": "BU",
         "mainVariety": [
-            "bu2609",
-            "bu2610"
+            "bu2610",
+            "bu2609"
         ]
     },
     {
@@ -83,8 +83,8 @@ const VARIETIES_LIST = [
         "name": "铁矿石",
         "symbol": "I",
         "mainVariety": [
-            "i2609",
-            "i2701"
+            "i2701",
+            "i2609"
         ]
     },
     {
@@ -140,7 +140,7 @@ const VARIETIES_LIST = [
         "symbol": "JD",
         "mainVariety": [
             "jd2610",
-            "jd2609"
+            "jd2611"
         ]
     },
     {
@@ -291,8 +291,8 @@ const VARIETIES_LIST = [
         "name": "甲醇",
         "symbol": "MA",
         "mainVariety": [
-            "ma2609",
-            "ma2610"
+            "ma2610",
+            "ma2609"
         ]
     },
     {
@@ -307,8 +307,8 @@ const VARIETIES_LIST = [
         "name": "菜粕",
         "symbol": "RM",
         "mainVariety": [
-            "rm2609",
-            "rm2611"
+            "rm2611",
+            "rm2609"
         ]
     },
     {
@@ -316,7 +316,7 @@ const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2611",
-            "sf2610"
+            "sf2612"
         ]
     },
     {
@@ -331,8 +331,8 @@ const VARIETIES_LIST = [
         "name": "白糖",
         "symbol": "SR",
         "mainVariety": [
-            "sr2609",
-            "sr2701"
+            "sr2701",
+            "sr2609"
         ]
     },
     {
