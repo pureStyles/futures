@@ -12,7 +12,7 @@ export const VARIETIES_LIST = [
         "symbol": "HC",
         "mainVariety": [
             "hc2610",
-            "hc2611"
+            "hc2701"
         ]
     },
     {
@@ -131,8 +131,8 @@ export const VARIETIES_LIST = [
         "name": "淀粉",
         "symbol": "CS",
         "mainVariety": [
-            "cs2609",
-            "cs2611"
+            "cs2611",
+            "cs2609"
         ]
     },
     {
@@ -203,8 +203,8 @@ export const VARIETIES_LIST = [
         "name": "苯乙烯",
         "symbol": "EB",
         "mainVariety": [
-            "eb2609",
-            "eb2610"
+            "eb2610",
+            "eb2609"
         ]
     },
     {
@@ -308,7 +308,7 @@ export const VARIETIES_LIST = [
         "symbol": "RM",
         "mainVariety": [
             "rm2611",
-            "rm2609"
+            "rm2701"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2611",
-            "sf2612"
+            "sf2609"
         ]
     },
     {
@@ -403,8 +403,8 @@ export const VARIETIES_LIST = [
         "name": "瓶片",
         "symbol": "PR",
         "mainVariety": [
-            "pr2610",
-            "pr2611"
+            "pr2611",
+            "pr2610"
         ]
     },
     {
@@ -443,8 +443,8 @@ export const VARIETIES_LIST = [
         "name": "沪铅",
         "symbol": "PB",
         "mainVariety": [
-            "pb2609",
-            "pb2610"
+            "pb2610",
+            "pb2609"
         ]
     },
     {
