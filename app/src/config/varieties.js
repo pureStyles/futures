@@ -115,8 +115,8 @@ export const VARIETIES_LIST = [
         "name": "豆二",
         "symbol": "B",
         "mainVariety": [
-            "b2609",
-            "b2611"
+            "b2611",
+            "b2609"
         ]
     },
     {
@@ -243,8 +243,8 @@ export const VARIETIES_LIST = [
         "name": "碳酸锂",
         "symbol": "LC",
         "mainVariety": [
-            "lc2609",
-            "lc2701"
+            "lc2701",
+            "lc2609"
         ]
     },
     {
@@ -275,8 +275,8 @@ export const VARIETIES_LIST = [
         "name": "棉花",
         "symbol": "CF",
         "mainVariety": [
-            "cf2609",
-            "cf2701"
+            "cf2701",
+            "cf2609"
         ]
     },
     {
@@ -299,8 +299,8 @@ export const VARIETIES_LIST = [
         "name": "菜油",
         "symbol": "OI",
         "mainVariety": [
-            "oi2609",
-            "oi2611"
+            "oi2611",
+            "oi2609"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2611",
-            "sf2609"
+            "sf2610"
         ]
     },
     {
@@ -395,8 +395,8 @@ export const VARIETIES_LIST = [
         "name": "烧碱",
         "symbol": "SH",
         "mainVariety": [
-            "sh2609",
-            "sh2611"
+            "sh2611",
+            "sh2609"
         ]
     },
     {
