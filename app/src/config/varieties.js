@@ -91,8 +91,8 @@ export const VARIETIES_LIST = [
         "name": "焦煤",
         "symbol": "JM",
         "mainVariety": [
-            "jm2609",
-            "jm2701"
+            "jm2701",
+            "jm2609"
         ]
     },
     {
@@ -123,8 +123,8 @@ export const VARIETIES_LIST = [
         "name": "玉米",
         "symbol": "C",
         "mainVariety": [
-            "c2609",
-            "c2611"
+            "c2611",
+            "c2609"
         ]
     },
     {
@@ -235,8 +235,8 @@ export const VARIETIES_LIST = [
         "name": "工业硅",
         "symbol": "SI",
         "mainVariety": [
-            "si2609",
-            "si2611"
+            "si2611",
+            "si2609"
         ]
     },
     {
@@ -276,7 +276,7 @@ export const VARIETIES_LIST = [
         "symbol": "CF",
         "mainVariety": [
             "cf2701",
-            "cf2609"
+            "cf2611"
         ]
     },
     {
@@ -324,7 +324,7 @@ export const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2611",
-            "sm2609"
+            "sm2610"
         ]
     },
     {
@@ -435,8 +435,8 @@ export const VARIETIES_LIST = [
         "name": "沪锌",
         "symbol": "ZN",
         "mainVariety": [
-            "zn2609",
-            "zn2610"
+            "zn2610",
+            "zn2609"
         ]
     },
     {
