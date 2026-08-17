@@ -108,7 +108,7 @@ const VARIETIES_LIST = [
         "symbol": "A",
         "mainVariety": [
             "a2611",
-            "a2609"
+            "a2701"
         ]
     },
     {
@@ -220,7 +220,7 @@ const VARIETIES_LIST = [
         "symbol": "LH",
         "mainVariety": [
             "lh2611",
-            "lh2609"
+            "lh2701"
         ]
     },
     {
@@ -251,8 +251,8 @@ const VARIETIES_LIST = [
         "name": "多晶硅",
         "symbol": "PS",
         "mainVariety": [
-            "ps2609",
-            "ps2611"
+            "ps2611",
+            "ps2609"
         ]
     },
     {
@@ -283,8 +283,8 @@ const VARIETIES_LIST = [
         "name": "玻璃",
         "symbol": "FG",
         "mainVariety": [
-            "fg2609",
-            "fg2701"
+            "fg2701",
+            "fg2609"
         ]
     },
     {
@@ -292,7 +292,7 @@ const VARIETIES_LIST = [
         "symbol": "MA",
         "mainVariety": [
             "ma2610",
-            "ma2609"
+            "ma2701"
         ]
     },
     {
@@ -300,7 +300,7 @@ const VARIETIES_LIST = [
         "symbol": "OI",
         "mainVariety": [
             "oi2611",
-            "oi2609"
+            "oi2701"
         ]
     },
     {
@@ -332,7 +332,7 @@ const VARIETIES_LIST = [
         "symbol": "SR",
         "mainVariety": [
             "sr2701",
-            "sr2609"
+            "sr2611"
         ]
     },
     {
@@ -355,16 +355,16 @@ const VARIETIES_LIST = [
         "name": "尿素",
         "symbol": "UR",
         "mainVariety": [
-            "ur2609",
-            "ur2701"
+            "ur2701",
+            "ur2609"
         ]
     },
     {
         "name": "纯碱",
         "symbol": "SA",
         "mainVariety": [
-            "sa2609",
-            "sa2701"
+            "sa2701",
+            "sa2609"
         ]
     },
     {
@@ -427,8 +427,8 @@ const VARIETIES_LIST = [
         "name": "沪铝",
         "symbol": "AL",
         "mainVariety": [
-            "al2609",
-            "al2610"
+            "al2610",
+            "al2609"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2609",
-            "ih2608"
+            "ih2612"
         ]
     },
     {
