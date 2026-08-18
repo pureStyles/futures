@@ -99,8 +99,8 @@ const VARIETIES_LIST = [
         "name": "焦炭",
         "symbol": "J",
         "mainVariety": [
-            "j2609",
-            "j2701"
+            "j2701",
+            "j2609"
         ]
     },
     {
@@ -147,8 +147,8 @@ const VARIETIES_LIST = [
         "name": "塑料",
         "symbol": "L",
         "mainVariety": [
-            "l2609",
-            "l2701"
+            "l2701",
+            "l2609"
         ]
     },
     {
@@ -171,16 +171,16 @@ const VARIETIES_LIST = [
         "name": "PP",
         "symbol": "PP",
         "mainVariety": [
-            "pp2609",
-            "pp2701"
+            "pp2701",
+            "pp2609"
         ]
     },
     {
         "name": "PVC",
         "symbol": "V",
         "mainVariety": [
-            "v2609",
-            "v2701"
+            "v2701",
+            "v2609"
         ]
     },
     {
@@ -292,7 +292,7 @@ const VARIETIES_LIST = [
         "symbol": "MA",
         "mainVariety": [
             "ma2610",
-            "ma2701"
+            "ma2611"
         ]
     },
     {
@@ -324,7 +324,7 @@ const VARIETIES_LIST = [
         "symbol": "SM",
         "mainVariety": [
             "sm2611",
-            "sm2610"
+            "sm2701"
         ]
     },
     {
@@ -339,8 +339,8 @@ const VARIETIES_LIST = [
         "name": "PTA",
         "symbol": "TA",
         "mainVariety": [
-            "ta2609",
-            "ta2701"
+            "ta2701",
+            "ta2609"
         ]
     },
     {
@@ -396,7 +396,7 @@ const VARIETIES_LIST = [
         "symbol": "SH",
         "mainVariety": [
             "sh2611",
-            "sh2609"
+            "sh2610"
         ]
     },
     {
@@ -500,7 +500,7 @@ const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2609",
-            "ih2612"
+            "ih2608"
         ]
     },
     {
