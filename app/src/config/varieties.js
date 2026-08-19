@@ -36,7 +36,7 @@ export const VARIETIES_LIST = [
         "symbol": "SP",
         "mainVariety": [
             "sp2611",
-            "sp2609"
+            "sp2701"
         ]
     },
     {
@@ -116,7 +116,7 @@ export const VARIETIES_LIST = [
         "symbol": "B",
         "mainVariety": [
             "b2611",
-            "b2609"
+            "b2610"
         ]
     },
     {
@@ -124,7 +124,7 @@ export const VARIETIES_LIST = [
         "symbol": "C",
         "mainVariety": [
             "c2611",
-            "c2609"
+            "c2701"
         ]
     },
     {
@@ -164,7 +164,7 @@ export const VARIETIES_LIST = [
         "symbol": "P",
         "mainVariety": [
             "p2701",
-            "p2609"
+            "p2705"
         ]
     },
     {
@@ -188,7 +188,7 @@ export const VARIETIES_LIST = [
         "symbol": "Y",
         "mainVariety": [
             "y2701",
-            "y2609"
+            "y2705"
         ]
     },
     {
@@ -204,7 +204,7 @@ export const VARIETIES_LIST = [
         "symbol": "EB",
         "mainVariety": [
             "eb2610",
-            "eb2609"
+            "eb2611"
         ]
     },
     {
@@ -227,8 +227,8 @@ export const VARIETIES_LIST = [
         "name": "纯苯",
         "symbol": "BZ",
         "mainVariety": [
-            "bz2609",
-            "bz2610"
+            "bz2610",
+            "bz2609"
         ]
     },
     {
@@ -292,7 +292,7 @@ export const VARIETIES_LIST = [
         "symbol": "MA",
         "mainVariety": [
             "ma2610",
-            "ma2611"
+            "ma2701"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2611",
-            "sf2610"
+            "sf2612"
         ]
     },
     {
@@ -340,7 +340,7 @@ export const VARIETIES_LIST = [
         "symbol": "TA",
         "mainVariety": [
             "ta2701",
-            "ta2609"
+            "ta2611"
         ]
     },
     {
@@ -348,7 +348,7 @@ export const VARIETIES_LIST = [
         "symbol": "CJ",
         "mainVariety": [
             "cj2701",
-            "cj2609"
+            "cj2612"
         ]
     },
     {
@@ -356,7 +356,7 @@ export const VARIETIES_LIST = [
         "symbol": "UR",
         "mainVariety": [
             "ur2701",
-            "ur2609"
+            "ur2611"
         ]
     },
     {
@@ -500,7 +500,7 @@ export const VARIETIES_LIST = [
         "symbol": "IH",
         "mainVariety": [
             "ih2609",
-            "ih2608"
+            "ih2612"
         ]
     },
     {
