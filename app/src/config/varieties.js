@@ -20,7 +20,7 @@ export const VARIETIES_LIST = [
         "symbol": "BU",
         "mainVariety": [
             "bu2610",
-            "bu2609"
+            "bu2611"
         ]
     },
     {
@@ -60,7 +60,7 @@ export const VARIETIES_LIST = [
         "symbol": "AO",
         "mainVariety": [
             "ao2610",
-            "ao2609"
+            "ao2701"
         ]
     },
     {
@@ -68,7 +68,7 @@ export const VARIETIES_LIST = [
         "symbol": "BR",
         "mainVariety": [
             "br2610",
-            "br2609"
+            "br2611"
         ]
     },
     {
@@ -195,8 +195,8 @@ export const VARIETIES_LIST = [
         "name": "乙二醇",
         "symbol": "EG",
         "mainVariety": [
-            "eg2609",
-            "eg2610"
+            "eg2610",
+            "eg2609"
         ]
     },
     {
@@ -236,7 +236,7 @@ export const VARIETIES_LIST = [
         "symbol": "SI",
         "mainVariety": [
             "si2611",
-            "si2609"
+            "si2610"
         ]
     },
     {
@@ -244,7 +244,7 @@ export const VARIETIES_LIST = [
         "symbol": "LC",
         "mainVariety": [
             "lc2701",
-            "lc2609"
+            "lc2611"
         ]
     },
     {
@@ -252,7 +252,7 @@ export const VARIETIES_LIST = [
         "symbol": "PS",
         "mainVariety": [
             "ps2611",
-            "ps2609"
+            "ps2610"
         ]
     },
     {
@@ -284,7 +284,7 @@ export const VARIETIES_LIST = [
         "symbol": "FG",
         "mainVariety": [
             "fg2701",
-            "fg2609"
+            "fg2611"
         ]
     },
     {
@@ -316,7 +316,7 @@ export const VARIETIES_LIST = [
         "symbol": "SF",
         "mainVariety": [
             "sf2611",
-            "sf2610"
+            "sf2612"
         ]
     },
     {
@@ -419,8 +419,8 @@ export const VARIETIES_LIST = [
         "name": "沪铜",
         "symbol": "CU",
         "mainVariety": [
-            "cu2609",
-            "cu2610"
+            "cu2610",
+            "cu2609"
         ]
     },
     {
@@ -451,8 +451,8 @@ export const VARIETIES_LIST = [
         "name": "沪镍",
         "symbol": "NI",
         "mainVariety": [
-            "ni2609",
-            "ni2610"
+            "ni2610",
+            "ni2609"
         ]
     },
     {
