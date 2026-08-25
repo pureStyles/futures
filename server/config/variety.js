@@ -84,7 +84,7 @@ const VARIETIES_LIST = [
         "symbol": "I",
         "mainVariety": [
             "i2701",
-            "i2609"
+            "i2610"
         ]
     },
     {
@@ -436,7 +436,7 @@ const VARIETIES_LIST = [
         "symbol": "ZN",
         "mainVariety": [
             "zn2610",
-            "zn2609"
+            "zn2611"
         ]
     },
     {
