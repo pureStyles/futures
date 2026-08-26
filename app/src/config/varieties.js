@@ -180,7 +180,7 @@ export const VARIETIES_LIST = [
         "symbol": "V",
         "mainVariety": [
             "v2701",
-            "v2609"
+            "v2610"
         ]
     },
     {
@@ -228,7 +228,7 @@ export const VARIETIES_LIST = [
         "symbol": "BZ",
         "mainVariety": [
             "bz2610",
-            "bz2609"
+            "bz2611"
         ]
     },
     {
@@ -428,7 +428,7 @@ export const VARIETIES_LIST = [
         "symbol": "AL",
         "mainVariety": [
             "al2610",
-            "al2609"
+            "al2611"
         ]
     },
     {
